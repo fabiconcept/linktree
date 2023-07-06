@@ -2,26 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: .25s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+*::selection{
+  background-color: rgb(58, 224, 154);
+  color: #fff;
+}
+
+.bg-dark{
+  background-color: #3b3b3b;
+}
+
+.try {
+  filter: saturate(50%) invert(1) blur(2px);
+}
+
+.flicker {
+  animation: rgba 1s linear infinite, flick 4s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+}
+
+.flicker:nth-child(1) {
+  animation-delay: 1s;
+}
+
+.flicker:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.flicker:nth-child(3) {
+  animation-delay: 3s;
+}
+
+.flicker:nth-child(4) {
+  animation-delay: 4s;
+}
+
+.flicker:nth-child(5) {
+  animation-delay: 5s;
+}
+
+.flicker:nth-child(6) {
+  animation-delay: 6s;
+}
+
+.flicker:nth-child(7) {
+  animation-delay: 7s;
+}
+
+@keyframes flick {
+  50%{
+    opacity: 0;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@keyframes rgba {
+  50%{
+    filter: hue-rotate(90deg) blur(50px);
+  }
+}
+
+.dropshadow {
+  filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.25));
+}
+
+.dropshadow:has(input:focus) {
+  filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.5));
+}
+
+.dropshadow-good {
+  filter: drop-shadow(0 10px 25px rgba(58, 224, 154, 0.25));
+}
+
+.dropshadow-good:has(input:focus) {
+  filter: drop-shadow(0 10px 25px rgba(58, 224, 154, 0.5));
+}
+
+.dropshadow-bad {
+  filter: drop-shadow(0 10px 25px rgba(255, 44, 79, 0.25));
+}
+
+.dropshadow-bad:has(input:focus) {
+  filter: drop-shadow(0 10px 25px rgba(255, 44, 79, 0.5));
 }
