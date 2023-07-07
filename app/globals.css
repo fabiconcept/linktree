@@ -89,3 +89,7 @@
 .dropshadow-bad:has(input:focus) {
   filter: drop-shadow(0 10px 25px rgba(255, 44, 79, 0.5));
 }
+
+.nopointer {
+  pointer-events: none;
+}

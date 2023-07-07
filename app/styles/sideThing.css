@@ -1,0 +1,23 @@
+.animated-img {
+    position: absolute;
+    top: 15rem;
+    opacity: 0;
+    animation: lifeCycle 10s cubic-bezier(0.47, 0, 0.745, 0.715) forwards;
+}
+
+.animated-img img:hover {
+    transform: translateY(-25px);
+}
+
+@keyframes lifeCycle {
+    10%{
+        opacity: 1;
+    }
+    95%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(150%) translateZ(10px);
+    }
+}

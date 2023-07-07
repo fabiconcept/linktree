@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import "../styles/3d.css";
+import "../../styles/3d.css";
 
 export default function Form() {
     const [hasError, setHasError] = useState(1);

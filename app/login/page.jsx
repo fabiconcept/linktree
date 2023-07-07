@@ -1,0 +1,19 @@
+import LoginForm from "./componets/LoginForm"
+import SideThing from "./componets/SideThing"
+
+export const generateMetadata = () =>{
+    return {
+        title: "Link Tree | Login Page",
+        description: "Log into your account"
+    }
+}
+
+export default function LoginPage() {
+
+    return (
+        <div className="flex h-screen w-screen">
+            <LoginForm />
+            <SideThing />
+        </div>
+    )
+}
