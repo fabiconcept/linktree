@@ -31,7 +31,7 @@ export default function SideThing() {
                 ...prevShowCards,
             ]);
         }
-    }, [latestObj]);
+    }, [latestObj, imgId]);
 
     const onRemove = (id) => {
         setShowCards((prevShowCards) => prevShowCards.filter((card) => card.id !== id));

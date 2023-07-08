@@ -1,12 +1,17 @@
 .animated-img {
     position: absolute;
-    top: 15rem;
+    top: 20%;
     opacity: 0;
     animation: lifeCycle 10s cubic-bezier(0.47, 0, 0.745, 0.715) forwards;
 }
 
 .animated-img img:hover {
     transform: translateY(-25px);
+}
+
+.animated-imgactive {
+    animation-play-state: paused;
+    cursor: grabbing;
 }
 
 @keyframes lifeCycle {

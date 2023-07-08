@@ -2,18 +2,22 @@
 import { useEffect, useState } from "react";
 import "../../styles/3d.css";
 import { FaArrowLeft, FaArrowRightArrowLeft, FaArrowUp } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
+import { setSessionCookie } from "@/lib/session";
+import fetchExistingCredentials from "@/lib/fetchExistingCredentials";
 
 export default function Form() {
-    const  arrayOfUsernames = ["fabiconcept", "makeba", "mike"];
+    const [existingUsernames, setExistingUsernames] = useState([]);
 
     const [hasError, setHasError] = useState(0);
     const [canProceed, setCanProceed] = useState(false);
     const [username, setUsername] = useState("");
+    const router = useRouter();
     const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(()=>{
         if(username !== "") {
-            if(arrayOfUsernames.includes(username)){
+            if(existingUsernames.includes(username)){
                 setHasError(1);
                 setCanProceed(false);
                 setErrorMessage("This username is already taken.");
@@ -35,7 +39,6 @@ export default function Form() {
             }
 
 
-
             setHasError(2);
             setCanProceed(true);
             return;
@@ -44,15 +47,27 @@ export default function Form() {
             setHasError(0);
             setCanProceed(false);
         }
-    }, [username]);
+    }, [username, existingUsernames]);
 
     const handleSumbit = () => { 
-        if(hasError === 2){
-            
+        if(canProceed){
+            setSessionCookie("username", username);
+            router.push("/signup");
+            setCanProceed(false);
         }
     }
 
     useEffect(() => {
+        
+        async function fetchData() {
+            const fetchData = fetchExistingCredentials;
+            const data = await fetchData();
+
+            setExistingUsernames(data[1]);
+        }
+
+        fetchData();
+
         // Init
         const container = document.getElementById("container");
         const inner = document.getElementById("inner");
@@ -134,7 +149,7 @@ export default function Form() {
     return (
         <div className="w-fit h-fit z-10" id="container">
             <div className="flex items-center justify-center flex-col" id="inner">
-                <div className="text-[2.15rem] sm:text-[3rem] md:text-[4rem] font-bold text-white z-10 mb-4 max-w-[70vw] text-center">The Only Link You'll Ever Need</div>
+                <div className="text-[2.15rem] sm:text-[3rem] md:text-[4rem] font-bold text-white z-10 mb-4 max-w-[70vw] text-center">The Only Link You&apos;ll Ever Need</div>
                 <div className="max-w-[60vw] text-center font-semibold text-sm sm:text-lg opacity-80 z-10 text-white mb-8">connect your audience to all of your content with one link</div>
                 <div className={`flex items-stretch gap-2 relative filter ${hasError === 1 ? "dropshadow-bad" : hasError === 2 ? "dropshadow-good" : "dropshadow"}`} id="input">
                     <div className={`flex items-center rounded-l-xl bg-white px-6 text-sm md:text-2xl sm:text-md ${hasError === 1 ? "border-red-500 border-[2px]" : hasError === 2 ? "border-green-500 border-[2px]" : ""}`}>

@@ -1,14 +1,143 @@
 "use client"
+import { createAccountHandler } from "@/lib/createAccount";
+import fetchExistingCredentials from "@/lib/fetchExistingCredentials";
+import { getSessionCookie } from "@/lib/session";
+import { validateEmail, validatePassword } from "@/lib/utilities";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { FaCheck, FaEye, FaEyeSlash } from "react-icons/fa6"
+import { useEffect, useState } from "react";
+import { FaCheck, FaEye, FaEyeSlash, FaX } from "react-icons/fa6";
 
 export default function SignUpForm() {
     const [seePassord, setSeePassord] = useState(true);
     const [username, setUsername]= useState("");
+    const [email, setEmail]= useState("");
     const [password, setPassword]= useState("");
-    const [hasError, setHasError]= useState(0);
+    const [hasError, setHasError]= useState({
+        username: 0,
+        email: 0,
+        password: 0,
+    });
+    const [canProceed, setCanProceed] = useState(false);
+    const [existingUsernames, setExistingUsernames] = useState([]);
+    const [existingEmail, setExistingEmail] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        if (canProceed) {
+            const data = {
+                username,
+                email,
+                password
+            }
+            createAccountHandler(data)
+        }
+    }
+
+    useEffect(()=>{
+        if(username !== "") {
+            if(existingUsernames.includes(String(username).toLowerCase())){
+                setHasError({...hasError, username: 1});
+                setErrorMessage("This username is already taken.");
+                return;
+            }
+            
+            if(String(username).length < 3){
+                setHasError({ ...hasError, username: 1 });
+                setErrorMessage("Username is too short.");
+                return;
+            }
+
+            if (/[^a-zA-Z0-9\-_]/.test(username)) {
+                setHasError({ ...hasError, username: 1 });
+                setErrorMessage("Invalid username format");
+                return;
+            }
+
+
+            setHasError({...hasError, username: 2});
+            return;
+
+        }else{
+            setHasError({...hasError, username: 0});
+        }
+    }, [username]);
+
+    useEffect(()=>{
+        if(email !== "") {
+            if(existingEmail.includes(String(email).toLowerCase())){
+                setHasError({ ...hasError, email: 1 });
+                setErrorMessage("You already have an account with us!");
+                return;
+            }
+            
+            if(!validateEmail(email)){
+                setHasError({ ...hasError, email: 1 });
+                setErrorMessage("Invalid Email format!");
+                return;
+            }
+
+            setHasError({...hasError, email: 2});
+            return;
+        }else{
+            setHasError({...hasError, email: 0});
+        }
+
+    }, [email])
+
+    useEffect(()=>{
+        if(password !== "") {
+            if(typeof(validatePassword(password)) !== "boolean"){
+                setHasError({ ...hasError, password: 1 });
+                setErrorMessage(validatePassword(password));
+                return;
+            }
+
+            setHasError({...hasError, password: 2});
+            return;
+        }else{
+            setHasError({...hasError, password: 0});
+        }
+
+    }, [password]);
+
+    useEffect(()=>{
+        const sessionUsername = getSessionCookie("username");
+        if (sessionUsername !== undefined) {
+            setUsername(sessionUsername);
+        }
+
+        async function fetchData() {
+            const fetchData = fetchExistingCredentials;
+            const data = await fetchData();
+
+            setExistingUsernames(data[1]);
+            setExistingEmail(data[0]);
+        }
+        
+        fetchData();
+    }, []);
+    
+    useEffect(()=>{
+        if (hasError.email === 1) {
+            setCanProceed(false);
+            return
+        }
+        
+        if (hasError.username === 1) {
+            setCanProceed(false);
+            return
+        }
+        
+        if (hasError.password === 1) {
+            setCanProceed(false);
+            return
+        }
+
+        setCanProceed(true);
+    }, [hasError]);
+
     return (
         <div className="flex-1 sm:p-12 p-8 flex flex-col">
             <Link href={'/'}>
@@ -16,8 +145,8 @@ export default function SignUpForm() {
             </Link>
             <section className="mx-auto py-10 w-full sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-1/2 flex-1 flex flex-col justify-center">
                 <p className="text-2xl sm:text-5xl font-extrabold text-center">Create your account</p>
-                <form className="py-8 sm:py-12 flex flex-col gap-4 sm:gap-6 w-full">
-                    <div className={`flex items-center py-2 sm:py-3 px-4 sm:px-6 rounded-md myInput ${hasError === 1 ? "hasError": hasError === 2 ? "good" : ""} bg-black bg-opacity-5 text-base sm:text-lg w-full`}>
+                <form className="py-8 sm:py-12 flex flex-col gap-4 sm:gap-6 w-full" onSubmit={handleSubmit}>
+                    <div className={`flex items-center py-2 sm:py-3 px-4 sm:px-6 rounded-md myInput ${hasError.username === 1 ? "hasError": hasError.username === 2 ? "good" : ""} bg-black bg-opacity-5 text-base sm:text-lg w-full`}>
                         <label className="opacity-40">mylinktree/</label>
                         <input
                             type="text"
@@ -25,33 +154,52 @@ export default function SignUpForm() {
                             className="outline-none border-none bg-transparent ml-1 py-3 flex-1 text-sm sm:text-base"
                             value={username}
                             onChange={(e)=>setUsername(e.target.value)}
+                            required
                         />
-                        <FaCheck className="text-themeGreen cursor-pointer" />
+                        {hasError.username === 1 ?
+                            <FaX className="text-red-500 text-sm cursor-pointer" onClick={()=>setUsername("")} /> 
+                            :
+                            hasError.username === 2 ?
+                            <FaCheck className="text-themeGreen cursor-pointer" /> 
+                            :
+                            ""
+                        }
                     </div>
-                    <div className={`flex items-center py-2 sm:py-3 px-4 sm:px-6 rounded-md myInput ${hasError === 1 ? "hasError": hasError === 2 ? "good" : ""} bg-black bg-opacity-5 text-base sm:text-lg w-full`}>
+                    <div className={`flex items-center py-2 sm:py-3 px-4 sm:px-6 rounded-md myInput ${hasError.email === 1 ? "hasError": hasError.email === 2 ? "good" : ""} bg-black bg-opacity-5 text-base sm:text-lg w-full`}>
                         <input
                             type="text"
                             placeholder="Email"
                             className="outline-none border-none bg-transparent ml-1 py-3 flex-1 text-sm sm:text-base"
-                            value={username}
-                            onChange={(e)=>setUsername(e.target.value)}
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
+                            required
                         />
-                        <FaCheck className="text-themeGreen cursor-pointer" />
+                        {hasError.email === 1 ?
+                            <FaX className="text-red-500 text-sm cursor-pointer" onClick={()=>setEmail("")} /> 
+                            :
+                            hasError.email === 2 ?
+                            <FaCheck className="text-themeGreen cursor-pointer" /> 
+                            :
+                            ""
+                        }
                     </div>
-                    <div className={`flex items-center relative py-2 sm:py-3 px-4 sm:px-6 rounded-md  ${hasError === 1 ? "hasError": hasError === 2 ? "good" : ""} bg-black bg-opacity-5 text-base sm:text-lg myInput`}>
+                    <div className={`flex items-center relative py-2 sm:py-3 px-4 sm:px-6 rounded-md  ${hasError.password === 1 ? "hasError": hasError.password === 2 ? "good" : ""} bg-black bg-opacity-5 text-base sm:text-lg myInput`}>
                         <input
                             type={`${seePassord ? "password": "text"}`}
                             placeholder="Password"
                             className="peer outline-none border-none bg-transparent py-3 ml-1 flex-1 text-sm sm:text-base"
                             value={password}
                             onChange={(e)=>setPassword(e.target.value)}
+                            required
                         />
                         {seePassord && <FaEyeSlash className="opacity-60 cursor-pointer" onClick={()=>setSeePassord(!seePassord)} />}
                         {!seePassord && <FaEye className="opacity-60 cursor-pointer text-themeGreen" onClick={()=>setSeePassord(!seePassord)} />}
                     </div>
-                    <div className="rounded-md py-4 sm:py-5 grid place-items-center bg-themeGreen mix-blend-screen font-semibold cursor-pointer active:scale-95 active:opacity-40 hover:scale-[1.025]">
-                        <div>submit</div>
-                    </div>
+                    <button type="submit" className="rounded-md py-4 sm:py-5 grid place-items-center bg-themeGreen mix-blend-screen font-semibold cursor-pointer active:scale-95 active:opacity-40 hover:scale-[1.025]">
+                        <span className="nopointer">submit</span>
+                    </button>
+
+                    {!canProceed && <span className="text-sm text-red-500 text-center">{errorMessage}</span>}
                 </form>
                 <p className="text-center"><span className="opacity-60">Already have an account?</span> <Link className="text-themeGreen" href={"/login"}>Log in</Link> </p>
             </section>

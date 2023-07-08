@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast"
 import LoginForm from "./componets/LoginForm"
 import SideThing from "./componets/SideThing"
 
@@ -12,6 +13,7 @@ export default function LoginPage() {
 
     return (
         <div className="flex h-screen w-screen">
+            <Toaster />
             <LoginForm />
             <SideThing />
         </div>

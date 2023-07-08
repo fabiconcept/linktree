@@ -31,14 +31,14 @@ export default function SideThing() {
                 ...prevShowCards,
             ]);
         }
-    }, [latestObj]);
+    }, [latestObj, imgId]);
 
     const onRemove = (id) => {
         setShowCards((prevShowCards) => prevShowCards.filter((card) => card.id !== id));
     };      
 
     return (
-        <div className="w-[20rem] hidden md:grid border md:place-items-center relative">
+        <div className="w-[20vw] hidden md:grid border md:place-items-center relative">
             {showCards.map((card, index) => (
                 <Card id={card.id} index={index} img={card.img} zIndex={card.zIndex} key={card.id} onRemove={onRemove} />                
             ))}

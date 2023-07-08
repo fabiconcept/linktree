@@ -14,7 +14,7 @@ export default function Card({ zIndex, index, id, img, onRemove }) {
                 src={img}
                 height={400}
                 width={400}
-                className="w-[80%] mx-auto"
+                className="w-[18vw] mx-auto"
                 alt="card"
                 style={{ zIndex: zIndex + index }}
             />
