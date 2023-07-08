@@ -1,13 +1,49 @@
 "use client"
 import { useEffect, useState } from "react";
 import "../../styles/3d.css";
+import { FaArrowLeft, FaArrowRightArrowLeft, FaArrowUp } from "react-icons/fa6";
 
 export default function Form() {
-    const [hasError, setHasError] = useState(1);
+    const  arrayOfUsernames = ["fabiconcept", "makeba", "mike"];
+
+    const [hasError, setHasError] = useState(0);
+    const [canProceed, setCanProceed] = useState(false);
     const [username, setUsername] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(()=>{
+        if(username !== "") {
+            if(arrayOfUsernames.includes(username)){
+                setHasError(1);
+                setCanProceed(false);
+                setErrorMessage("This username is already taken.");
+                return;
+            }
+            
+            if(username.length < 3){
+                setHasError(1);
+                setCanProceed(false);
+                setErrorMessage("Username is too short.");
+                return;
+            }
 
+            if (/[^a-zA-Z0-9\-_]/.test(username)) {
+                setHasError(1);
+                setCanProceed(false);
+                setErrorMessage("Invalid username format");
+                return;
+            }
+
+
+
+            setHasError(2);
+            setCanProceed(true);
+            return;
+
+        }else{
+            setHasError(0);
+            setCanProceed(false);
+        }
     }, [username]);
 
     const handleSumbit = () => { 
@@ -105,11 +141,17 @@ export default function Form() {
                         <label className="opacity-40 font-semibold">mylinktr.ee/:</label>
                         <input type="text" className="bg-transparent peer py-5 px-2 outline-none border-none md:w-auto w-[8rem]" placeholder="fabiconcept" onChange={(e)=>setUsername(e.target.value)} />
                     </div>
-                    <div className="px-4 grid place-items-center text-white bg-themeGreen rounded-r-xl font-semibold cursor-pointer hover:scale-110 active:scale-95 active:opacity-80 uppercase text-sm md:text-lg sm:text-md" onClick={handleSumbit}>
-                        claim
+                    <div className={`px-4 grid place-items-center ${canProceed ? "bg-themeGreen text-white": "bg-slate-400 text-white"} rounded-r-xl font-semibold cursor-pointer hover:scale-110 active:scale-95 active:opacity-80 uppercase text-sm md:text-lg sm:text-md`} onClick={handleSumbit}>
+                        {hasError === 1 ? 
+                            <FaArrowLeft />
+                        : hasError === 2 ? 
+                            <FaArrowRightArrowLeft />
+                        : 
+                        <FaArrowUp />
+                        }
                     </div>
                 </div>
-                {hasError === 1 && <div className="p-4 max-w-[70vw] text-center text-red-500 filter drop-shadow-md shadow-white text-sm">username has already been taken</div>}
+                {hasError === 1 && <div className="p-4 max-w-[70vw] text-center text-red-500 filter drop-shadow-md shadow-white text-sm">{errorMessage}</div>}
             </div>
         </div>
     );
