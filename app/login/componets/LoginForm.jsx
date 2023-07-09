@@ -1,18 +1,22 @@
 "use client"
+import { useDebounce } from "@/Local Hooks/useDebounce";
 import fetchExistingCredentials from "@/lib/fetchExistingCredentials";
 import { loginAccount } from "@/lib/login";
-import { validatePassword } from "@/lib/utilities";
+import { setSessionCookie } from "@/lib/session";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaCheck, FaEye, FaEyeSlash, FaX } from "react-icons/fa6"
 
 export default function LoginForm() {
+    const router = useRouter();
     const [seePassord, setSeePassord] = useState(true);
     const [username, setUsername]= useState("");
     const [existingUsernames, setExistingUsernames] = useState([]);
     const [password, setPassword]= useState("");
+    const debouncepassword = useDebounce(username, 500);
     const [canProceed, setCanProceed] = useState(false);
     const [hasError, setHasError]= useState({
             username: 0,
@@ -31,16 +35,22 @@ export default function LoginForm() {
             }
 
             const status = await loginAccount(data);
-            setIsLoading(false);
-            if (!status) {
+            if (!status.status) {
                 setHasError({ ...hasError, password: 1 });
+                setIsLoading(false);
                 setPassword("")
                 setErrorMessage("You entered an `Incorrect passord`!");
                 toast.error("Invalid Login credentials!");
                 return;
             }
-
-            toast.success("Login Successfull");
+            
+            toast.success(`Login Successfull`);
+            setSessionCookie("adminLinker", `${status.userId}`, (60*5));
+            
+            setTimeout(() => {
+                setIsLoading(false);
+                router.push("/dashboard");
+            }, 1000);
         }
     }
 
@@ -69,7 +79,7 @@ export default function LoginForm() {
         }else{
             setHasError({...hasError, username: 0});
         }
-    }, [username, existingUsernames]);
+    }, [debouncepassword, existingUsernames]);
 
     useEffect(()=>{
         if(password !== "") {

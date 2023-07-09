@@ -104,8 +104,35 @@
 
 .myInput.hasError {
   border: 2px solid rgba(255, 44, 79, 1);
+  animation: shake 0.4s ease-in-out forwards;
 }
 
 .myInput.good {
   border: 2px solid rgb(58, 224, 154);
+}
+
+@keyframes shake {
+  0% {
+      transform: translateX(-3px);
+  }
+
+  20% {
+      transform: translateX(3px);
+  }
+
+  40% {
+      transform: translateX(-2px);
+  }
+
+  60% {
+      transform: translateX(2px);
+  }
+
+  80% {
+      transform: translateX(-1px);
+  }
+
+  100% {
+      transform: translateX(0);
+  }
 }

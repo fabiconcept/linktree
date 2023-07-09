@@ -68,5 +68,20 @@ export function realEscapeString(str) {
   
     // Replace special characters with their escaped counterparts
     return str.replace(/[\x00\x08\x09\x1a\n\r"\'\\]/g, (char) => escapeChars[char]);
-  }
-  
+}
+
+export function testPromiseStatus(promise) {
+    let status = 102;
+
+    promise
+        .then(() => {
+            status = 200;
+        })
+        .catch(() => {
+            status = 400;
+        })
+        .finally(() => {
+            return status
+        });
+}
+

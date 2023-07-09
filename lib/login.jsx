@@ -5,17 +5,21 @@ export const loginAccount = async(data)=>{
     const { log_username, log_password } = data;
     const collectionSnap = await getDocs(collection(fireApp, "accounts"));
 
-    let foundAccount = false;
+    let status = false;
+    let userId = "";
 
     collectionSnap.forEach((credential)=>{
         const data = credential.data();
-        const { username, password } = data;
+        userId = credential.id
+        const { username, password, mySalt } = data;
 
         if ( log_username === username ) {
-            if (log_password === password) {
-                foundAccount = true;
+            const passwordsMatch = comparePassword(log_password, password, mySalt);
+
+            if (passwordsMatch) {
+                status = true;
             }
         }
     });
-    return foundAccount;
+    return {status, userId};
 }
