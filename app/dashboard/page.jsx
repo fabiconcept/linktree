@@ -1,18 +1,9 @@
-"use client"
-import { getSessionCookie } from "@/lib/session"
-import { useEffect, useState } from "react";
+import ManageLinks from "./general components/ManageLinks";
 
 export default function page() {
-    const [userIdValue, setUserIdValue] = useState("")
-    useEffect(()=>{
-        const userId = getSessionCookie("adminLinker");
-        setUserIdValue(userId)
-    }, [])
-
     return (
-        <div>
-            {userIdValue !== undefined && <div>{userIdValue}</div>}
-            {userIdValue === undefined && <div>{"Not signed in"}</div>}
+        <div className="flex py-2 px-3">
+            <ManageLinks />
         </div>
-    )
+    );
 }

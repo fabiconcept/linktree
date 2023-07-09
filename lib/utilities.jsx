@@ -85,3 +85,10 @@ export function testPromiseStatus(promise) {
         });
 }
 
+export function isValidURL(text) {
+    // Regular expression pattern to match a valid URL format
+    const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+    
+    return urlPattern.test(text);
+  }
+  

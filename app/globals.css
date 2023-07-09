@@ -9,12 +9,12 @@
   transition: .25s ease-in-out;
 }
 
-*::selection{
+*::selection {
   background-color: rgb(58, 224, 154);
   color: #fff;
 }
 
-.bg-dark{
+.bg-dark {
   background-color: #3b3b3b;
 }
 
@@ -55,13 +55,13 @@
 }
 
 @keyframes flick {
-  50%{
+  50% {
     opacity: 0;
   }
 }
 
 @keyframes rgba {
-  50%{
+  50% {
     filter: hue-rotate(90deg) blur(50px);
   }
 }
@@ -113,26 +113,47 @@
 
 @keyframes shake {
   0% {
-      transform: translateX(-3px);
+    transform: translateX(-3px);
   }
 
   20% {
-      transform: translateX(3px);
+    transform: translateX(3px);
   }
 
   40% {
-      transform: translateX(-2px);
+    transform: translateX(-2px);
   }
 
   60% {
-      transform: translateX(2px);
+    transform: translateX(2px);
   }
 
   80% {
-      transform: translateX(-1px);
+    transform: translateX(-1px);
   }
 
   100% {
-      transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+
+.enter *::-webkit-scrollbar {
+  display: none;
+}
+
+.enter {
+  animation: enter ease-in-out .5s forwards;
+  animation-delay: .15s;
+  opacity: 0;
+}
+
+@keyframes enter {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  opacity: 1;
   }
 }
