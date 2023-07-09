@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function BrandAdd({addFunction, imgAlt, imgSrc, title, p}) {
     return (
-        <div className="flex min-w-[20rem] flex-1 items-center gap-3">
+        <div className="flex min-w-[20rem] flex-1 items-center gap-3 p-2 hover:bg-black hover:bg-opacity-[0.05] active:scale-90 rounded-xl cursor-pointer">
             <Image
                 src={`${imgSrc}`} 
                 height={40} 
@@ -15,7 +15,7 @@ export default function BrandAdd({addFunction, imgAlt, imgSrc, title, p}) {
                     <span className="font-semibold">{title}</span>
                     <span className="opacity-60 md:text-sm text-xs">{p}</span>
                 </div>
-                <span className="cursor-pointer text-btnPrimary font-semibold text-sm active:scale-90">Add</span>
+                <span className="hover:bg-white py-3 px-5 rounded-3xl text-btnPrimary font-semibold text-sm">Add</span>
             </div>
         </div>
     );

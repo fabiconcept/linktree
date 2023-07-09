@@ -1,4 +1,3 @@
-import { FaPlus } from "react-icons/fa6";
 import MyBtn from "../general elements/btn";
 import Image from "next/image";
 import AddBtn from "../general elements/addBtn";
