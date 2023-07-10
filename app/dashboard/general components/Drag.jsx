@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Normal from '../general elements/draggables/Normal';
+import Special from '../general elements/draggables/Special';
 
 const DraggableList = ({ array }) => {
     const [items, setItems] = useState([]);
@@ -26,7 +27,7 @@ const DraggableList = ({ array }) => {
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps} className='flex flex-col gap-8'>
                         {items.map((item, index) => (
-                            <Normal item={item} index={index} key={index+Math.random()} />
+                            <Special item={item} index={index} key={index+Math.random()} />
                         ))}
                         {provided.placeholder}
                     </div>
