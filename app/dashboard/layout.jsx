@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
         <html lang="en">
 
             <body className={inter.className}>
-                <div className='w-screen h-screen overflow-y-auto relative bg-black bg-opacity-[.05] p-2'>
+                <div className='w-screen h-screen overflow-y-auto relative bg-black bg-opacity-[.05] p-2 flex flex-col'>
                     <NavBar />
 
                     {children}

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Normal from '../general elements/draggables/Normal';
 
 const DraggableList = ({ array }) => {
-    const [items, setItems] = useState([
-        { id: '1', content: 'Item 1' },
-        { id: '2', content: 'Item 2' },
-        { id: '3', content: 'Item 3' },
-        { id: '4', content: 'Item 4' },
-    ]);
+    const [items, setItems] = useState([]);
+
+    useEffect(()=>{
+        setItems([...array]);
+    }, [array]);
 
     const handleDragEnd = (result) => {
         if (!result.destination) return;
@@ -23,19 +24,9 @@ const DraggableList = ({ array }) => {
         <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="draggable-list">
                 {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <div ref={provided.innerRef} {...provided.droppableProps} className='flex flex-col gap-8'>
                         {items.map((item, index) => (
-                            <Draggable key={item.id} draggableId={item.id} index={index}>
-                                {(provided) => (
-                                    <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                    >
-                                        {item.content}
-                                    </div>
-                                )}
-                            </Draggable>
+                            <Normal item={item} index={index} key={index+Math.random()} />
                         ))}
                         {provided.placeholder}
                     </div>

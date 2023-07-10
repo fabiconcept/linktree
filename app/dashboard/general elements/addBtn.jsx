@@ -17,10 +17,10 @@ export default function AddBtn() {
     useEffect(() => {
         switch (btnState) {
             case 0:
-                setBtnStyle(`p-3 cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] text-white bg-btnPrimary hover:bg-btnPrimaryAlt`);
+                setBtnStyle(`p-3 cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] text-white bg-btnPrimary hover:bg-btnPrimaryAlt h-[3rem] overflow-visible`);
                 break;
             case 1:
-                setBtnStyle(`bg-white`);
+                setBtnStyle(`bg-white border h-[20.5rem] overflow-hidden`);
                 break;
 
             default:
