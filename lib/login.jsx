@@ -1,5 +1,6 @@
 import { fireApp } from "@/importnat/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { comparePassword } from "./encryption";
 
 export const loginAccount = async(data)=>{
     const { log_username, log_password } = data;

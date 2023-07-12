@@ -1,8 +1,16 @@
 import Image from "next/image";
+import { useContext } from "react";
+import { addBtnContext } from "./addBtn";
 
-export default function BrandAdd({addFunction, imgAlt, imgSrc, title, p}) {
+export default function BrandAdd({btnData, imgAlt, imgSrc, title, p}) {
+    const { addItem } = useContext(addBtnContext);
+
+    const handleAddItem = () =>{
+        addItem(btnData);
+    }
+
     return (
-        <div className="flex min-w-[20rem] flex-1 items-center gap-3 p-2 hover:bg-black hover:bg-opacity-[0.05] active:scale-90 rounded-xl cursor-pointer">
+        <div className="flex min-w-[20rem] flex-1 items-center gap-3 p-2 hover:bg-black hover:bg-opacity-[0.05] active:scale-90 rounded-xl cursor-pointer" onClick={handleAddItem}>
             <Image
                 src={`${imgSrc}`} 
                 height={40} 

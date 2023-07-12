@@ -17,6 +17,8 @@ module.exports = {
         themeDark: '#3b3b3b',
         btnPrimary: '#8129D9',
         btnPrimaryAlt: '#5D18A2',
+        themeYellow: '#F1BC00',
+        themeYellowLight: '#FFF1BF',
       },
     },
   },

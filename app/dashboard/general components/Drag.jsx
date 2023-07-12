@@ -1,10 +1,12 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useContext, useEffect, useState } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Normal from '../general elements/draggables/Normal';
 import Special from '../general elements/draggables/Special';
+import { ManageLinksContent } from './ManageLinks';
 
 const DraggableList = ({ array }) => {
+    const { setData }= useContext(ManageLinksContent);
     const [items, setItems] = useState([]);
 
     useEffect(()=>{
@@ -18,7 +20,7 @@ const DraggableList = ({ array }) => {
         const [removed] = newItems.splice(result.source.index, 1);
         newItems.splice(result.destination.index, 0, removed);
 
-        setItems(newItems);
+        setData(newItems);
     };
 
     return (
@@ -26,9 +28,13 @@ const DraggableList = ({ array }) => {
             <Droppable droppableId="draggable-list">
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps} className='flex flex-col gap-8'>
-                        {items.map((item, index) => (
-                            <Special item={item} index={index} key={index+Math.random()} />
-                        ))}
+                        {items.map((item, index) => {
+                            if (item.type === 0) {
+                                return <Normal item={item} index={index} key={index+Math.random()} />
+                            }else{
+                                return <Special item={item} index={index} key={index+Math.random()} />
+                            }
+                        })}
                         {provided.placeholder}
                     </div>
                 )}

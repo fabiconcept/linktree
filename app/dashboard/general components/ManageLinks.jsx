@@ -1,33 +1,52 @@
 "use client"
-import MyBtn from "../general elements/btn";
+
 import Image from "next/image";
 import AddBtn from "../general elements/addBtn";
 import DraggableList from "./Drag";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { generateRandomId } from "@/lib/utilities";
+import { updateLinks } from "@/lib/updateLinks";
+import { fetchLinks } from "@/lib/fetchLinks";
 
 export const ManageLinksContent = React.createContext();
 export default function ManageLinks() {
-    const [data, setData] = useState([
-        { id: 'abe6e89e-1ca2-5b06-9c17-7aac2ef2a6d9', content: '100', isActive: false },
-        { id: '48889665-120f-57cf-b244-e1e3a4588b50', content: '200', isActive: false },
-        { id: '9ef792cd-ac8c-5ba1-afdf-14a18340b0df', content: '300', isActive: false },
-        { id: '8e4436ee-ff8d-5bfe-b4c9-f7f0670afb13', content: '400', isActive: false },
-    ]);
+    const [data, setData] = useState([]);
+
+    const addItem = () => {
+        const newItem ={id: `${generateRandomId()}`, title: "", isActive: true, type: 0};
+        setData(prevData => {
+          return [newItem, ...prevData];
+        });
+    };
+    
+    useEffect(() => {
+        if (data.length === 0) {
+            return;
+        }
+        updateLinks(data);
+    }, [data]);
+
+    useEffect(() => {
+        async function getLinks() {
+            const preFetch = fetchLinks;
+            const dataArray = await preFetch();
+
+            setData(dataArray);
+        }
+        getLinks();
+    }, []);
 
     return (
         <ManageLinksContent.Provider value={{setData, data}}>
-            <div className="flex-1 flex-col gap-4 py-3 max-h-[100%] flex overflow-y-auto px-2">
+            <div className="max-h-full flex-col gap-4 py-1 flex overflow-y-auto px-2">
                 <AddBtn />
-                <MyBtn
-                    extraClass={"border hover:bg-black hover:bg-opacity-[0.05] w-fit text-sm p-3 mt-3"}
-                    content={
+
+                <div className={`flex items-center gap-3 justify-center rounded-3xl cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border hover:bg-black hover:bg-opacity-[0.05] w-fit text-sm p-3 mt-3`} onClick={addItem}>
                         <>
                             <Image src={"https://linktree.sirv.com/Images/icons/add.svg"} alt="links" height={15} width={15} />
                             <span>Add Header</span>
                         </>
-                    }
-                />
-
+                </div>
 
                 {data.length === 0 && <div className="p-6 flex-col gap-4 flex items-center justify-center opacity-30">
                     <Image

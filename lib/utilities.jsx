@@ -90,5 +90,23 @@ export function isValidURL(text) {
     const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
     
     return urlPattern.test(text);
-  }
+}
+
+// For Link Items
+export function generateRandomId() {
+    const hex = '0123456789abcdef';
+    let id = '';
+    for (let i = 0; i < 8; i++) {
+        id += hex.charAt(Math.floor(Math.random() * hex.length));
+    }
+    return `${id}-${id}-${id}-${id}-${id}${hex.charAt(Math.floor(Math.random() * hex.length))}`;
+}
+  
+export function capitalizeFirstLetter(text) {
+    if (typeof text !== 'string' || text.length === 0) {
+      return text;
+    }
+  
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
   

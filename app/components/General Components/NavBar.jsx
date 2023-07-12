@@ -28,7 +28,7 @@ export default function NavBar() {
         }
     }, [router]);
     return (
-        <div className="w-full justify-between flex items-center rounded-[3rem] py-3 px-6 mx-auto bg-white border backdrop-blur-lg">
+        <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-6 mx-auto bg-white border backdrop-blur-lg">
             <div className="flex items-center gap-8">
                 <Link href={"/"}>
                     <Image src={"https://linktree.sirv.com/Images/logo-icon.svg"} alt="logo" height={23} width={23} className="" />
@@ -39,7 +39,7 @@ export default function NavBar() {
                         <Image src={"https://linktree.sirv.com/Images/icons/links.svg"} alt="links" height={15} width={15} />
                         Links
                     </Link>
-                    <Link href={'/'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 1 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                    <Link href={'/dashboard/appearance'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 1 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
                         <Image src={"https://linktree.sirv.com/Images/icons/appearance.svg"} alt="links" height={15} width={15} />
                         Appearance
                     </Link>

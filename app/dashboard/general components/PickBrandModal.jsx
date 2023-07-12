@@ -1,6 +1,7 @@
 import { AddContents } from "@/lib/BrandLinks";
 import BrandAdd from "../general elements/brandAdd";
 import { FaX } from "react-icons/fa6";
+import { capitalizeFirstLetter } from "@/lib/utilities";
 
 export default function PickBrandModal({closeFunction}) {
     const handlerClose = () =>{
@@ -8,7 +9,7 @@ export default function PickBrandModal({closeFunction}) {
     }
 
     return (
-        <div className="h-screen w-screen fixed top-0 left-0 grid place-items-center">
+        <div className="h-screen w-screen z-[99999999] fixed top-0 left-0 grid place-items-center">
             <div className="absolute top-0 left-0 h-full w-full bg-black backdrop-blur-[1px] bg-opacity-[0.25]" onClick={handlerClose}></div>
             <main className="bg-white relative z-10 shadow-xl w-[80vw] min-w-[20rem] flex flex-col rounded-3xl enter">
                 <div className="px-8 py-5 flex  w-full border-b font-semibold justify-between items-center">
@@ -25,6 +26,7 @@ export default function PickBrandModal({closeFunction}) {
                         <div className="flex flex-wrap px-4 pb-4 gap-x-5 gap-y-2">
                             {AddContents.map((content) => (
                                 <BrandAdd
+                                    btnData={{ itemTitle: `${capitalizeFirstLetter(content.title)} Link`, itemUrl: "", uniqueType: `${capitalizeFirstLetter(content.title)}` }}
                                     imgAlt={content.alt}
                                     imgSrc={content.src}
                                     title={content.title}
