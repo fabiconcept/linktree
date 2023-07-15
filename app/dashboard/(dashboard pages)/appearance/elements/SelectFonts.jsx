@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react";
 import FontsGallery from "../components/FontsGallery";
-import { FaTemperatureLow } from "react-icons/fa6";
 
 export const selectedFontContext = React.createContext();
 export default function SelectFonts() {
