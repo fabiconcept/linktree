@@ -1,6 +1,3 @@
-Certainly! Here's an updated version of the README file that includes the full content:
-
-```markdown
 # LinkTree Clone
 
 This project is my attempt at recreating the amazing system that Linktree has developed. I aim to use Next.js and Tailwind CSS to build the user admin side, including login and sign-up functionality, as well as the user links page.
@@ -56,7 +53,6 @@ LinkTree is a popular platform that allows users to create a personalized landin
 ## Usage
 
 - Open your web browser and navigate to `http://localhost:3000` to access the application.
-- (Add any additional instructions on how to use or interact with the project)
 
 ## Contribution
 
@@ -68,7 +64,3 @@ This project is licensed under the [MIT License](LICENSE).
 Acknowledgments
 
 - LinkTree for the inspiration and idea behind this project.
-- (Add any other acknowledgments or credits as necessary)
-
-Feel free to modify this `README.md` file to fit your project's specific details and structure. Good luck with your LinkTree Clone project!
-```
