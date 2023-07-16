@@ -9,7 +9,7 @@ LinkTree is a popular platform that allows users to create a personalized landin
 ## Features
 
 - User authentication: Implement a secure login and sign-up system for users.
-- User admin dashboard: Develop a user-friendly interface where users can manage their links and customize their profile.
+- User admin dashboard: Develop a user-friendly interface where users can manage their links and customize their profiles.
 - User links page: Create a page where users can add, edit, and organize their links with custom names and descriptions.
 
 ## Technologies Used
