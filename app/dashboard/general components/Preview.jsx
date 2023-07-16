@@ -80,7 +80,7 @@ export default function Preview() {
         };
     }, []);
     return (
-        <div className="w-[32rem] md:grid hidden place-items-center border-l ml-4" >
+        <div className="w-[35rem] md:grid hidden place-items-center border-l ml-4" >
             <div className='w-fit h-fit' id='container'>
                 <div className="h-[45rem] scale-[0.8] w-[23rem] bg-black rounded-[3rem] grid place-items-center" id="inner">
                     <div className="h-[97.5%] relative w-[95%] bg-white bg-opacity-[.1] grid place-items-center rounded-[2.5rem] overflow-hidden relative border">

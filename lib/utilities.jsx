@@ -109,4 +109,9 @@ export function capitalizeFirstLetter(text) {
   
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
+
+export function isValidHexCode(text) {
+    const hexCodeRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+    return hexCodeRegex.test(text);
+}
   
