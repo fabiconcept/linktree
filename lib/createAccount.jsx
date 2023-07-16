@@ -1,4 +1,4 @@
-import { fireApp } from "@/importnat/firebase";
+import { fireApp } from "@/important/firebase";
 import { generateId, realEscapeString, testPromiseStatus } from "./utilities";
 import { toast } from "react-hot-toast";
 import { collection, doc, setDoc } from "firebase/firestore";

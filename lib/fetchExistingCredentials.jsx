@@ -1,4 +1,4 @@
-import { fireApp } from "@/importnat/firebase";
+import { fireApp } from "@/important/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 export default async function fetchExistingCredentials() {

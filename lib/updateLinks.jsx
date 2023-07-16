@@ -1,4 +1,4 @@
-import { fireApp } from "@/importnat/firebase";
+import { fireApp } from "@/important/firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { getSessionCookie } from "./session";
 import { testForActiveSession } from "./testForActiveSession";
