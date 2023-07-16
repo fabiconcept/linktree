@@ -82,7 +82,7 @@ export default function FontsGallery() {
 
                 <div className="flex-1 overflow-auto">
                     <section className="flex flex-col gap-1">
-                        <span className="opacity-50 py-3">Classic</span>
+                        {classicFonts.length > 0 &&<span className="opacity-50 py-3">Classic</span>}
                         {classicFonts.length > 0 && classicFonts.map((fontItem => (
                             <div className={`select-none px-5 py-3 flex items-center justify-between cursor-pointer w-full rounded-3xl ${selectedFont === fontItem.id ? "bg-btnPrimary bg-opacity-20" : "hover:bg-black hover:bg-opacity-5"}`} key={fontItem.id} onClick={() => handleSelectItem(fontItem.id)}>
                                 {fontItem.name}
@@ -92,6 +92,10 @@ export default function FontsGallery() {
                                 </span>}
                             </div>
                         )))}
+
+                        {classicFonts.length === 0 && <div className="w-full text-center opacity-50 py-4">
+                            No fonts found.
+                        </div> }
                     </section>
                 </div>
                 <div className={`flex items-center gap-3 justify-center p-3 rounded-3xl active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border w-full ${selectedFont > 0 ? "bg-btnPrimary text-white cursor-pointer" : "bg-black bg-opacity-20 opacity-40"}`} onClick={handleSave}>
