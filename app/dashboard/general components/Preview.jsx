@@ -1,9 +1,26 @@
 "use client"
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import "../../styles/3d.css";
+import { getSessionCookie } from '@/lib/session';
+import { fetchUserData } from '@/lib/fetchUserData';
 
 export default function Preview() {
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        const sessionUsername = getSessionCookie("adminLinker");
+        if (sessionUsername === undefined) {
+            return;
+        }
+
+        async function getUserData() {
+            const data = await fetchUserData(sessionUsername);
+            setUsername(data?.username);
+        }
+        getUserData();
+    }, []);
+
     useEffect(() => {
         const container = document.getElementById("container");
         const inner = document.getElementById("inner");
@@ -79,6 +96,7 @@ export default function Preview() {
             container.onmousemove = null;
         };
     }, []);
+
     return (
         <div className="w-[35rem] md:grid hidden place-items-center border-l ml-4" >
             <div className='w-fit h-fit' id='container'>
@@ -89,7 +107,7 @@ export default function Preview() {
                             <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />
                         </div>
                         <div className="h-full w-full">
-                            <iframe src="http://localhost:3000/omah" frameborder="0" className='h-full bg-white w-full'></iframe>
+                            <iframe src={`http://localhost:3000/${username}`} frameborder="0" className='h-full bg-white w-full'></iframe>
                         </div>
                     </div>
                 </div>

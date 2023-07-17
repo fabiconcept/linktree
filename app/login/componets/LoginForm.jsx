@@ -48,7 +48,6 @@ export default function LoginForm() {
             setSessionCookie("adminLinker", `${status.userId}`, (60*5));
             
             setTimeout(() => {
-                setIsLoading(false);
                 setCanProceed(false);
                 router.push("/dashboard");
             }, 1000);

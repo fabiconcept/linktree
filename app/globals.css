@@ -43,6 +43,12 @@
   animation-delay: 4s;
 }
 
+@layer utilities {
+  .glow-white:hover {
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.15);
+  }
+}
+
 .flicker:nth-child(5) {
   animation-delay: 5s;
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function LandingNav() {
     return (
-        <div className="w-[97%] mx-auto justify-between flex items-center rounded-[3rem] py-3 absolute top-4 z-[9999999999] px-12 mx-auto bg-white bg-opacity-[0.1] border backdrop-blur-lg">
+        <div className="w-[96%] mx-auto justify-between flex items-center rounded-[3rem] py-3 absolute sm:top-4 top-2 z-[9999999999] mdpx-12 sm:px-6 px-3 mx-auto bg-white bg-opacity-[0.1] border backdrop-blur-xl hover:glow-white">
             <Link href={"/"}>
                 <Image src={"https://linktree.sirv.com/Images/logo-icon.svg"} alt="logo" height={25} width={25} className="filter invert" />
             </Link>
