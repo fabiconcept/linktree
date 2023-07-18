@@ -14,6 +14,11 @@
   color: #fff;
 }
 
+.dashboard *::selection {
+  background-color: #3AE09A;
+  color: #fff;
+}
+
 
 .bg-dark {
   background-color: #3b3b3b;

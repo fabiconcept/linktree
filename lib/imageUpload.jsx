@@ -1,9 +1,10 @@
-import { fireApp } from "@/important/firebase";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { testForActiveSession } from "./testForActiveSession";
+import { fireApp } from "@/important/firebase";
 
-export async function updateLinks(array) {
+export const updateProfilePhoto = async (url) => {
     const username = testForActiveSession();
+
     if (username) {
         try {
             const AccountDocRef = collection(fireApp, "AccountData");
@@ -16,7 +17,7 @@ export async function updateLinks(array) {
                 previousData = docSnap.data();
             }
 
-            await setDoc(docRef, {...previousData, links: array});
+            await setDoc(docRef, {...previousData, profilePhoto: url });
         } catch (error) {
             throw new Error(error);
         }

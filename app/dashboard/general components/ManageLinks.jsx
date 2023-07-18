@@ -31,7 +31,7 @@ export default function ManageLinks() {
             const preFetch = fetchLinks;
             const dataArray = await preFetch();
 
-            setData(dataArray);
+            setData(dataArray ? dataArray : []);
         }
         getLinks();
     }, []);

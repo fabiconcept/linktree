@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body className={`${inter.className} dashboard`}>
                 <div className='w-screen h-screen max-w-screen max-h-screen overflow-y-auto relative bg-black bg-opacity-[.05] p-2 flex flex-col'>
                     <NavBar />
                     <CheckSession/>

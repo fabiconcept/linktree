@@ -114,4 +114,10 @@ export function isValidHexCode(text) {
     const hexCodeRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
     return hexCodeRegex.test(text);
 }
+
+export function generateUniqueId() {
+    const timestamp = new Date().getTime();
+    const randomString = Math.random().toString(25).substring(2, 15);
+    return `${randomString}-${timestamp}`;
+}
   

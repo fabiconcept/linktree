@@ -32,11 +32,25 @@ const createAccount = async (data) => {
 
 export const createAccountHandler = (data) => {
     const promise = createAccount(data);
-    toast.promise(promise, {
-        loading: "Setting up your account.",
-        error: "Could't complete registration",
-        success: "Setup complete",
-    });
+    toast.promise(
+        promise,
+        {
+            loading: "Setting up your account.",
+            error: "Could't complete registration",
+            success: "Setup complete",
+        },
+        {
+            style: {
+                border: '1px solid #8129D9',
+                padding: '16px',
+                color: '#8129D9',
+            },
+            iconTheme: {
+                primary: '#8129D9',
+                secondary: '#FFFAEE',
+            },
+        }
+    );
 
     return {code: testPromiseStatus(promise), userId:generatedUserId};
 }

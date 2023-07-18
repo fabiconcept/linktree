@@ -30,12 +30,12 @@ export default function NavBar() {
     return (
         <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-6 mx-auto bg-white border backdrop-blur-lg">
             <div className="flex items-center gap-8">
-                <Link href={"/"}>
+                <Link href={'/dashboard'}>
                     <Image src={"https://linktree.sirv.com/Images/logo-icon.svg"} alt="logo" height={23} width={23} className="" />
                 </Link>
 
                 <div className="hidden md:flex items-center gap-6">
-                    <Link href={'/'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 0 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                    <Link href={'/dashboard'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 0 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
                         <Image src={"https://linktree.sirv.com/Images/icons/links.svg"} alt="links" height={15} width={15} />
                         Links
                     </Link>
@@ -43,11 +43,11 @@ export default function NavBar() {
                         <Image src={"https://linktree.sirv.com/Images/icons/appearance.svg"} alt="links" height={15} width={15} />
                         Appearance
                     </Link>
-                    <Link href={'/'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 2 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                    <Link href={'/dashboard'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 2 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
                         <Image src={"https://linktree.sirv.com/Images/icons/analytics.svg"} alt="links" height={15} width={15} />
                         analytics
                     </Link>
-                    <Link href={'/'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 3 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                    <Link href={'/dashboard'} className={`flex items-center gap-2 text-sm font-semibold ${activePage === 3 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
                         <Image src={"https://linktree.sirv.com/Images/icons/setting.svg"} alt="links" height={15} width={15} />
                         settings
                     </Link>

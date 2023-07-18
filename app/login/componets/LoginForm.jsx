@@ -40,11 +40,37 @@ export default function LoginForm() {
                 setIsLoading(false);
                 setPassword("")
                 setErrorMessage("You entered an `Incorrect passord`!");
-                toast.error("Invalid Login credentials!");
+                toast.error(
+                    "Invalid Login credentials!",
+                    {
+                        style: {
+                            border: '1px solid #8129D9',
+                            padding: '16px',
+                            color: '#8129D9',
+                        },
+                        iconTheme: {
+                            primary: '#8129D9',
+                            secondary: '#FFFAEE',
+                        },
+                    }
+                );
                 return;
             }
             
-            toast.success(`Login Successfull`);
+            toast.success(
+                `Login Successfull`,
+                {
+                    style: {
+                        border: '1px solid #8129D9',
+                        padding: '16px',
+                        color: '#8129D9',
+                    },
+                    iconTheme: {
+                        primary: '#8129D9',
+                        secondary: '#FFFAEE',
+                    },
+                }
+            );
             setSessionCookie("adminLinker", `${status.userId}`, (60*5));
             
             setTimeout(() => {
