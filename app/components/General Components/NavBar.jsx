@@ -1,4 +1,5 @@
 "use client"
+import { fetchProfilePicture } from "@/lib/fetchProfilePicture";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,8 +8,18 @@ import { useEffect, useState } from "react";
 export default function NavBar() {
     const router = usePathname();
     const [activePage, setActivePage] = useState();
+    const [profilePicture, setProfilePicture] = useState(null);
 
-    useEffect(()=>{
+    async function getProfilePicture() {
+        const url = await fetchProfilePicture();
+        setProfilePicture(url);
+    }
+
+    useEffect(() => {
+        getProfilePicture()
+    }, []);
+
+    useEffect(() => {
         switch (router) {
             case "/dashboard":
                 setActivePage(0);
@@ -59,7 +70,7 @@ export default function NavBar() {
                     <Image src={"https://linktree.sirv.com/Images/icons/share.svg"} alt="links" height={15} width={15} />
                 </div>
                 <div className="grid place-items-center p-[2px] rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95">
-                    <div className="h-full w-full bg-gray-100 grid place-items-center rounded-full">F</div>
+                    {profilePicture}
                 </div>
             </div>
         </div>

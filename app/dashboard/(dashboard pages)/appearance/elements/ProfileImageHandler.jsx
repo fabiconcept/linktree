@@ -15,12 +15,18 @@ import { getSessionCookie } from "@/lib/session";
 export default function ProfileImageManager() {
     const [uploadedPhoto, setUploadedPhoto] = useState('');
     const [uploadedPhotoPreview, setUploadedPhotoPreview] = useState('');
-    const [profilePicture, setProfilePicture] = useState('');
+    const [profilePicture, setProfilePicture] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isRemoving, setIsRemoving] = useState(false);
     const [previewing, setPreviewing] = useState(false);
     const [username, setUsername] = useState("");
     const inputRef = useRef();
     const formRef = useRef();
+
+    async function getProfilePicture (){
+        const url = await fetchProfilePicture();
+        setProfilePicture(url);
+    }
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -57,12 +63,25 @@ export default function ProfileImageManager() {
         setIsLoading(true);
         try {
             const getImageUrl = await handleUploadPhoto();
-            updateProfilePhoto(getImageUrl);
+            await updateProfilePhoto(getImageUrl);
             setIsLoading(false);
 
+            getProfilePicture();
             handleReset();
         } catch (error) {
             setIsLoading(false);
+            throw new Error(error);
+        }
+    }
+
+    const handleRemoveProfilePicture = async () => {
+        setIsRemoving(true);
+        try {
+            await updateProfilePhoto("");
+            setIsRemoving(false);
+            getProfilePicture();
+        } catch (error) {
+            setIsRemoving(false);
             throw new Error(error);
         }
     }
@@ -95,20 +114,11 @@ export default function ProfileImageManager() {
             return;
         }
 
+        getProfilePicture();
         formRef.current.reset();
         setUploadedPhoto('');
         setPreviewing(false);
     }
-
-    useEffect(() => {
-        async function getProfilePicture (){
-            const url = await fetchProfilePicture();
-            console.log(url);
-            setProfilePicture(url);
-        }
-
-        getProfilePicture();
-    }, []);
 
     useEffect(() => {
         const sessionUsername = getSessionCookie("adminLinker");
@@ -120,33 +130,31 @@ export default function ProfileImageManager() {
             const data = await fetchUserData(sessionUsername);
             setUsername(data?.username);
         }
+        getProfilePicture();
         getUserData();
     }, []);
 
     return (
         <div className="flex w-full p-6 items-center gap-4">
             <div className="h-[6rem] w-[6rem] cursor-pointer rounded-full grid place-items-center border overflow-hidden" onClick={() => inputRef.current.click()}>
-                {profilePicture !== "" ? 
-                    <Image src={`${profilePicture}`} alt="logo" height={1000} width={1000} className="min-w-full h-full object-contain" />
-                    :
-                    <div className="h-[5.5rem] w-[5.5rem] rounded-full bg-gray-300 border grid place-items-center text-3xl font-semibold uppercase">
-                        m
-                    </div>
-                }
+                {profilePicture}
             </div>
             <div className="flex-1 grid gap-2 relative">
                 <input type="file" className="absolute opacity-0 pointer-events-none" ref={inputRef} accept="image/*" onChange={handleFileChange} />
                 <div className={`flex items-center gap-3 justify-center p-3 rounded-3xl cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] bg-btnPrimary text-white w-full`} onClick={() => inputRef.current.click()}>
                     Pick an image
                 </div>
-                <div className={`flex items-center gap-3 justify-center p-3 rounded-3xl cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border w-full`}>
-                    Remove
+                <div className={`flex items-center gap-3 justify-center p-3 rounded-3xl mix-blend-multiply cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border w-full`} onClick={handleRemoveProfilePicture}>
+                    {!isRemoving ? 
+                        "Remove" :
+                        <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className="filter invert" />
+                    }
                 </div>
             </div>
             {previewing && <div className="fixed top-0 left-0 h-screen w-screen grid place-items-center z-[999999999999999]">
                 <div className="absolute h-full w-full bg-black bg-opacity-[0.25] backdrop-blur-[1px] top-0 left-0 p-2" onClick={handleReset}></div>
                 <form ref={formRef} className="relative z-10 sm:max-w-[30rem] max-w-18 max-h-[80vh] overflow-hidden p-4">
-                    <div className="w-full relative rounded-full overflow-hidden place-items-center grid aspect-square bg-white">
+                    <div className="w-full scale-[0.95] relative rounded-full overflow-hidden place-items-center grid aspect-square bg-white">
                         <Image src={uploadedPhotoPreview} alt="profile pic" height={1000} width={1000} priority className="min-w-[10rem] w-full object-contain min-h-full" />
                         {isLoading && <div className="absolute z-10 h-full w-full scale-110 grid place-items-center bg-black bg-opacity-[0.25] mix-blend-screen">
                             <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={50} height={50} alt="loading" className="mix-blend-screen" />

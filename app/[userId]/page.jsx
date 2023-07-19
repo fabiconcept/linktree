@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FaEllipsis } from "react-icons/fa6";
+import ProfilePic from "./components/ProfilePic";
 
 export const generateMetaData = ({ params: { userId } }) =>{
     return ({
@@ -20,9 +21,7 @@ export default function UserLinksPage({ params: { userId } }) {
                     <FaEllipsis className="scale-80" />
                 </div>
 
-                <div className="h-[6rem] w-[6rem] mb-2 rounded-full border overflow-hidden bg-white grid place-items-center">
-                    <Image src={"https://linktree.sirv.com/Images/profile/1658454113690.jpg"} alt="logo" height={1000} width={1000} className="w-full object-contain" />
-                </div>
+                <ProfilePic />
                 <span className="font-bold text-xl py-2">@{userId}</span>
                 <span className="opacity-60 text-center max-w-[80%]">Fabiconcept!</span>
             </div>
