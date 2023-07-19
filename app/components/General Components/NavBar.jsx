@@ -69,7 +69,7 @@ export default function NavBar() {
                 <div className="p-3 flex items-center gap-2 rounded-3xl border cursor-pointer hover:bg-gray-100 active:scale-90">
                     <Image src={"https://linktree.sirv.com/Images/icons/share.svg"} alt="links" height={15} width={15} />
                 </div>
-                <div className="grid place-items-center p-[2px] rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95">
+                <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 grid place-items-center overflow-hidden">
                     {profilePicture}
                 </div>
             </div>
