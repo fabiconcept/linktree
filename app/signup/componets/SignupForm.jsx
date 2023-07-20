@@ -51,7 +51,6 @@ export default function SignUpForm() {
 
             setSessionCookie("adminLinker", `${status.userId}`, (60 * 5));
             setTimeout(() => {
-                setIsLoading(false);
                 router.push("/dashboard");
             }, 1000);
             setIsLoading(false);
@@ -219,7 +218,7 @@ export default function SignUpForm() {
                         {!seePassord && <FaEye className="opacity-60 cursor-pointer text-themeGreen" onClick={() => setSeePassord(!seePassord)} />}
                     </div>
                     <button type="submit" className="rounded-md py-4 sm:py-5 grid place-items-center bg-themeGreen mix-blend-screen font-semibold cursor-pointer active:scale-95 active:opacity-40 hover:scale-[1.025]">
-                    {!isLoading && <span className="nopointer">submit</span>}
+                        {!isLoading && <span className="nopointer">submit</span>}
                         {isLoading && <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />}
                     </button>
 

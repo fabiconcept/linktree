@@ -28,9 +28,9 @@ export default function ManageLinks() {
 
     useEffect(() => {
         async function getLinks() {
-            const preFetch = fetchLinks;
-            const dataArray = await preFetch();
+            const dataArray = await fetchLinks();
 
+            console.log(dataArray);
             setData(dataArray ? dataArray : []);
         }
         getLinks();

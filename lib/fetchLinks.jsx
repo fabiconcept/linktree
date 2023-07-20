@@ -1,19 +1,23 @@
 import { fireApp } from "@/important/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDoc } from "firebase/firestore";
 import { testForActiveSession } from "./testForActiveSession";
 
 export async function fetchLinks() {
-    const currentUser = testForActiveSession();
-    const collectionSnap = await getDocs(collection(fireApp, "AccountData"));
-    let tempArr = [];
-    collectionSnap.forEach(snap => {
-        const data = snap.data();
-        const id = snap.id;
+    try {
+        const currentUser = testForActiveSession();
+        if (currentUser !== "") {
+            const collectionRef = collection(fireApp, "AccountData");
+            const docSnap = await getDoc(collectionRef, `${currentUser}`);
 
-        if (id === currentUser ) {
-            tempArr = data.links;
+            if (docSnap.exists()) {
+                const { links } = docSnap.data();
+                console.log(docSnap.data());
+                return links;
+            }
         }
-    });
 
-    return tempArr;
+        return false;
+    } catch (error) {
+        throw new Error(error);
+    }
 }

@@ -1,7 +1,7 @@
 "use client"
 import { FaPlus } from "react-icons/fa6";
-import ProfileImageManager from "../elements/profileImageManager";
 import { useState } from "react";
+import ProfileImageManager from "../elements/ProfileImageHandler";
 
 export default function ProfileCard() {
     const [userData, setUserData ] = useState(null);

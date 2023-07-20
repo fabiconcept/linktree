@@ -31,7 +31,7 @@ export default function NavBar() {
         <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-6 mx-auto bg-white border backdrop-blur-lg">
             <div className="flex items-center gap-8">
                 <Link href={'/dashboard'}>
-                    <Image src={"https://linktree.sirv.com/Images/logo-icon.svg"} alt="logo" height={23} width={23} className="" />
+                    <Image src={"https://linktree.sirv.com/Images/logo-icon.svg"} alt="logo" height={23} width={23} className="" priority />
                 </Link>
 
                 <div className="hidden md:flex items-center gap-6">

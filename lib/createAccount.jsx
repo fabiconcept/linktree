@@ -12,7 +12,10 @@ const createAccount = async (data) => {
 
     try {
         const accountRef = collection(fireApp, "accounts");
-        const cleanEmail = realEscapeString(username);
+        const accountDetailsRef = collection(fireApp, "AccountData");
+
+        const cleanUsername = realEscapeString(username);
+        const cleanEmail = realEscapeString(email);
         const cleanPassword = realEscapeString(password);
         
         const salt = generateSalt();
@@ -20,10 +23,16 @@ const createAccount = async (data) => {
 
         await setDoc(doc(accountRef, `${userId}`), {
             userId: userId,
-            email: realEscapeString(email),
-            username: cleanEmail,
+            email: cleanEmail,
+            username: cleanUsername,
             password: hashedPasword,
             mySalt: salt,
+        });
+
+        await setDoc(doc(accountDetailsRef, `${userId}`), {
+            displayName: cleanUsername,
+            links: [],
+            profilePhoto: "",
         });
     } catch (error) {
         throw new Error(error);

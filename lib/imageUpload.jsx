@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { testForActiveSession } from "./testForActiveSession";
 import { fireApp } from "@/important/firebase";
 
@@ -11,13 +11,14 @@ export const updateProfilePhoto = async (url) => {
             const docRef = doc(AccountDocRef, `${username}`);
             const docSnap = await getDoc(docRef);
 
-            let previousData = {};
-
             if (docSnap.exists()) {
-                previousData = docSnap.data();
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, profilePhoto: url};
+                await setDoc(docRef, objectToUpdate);
+                return;
             }
 
-            await setDoc(docRef, {...previousData, profilePhoto: url });
+            await addDoc(docRef, {profilePhoto: url});
         } catch (error) {
             throw new Error(error);
         }

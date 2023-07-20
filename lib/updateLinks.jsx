@@ -2,7 +2,7 @@ import { fireApp } from "@/important/firebase";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { testForActiveSession } from "./testForActiveSession";
 
-export async function updateLinks(array) {
+export async function updateLinks(arrayOfLinks) {
     const username = testForActiveSession();
     if (username) {
         try {
@@ -10,13 +10,14 @@ export async function updateLinks(array) {
             const docRef = doc(AccountDocRef, `${username}`);
             const docSnap = await getDoc(docRef);
 
-            let previousData = {};
-
             if (docSnap.exists()) {
-                previousData = docSnap.data();
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, link: arrayOfLinks};
+                await setDoc(docRef, objectToUpdate);
+                return;
             }
 
-            await setDoc(docRef, {...previousData, links: array});
+            await addDoc(docRef, {links: arrayOfLinks});
         } catch (error) {
             throw new Error(error);
         }
