@@ -61,6 +61,7 @@ Contributions to this project are welcome. If you have any ideas, suggestions, o
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-Acknowledgments
+
+## Acknowledgments
 
 - LinkTree for the inspiration and idea behind this project.
