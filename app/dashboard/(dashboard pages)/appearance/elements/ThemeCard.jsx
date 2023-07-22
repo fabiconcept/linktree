@@ -16,7 +16,7 @@ export default function ThemeCard({ type, pic, text }) {
     useEffect(() => {
         async function performFetch() {
             const selectedTheme = await fetchTheme();
-            setIsSelectedTheme(currentTheme === text); 
+            setIsSelectedTheme(selectedTheme === text); 
         }
 
         performFetch();
