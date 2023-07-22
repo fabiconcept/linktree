@@ -12,7 +12,7 @@ export async function updateLinks(arrayOfLinks) {
 
             if (docSnap.exists()) {
                 const previousData = docSnap.data();
-                const objectToUpdate = {...previousData, link: arrayOfLinks};
+                const objectToUpdate = {...previousData, links: arrayOfLinks};
                 await setDoc(docRef, objectToUpdate);
                 return;
             }

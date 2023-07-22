@@ -24,8 +24,6 @@ export default function UserInfo({userId}) {
             const collectionRef = collection(fireApp, "AccountData");
             const docRef = doc(collectionRef, `${currentUser}`);
 
-            console.log(currentUser)
-
             onSnapshot(docRef, (docSnapshot) => {
                 if (!docSnapshot.exists()) {
                     return;
@@ -42,7 +40,7 @@ export default function UserInfo({userId}) {
 
     return (
         <>
-            <span className="font-bold text-xl py-2">@{displayName}</span>
+            <span className="font-semibold text-lg py-2">@{displayName}</span>
             <span className="opacity-60 text-center max-w-[80%]">{myBio}</span>
         </>
     )
