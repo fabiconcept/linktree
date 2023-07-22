@@ -1,5 +1,5 @@
 "use client"
-import { fetchProfilePicture } from "@/lib/fetchProfilePicture";
+import { fetchProfilePicture } from "@/lib/fetch data/fetchProfilePicture";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

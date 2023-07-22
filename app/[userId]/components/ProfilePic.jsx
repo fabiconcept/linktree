@@ -1,5 +1,5 @@
 "use client"
-import { fetchProfilePicture } from "@/lib/fetchProfilePicture";
+import { fetchProfilePicture } from "@/lib/fetch data/fetchProfilePicture";
 import { useState } from "react";
 import { useEffect } from "react";
 

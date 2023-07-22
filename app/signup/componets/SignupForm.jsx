@@ -1,8 +1,8 @@
 "use client"
 import { useDebounce } from "@/Local Hooks/useDebounce";
-import { createAccountHandler } from "@/lib/createAccount";
-import fetchExistingCredentials from "@/lib/fetchExistingCredentials";
-import { getSessionCookie, setSessionCookie } from "@/lib/session";
+import { createAccountHandler } from "@/lib/authentication/createAccount";
+import { getSessionCookie, setSessionCookie } from "@/lib/authentication/session";
+import fetchExistingCredentials from "@/lib/fetch data/fetchExistingCredentials";
 import { validateEmail, validatePassword } from "@/lib/utilities";
 import Image from "next/image";
 import Link from "next/link";

@@ -5,8 +5,8 @@ import AddBtn from "../general elements/addBtn";
 import DraggableList from "./Drag";
 import React, { useEffect, useState } from "react";
 import { generateRandomId } from "@/lib/utilities";
-import { updateLinks } from "@/lib/updateLinks";
-import { fetchLinks } from "@/lib/fetchLinks";
+import { updateLinks } from "@/lib/update data/updateLinks";
+import { fetchLinks } from "@/lib/fetch data/fetchLinks";
 
 export const ManageLinksContent = React.createContext();
 export default function ManageLinks() {

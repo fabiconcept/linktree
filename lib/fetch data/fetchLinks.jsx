@@ -1,6 +1,6 @@
 import { fireApp } from "@/important/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
-import { testForActiveSession } from "./testForActiveSession";
+import { testForActiveSession } from "../authentication/testForActiveSession";
 
 export async function fetchLinks() {
     const currentUser = testForActiveSession();

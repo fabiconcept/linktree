@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import "../../styles/3d.css";
 import { FaArrowLeft, FaArrowRightArrowLeft, FaArrowUp } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-import { setSessionCookie } from "@/lib/session";
-import fetchExistingCredentials from "@/lib/fetchExistingCredentials";
+import fetchExistingCredentials from "@/lib/fetch data/fetchExistingCredentials";
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import Image from "next/image";
+import { setSessionCookie } from "@/lib/authentication/session";
 
 export default function Form() {
     const [existingUsernames, setExistingUsernames] = useState([]);

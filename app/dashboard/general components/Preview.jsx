@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import "../../styles/3d.css";
-import { getSessionCookie } from '@/lib/session';
-import { fetchUserData } from '@/lib/fetchUserData';
+import { getSessionCookie } from '@/lib/authentication/session';
+import { fetchUserData } from '@/lib/fetch data/fetchUserData';
 
 export default function Preview() {
     const [username, setUsername] = useState("");

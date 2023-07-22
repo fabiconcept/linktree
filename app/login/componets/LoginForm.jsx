@@ -1,14 +1,14 @@
 "use client"
 import { useDebounce } from "@/Local Hooks/useDebounce";
-import fetchExistingCredentials from "@/lib/fetchExistingCredentials";
-import { loginAccount } from "@/lib/login";
-import { setSessionCookie } from "@/lib/session";
+import fetchExistingCredentials from "@/lib/fetch data/fetchExistingCredentials";
+import { loginAccount } from "@/lib/authentication/login";
+import { setSessionCookie } from "@/lib/authentication/session";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { FaCheck, FaEye, FaEyeSlash, FaX } from "react-icons/fa6"
+import { FaCheck, FaEye, FaEyeSlash, FaX } from "react-icons/fa6";
 
 export default function LoginForm() {
     const router = useRouter();
@@ -38,7 +38,7 @@ export default function LoginForm() {
             if (!status.status) {
                 setHasError({ ...hasError, password: 1 });
                 setIsLoading(false);
-                setPassword("")
+                setPassword("");
                 setErrorMessage("You entered an `Incorrect passord`!");
                 toast.error(
                     "Invalid Login credentials!",

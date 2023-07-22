@@ -3,14 +3,12 @@ import { generateUniqueId } from "@/lib/utilities";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
-import { updateProfilePhoto } from "@/lib/imageUpload";
+import { updateProfilePhoto } from "@/lib/update data/imageUpload";
 import { FaCheck, FaX } from "react-icons/fa6";
 import { appStorage } from "@/important/firebase";
 import { toast } from "react-hot-toast";
+import { fetchProfilePicture } from "@/lib/fetch data/fetchProfilePicture";
 import { useEffect } from "react";
-import { fetchProfilePicture } from "@/lib/fetchProfilePicture";
-import { fetchUserData } from "@/lib/fetchUserData";
-import { getSessionCookie } from "@/lib/session";
 
 export default function ProfileImageManager() {
     const [uploadedPhoto, setUploadedPhoto] = useState('');
@@ -19,7 +17,6 @@ export default function ProfileImageManager() {
     const [isLoading, setIsLoading] = useState(false);
     const [isRemoving, setIsRemoving] = useState(false);
     const [previewing, setPreviewing] = useState(false);
-    const [username, setUsername] = useState("");
     const inputRef = useRef();
     const formRef = useRef();
 
@@ -121,17 +118,7 @@ export default function ProfileImageManager() {
     }
 
     useEffect(() => {
-        const sessionUsername = getSessionCookie("adminLinker");
-        if (sessionUsername === undefined) {
-            return;
-        }
-
-        async function getUserData() {
-            const data = await fetchUserData(sessionUsername);
-            setUsername(data?.username);
-        }
         getProfilePicture();
-        getUserData();
     }, []);
 
     return (
