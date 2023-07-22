@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaEllipsis } from "react-icons/fa6";
 import ProfilePic from "./components/ProfilePic";
+import UserInfo from "./components/UserInfo";
 
 export const generateMetaData = ({ params: { userId } }) =>{
     return ({
@@ -22,8 +23,7 @@ export default function UserLinksPage({ params: { userId } }) {
                 </div>
 
                 <ProfilePic />
-                <span className="font-bold text-xl py-2">@{userId}</span>
-                <span className="opacity-60 text-center max-w-[80%]">Fabiconcept!</span>
+                <UserInfo userId={userId}/>
             </div>
         </div>
     );

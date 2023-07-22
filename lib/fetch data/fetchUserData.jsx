@@ -16,9 +16,13 @@ export const fetchUserData = async (userId) => {
 
             if (id === userId) {
                 userInfo = data;
+            }else if (data.username === userId) {
+                userInfo = id;
             }
+
         });
         
+
         return userInfo;
 
     } catch (error) {
