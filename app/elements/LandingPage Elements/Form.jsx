@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import "../../styles/3d.css";
 import { FaArrowLeft, FaArrowRightArrowLeft, FaArrowUp } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-import fetchExistingCredentials from "@/lib/fetch data/fetchExistingCredentials";
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import Image from "next/image";
 import { setSessionCookie } from "@/lib/authentication/session";
+import { collection } from "firebase/firestore";
 
 export default function Form() {
     const [existingUsernames, setExistingUsernames] = useState([]);
@@ -63,15 +63,24 @@ export default function Form() {
     }
 
     useEffect(() => {
-        
-        async function fetchData() {
-            const fetchData = fetchExistingCredentials;
-            const data = await fetchData();
 
-            setExistingUsernames(data[1]);
+        function fetchExistingUsername() {
+            const existingUsernames = [];
+        
+            const collectionRef = collection(fireApp, "accounts");
+        
+            onSnapshot(collectionRef, (querySnapshot) => {
+                querySnapshot.forEach((credential) => {
+                    const data = credential.data();
+                    const { username } = data;
+                    existingUsernames.push(username);
+                });
+                
+                setExistingUsernames(existingUsernames);
+            });
         }
 
-        fetchData();
+        fetchExistingUsername();
 
         // Init
         const container = document.getElementById("container");

@@ -1,22 +1,21 @@
 import { fireApp } from '@/important/firebase';
-import { collection, doc, getDoc } from 'firebase/firestore';
-// Import necessary Firestore and Firebase App modules
+import { collection, doc, onSnapshot } from 'firebase/firestore';
 
-export const fetchUserData = async (userId) => {
-    
-    try {
-        const userAccountRef = await getDoc(doc(collection(fireApp, "AccountData"), userId));
-        let userInfo = {};
+export const fetchUserData = (userId) => {
+    const collectionRef = collection(fireApp, "AccountData");
+    const docRef = doc(collectionRef, userId);
 
+    return new Promise((resolve, reject) => {
+        onSnapshot(docRef, (docSnap) => {
+            let userInfo = {};
 
-        if (userAccountRef.exists()) {
-            userInfo = userAccountRef.data();
-        }
-        
-        return userInfo;
+            if (docSnap.exists()) {
+                userInfo = docSnap.data();
+            }
 
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        return null; // Return an empty array or handle the error as needed
-    }
+            resolve(userInfo);
+        }, (error) => {
+            reject(error);
+        });
+    });
 };

@@ -1,17 +1,22 @@
 import { fireApp } from "@/important/firebase";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import { testForActiveSession } from "../authentication/testForActiveSession";
 
-export async function fetchLinks() {
+export function fetchLinks() {
     const currentUser = testForActiveSession();
     const collectionRef = collection(fireApp, "AccountData");
     const docRef = doc(collectionRef, `${currentUser}`);
-    const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        const { links } = docSnap.data();
-        return links;
-    }
-
-    return false;
+    return new Promise((resolve, reject) => {
+        onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const { links } = docSnap.data();
+                resolve(links);
+            } else {
+                resolve(false);
+            }
+        }, (error) => {
+            reject(error);
+        });
+    });
 }

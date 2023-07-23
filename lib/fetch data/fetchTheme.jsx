@@ -1,45 +1,60 @@
 import { fireApp } from "@/important/firebase";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import { testForActiveSession } from "../authentication/testForActiveSession";
 
-export async function fetchTheme() {
+export function fetchTheme() {
     const currentUser = testForActiveSession();
     const collectionRef = collection(fireApp, "AccountData");
     const docRef = doc(collectionRef, `${currentUser}`);
-    const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        const { selectedTheme } = docSnap.data();
-        return selectedTheme;
-    }
-
-    return false;
+    return new Promise((resolve, reject) => {
+        onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const { selectedTheme } = docSnap.data();
+                resolve(selectedTheme);
+            } else {
+                resolve(false);
+            }
+        }, (error) => {
+            reject(error);
+        });
+    });
 }
 
-export async function fetchThemeBtn() {
+export function fetchThemeBtn() {
     const currentUser = testForActiveSession();
     const collectionRef = collection(fireApp, "AccountData");
     const docRef = doc(collectionRef, `${currentUser}`);
-    const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        const { btnDesign } = docSnap.data();
-        return btnDesign;
-    }
-
-    return false;
+    return new Promise((resolve, reject) => {
+        onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const { btnDesign } = docSnap.data();
+                resolve(btnDesign);
+            } else {
+                resolve(false);
+            }
+        }, (error) => {
+            reject(error);
+        });
+    });
 }
 
-export async function fetchThemeFont() {
+export function fetchThemeFont() {
     const currentUser = testForActiveSession();
     const collectionRef = collection(fireApp, "AccountData");
     const docRef = doc(collectionRef, `${currentUser}`);
-    const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        const { fontType } = docSnap.data();
-        return fontType;
-    }
-
-    return false;
+    return new Promise((resolve, reject) => {
+        onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const { fontType } = docSnap.data();
+                resolve(fontType);
+            } else {
+                resolve(false);
+            }
+        }, (error) => {
+            reject(error);
+        });
+    });
 }

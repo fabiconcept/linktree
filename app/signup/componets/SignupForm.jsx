@@ -1,9 +1,10 @@
 "use client"
 import { useDebounce } from "@/Local Hooks/useDebounce";
+import { fireApp } from "@/important/firebase";
 import { createAccountHandler } from "@/lib/authentication/createAccount";
 import { getSessionCookie, setSessionCookie } from "@/lib/authentication/session";
-import fetchExistingCredentials from "@/lib/fetch data/fetchExistingCredentials";
 import { validateEmail, validatePassword } from "@/lib/utilities";
+import { collection, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -130,15 +131,26 @@ export default function SignUpForm() {
             setUsername(sessionUsername);
         }
 
-        async function fetchData() {
-            const fetchData = fetchExistingCredentials;
-            const data = await fetchData();
-
-            setExistingUsernames(data[1]);
-            setExistingEmail(data[0]);
+        function fetchExistingUsername() {
+            const existingUsernames = [];
+            const existingEmails = [];
+        
+            const collectionRef = collection(fireApp, "accounts");
+        
+            onSnapshot(collectionRef, (querySnapshot) => {
+                querySnapshot.forEach((credential) => {
+                    const data = credential.data();
+                    const { username, email } = data;
+                    existingUsernames.push(username);
+                    existingEmails.push(email);
+                });
+                
+                setExistingUsernames(existingUsernames);
+                setExistingEmail(existingEmail);
+            });
         }
 
-        fetchData();
+        fetchExistingUsername();
     }, []);
 
     useEffect(() => {

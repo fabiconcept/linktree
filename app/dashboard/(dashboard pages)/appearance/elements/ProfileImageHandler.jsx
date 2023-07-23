@@ -5,10 +5,11 @@ import { useRef, useState } from "react";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 import { updateProfilePhoto } from "@/lib/update data/imageUpload";
 import { FaCheck, FaX } from "react-icons/fa6";
-import { appStorage } from "@/important/firebase";
+import { appStorage, fireApp } from "@/important/firebase";
 import { toast } from "react-hot-toast";
-import { fetchProfilePicture } from "@/lib/fetch data/fetchProfilePicture";
 import { useEffect } from "react";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 
 export default function ProfileImageManager() {
     const [uploadedPhoto, setUploadedPhoto] = useState('');
@@ -19,11 +20,6 @@ export default function ProfileImageManager() {
     const [previewing, setPreviewing] = useState(false);
     const inputRef = useRef();
     const formRef = useRef();
-
-    async function getProfilePicture (){
-        const url = await fetchProfilePicture();
-        setProfilePicture(url);
-    }
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -63,7 +59,6 @@ export default function ProfileImageManager() {
             await updateProfilePhoto(getImageUrl);
             setIsLoading(false);
 
-            getProfilePicture();
             handleReset();
         } catch (error) {
             setIsLoading(false);
@@ -76,14 +71,13 @@ export default function ProfileImageManager() {
         try {
             await updateProfilePhoto("");
             setIsRemoving(false);
-            getProfilePicture();
         } catch (error) {
             setIsRemoving(false);
             throw new Error(error);
         }
     }
 
-    const toasthandler = () =>{
+    const toasthandler = () => {
         const promise = handleUpdateUserInfo();
         toast.promise(
             promise,
@@ -110,15 +104,45 @@ export default function ProfileImageManager() {
         if (isLoading) {
             return;
         }
-
-        getProfilePicture();
         formRef.current.reset();
         setUploadedPhoto('');
         setPreviewing(false);
     }
 
     useEffect(() => {
-        getProfilePicture();
+        function fetchProfilePicture() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { profilePhoto, displayName } = docSnap.data();
+
+                    if (profilePhoto !== '') {
+                        setProfilePicture(
+                            <Image
+                                src={`${profilePhoto}`}
+                                alt="profile"
+                                height={1000}
+                                width={1000}
+                                className="min-w-full h-full object-contain"
+                                priority
+                            />
+                        );
+                    } else {
+                        setProfilePicture(
+                            <div className="h-[95%] aspect-square w-[95%] rounded-full bg-gray-300 border grid place-items-center">
+                                <span className="text-3xl font-semibold uppercase">
+                                    {displayName.split('')[0]}
+                                </span>
+                            </div>
+                        );
+                    }
+                }
+            });
+        }
+        fetchProfilePicture();
     }, []);
 
     return (
@@ -132,7 +156,7 @@ export default function ProfileImageManager() {
                     Pick an image
                 </div>
                 <div className={`flex items-center gap-3 justify-center p-3 rounded-3xl mix-blend-multiply cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border w-full`} onClick={handleRemoveProfilePicture}>
-                    {!isRemoving ? 
+                    {!isRemoving ?
                         "Remove" :
                         <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className="filter invert" />
                     }

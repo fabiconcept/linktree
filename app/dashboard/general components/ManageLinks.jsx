@@ -6,7 +6,9 @@ import DraggableList from "./Drag";
 import React, { useEffect, useState } from "react";
 import { generateRandomId } from "@/lib/utilities";
 import { updateLinks } from "@/lib/update data/updateLinks";
-import { fetchLinks } from "@/lib/fetch data/fetchLinks";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { fireApp } from "@/important/firebase";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 
 export const ManageLinksContent = React.createContext();
 export default function ManageLinks() {
@@ -27,11 +29,20 @@ export default function ManageLinks() {
     }, [data]);
 
     useEffect(() => {
-        async function getLinks() {
-            const dataArray = await fetchLinks();
-            setData(dataArray ? dataArray : []);
+        function fetchLinks() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { links } = docSnap.data();
+                    setData(links ? links : []);
+                }
+            });
         }
-        getLinks();
+
+        fetchLinks();
     }, []);
 
     return (

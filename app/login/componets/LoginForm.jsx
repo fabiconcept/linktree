@@ -1,8 +1,9 @@
 "use client"
 import { useDebounce } from "@/Local Hooks/useDebounce";
-import fetchExistingCredentials from "@/lib/fetch data/fetchExistingCredentials";
+import { fireApp } from "@/important/firebase";
 import { loginAccount } from "@/lib/authentication/login";
 import { setSessionCookie } from "@/lib/authentication/session";
+import { collection, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -81,14 +82,23 @@ export default function LoginForm() {
     }
 
     useEffect(()=>{
-        async function fetchData() {
-            const fetchData = fetchExistingCredentials;
-            const data = await fetchData();
-
-            setExistingUsernames(data[1]);
-        }
+        function fetchExistingUsername() {
+            const existingUsernames = [];
         
-        fetchData();
+            const collectionRef = collection(fireApp, "accounts");
+        
+            onSnapshot(collectionRef, (querySnapshot) => {
+                querySnapshot.forEach((credential) => {
+                    const data = credential.data();
+                    const { username } = data;
+                    existingUsernames.push(username);
+                });
+                
+                setExistingUsernames(existingUsernames);
+            });
+        }
+
+        fetchExistingUsername();
     }, []);
 
     useEffect(()=>{

@@ -1,6 +1,8 @@
 "use client"
-import { fetchTheme } from "@/lib/fetch data/fetchTheme";
+import { fireApp } from "@/important/firebase";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
 import { updateTheme } from "@/lib/update data/updateTheme";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
@@ -14,16 +16,21 @@ export default function ThemeCard({ type, pic, text }) {
 
     
     useEffect(() => {
-        async function performFetch() {
-            const selectedTheme = await fetchTheme();
-            setIsSelectedTheme(selectedTheme === text); 
+        function fetchTheme() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+        
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { selectedTheme } = docSnap.data();
+                    setIsSelectedTheme(selectedTheme === text);
+                }
+            });
         }
-
-        performFetch();
+        
+        fetchTheme();
     }, []);
-
-    useEffect(() => {
-    }, [currentTheme]);
 
     return (
         <>

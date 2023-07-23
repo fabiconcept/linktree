@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function ProfilePic() {
-    const [profilePicture, setProfilePicture] = useState(null);
+export default function BgDiv() {
+    const [backgroundPicture, setBackgroundPicture] = useState(null);
 
     useEffect(() => {
         function fetchProfilePicture() {
@@ -20,7 +20,7 @@ export default function ProfilePic() {
                     const { profilePhoto, displayName } = docSnap.data();
 
                     if (profilePhoto !== '') {
-                        setProfilePicture(
+                        setBackgroundPicture(
                             <Image
                                 src={`${profilePhoto}`}
                                 alt="profile"
@@ -31,10 +31,10 @@ export default function ProfilePic() {
                             />
                         );
                     } else {
-                        setProfilePicture(
+                        setBackgroundPicture(
                             <div className="h-[95%] aspect-square w-[95%] rounded-full bg-gray-300 border grid place-items-center">
                                 <span className="text-3xl font-semibold uppercase">
-                                    {displayName === '' ? "" :displayName.split('')[0]}
+                                    {displayName === '' ? "" : displayName.split('')[0]}
                                 </span>
                             </div>
                         );

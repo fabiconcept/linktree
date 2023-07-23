@@ -1,9 +1,11 @@
 "use client"
 
 import { useDebounce } from "@/Local Hooks/useDebounce";
-import { fetchInfo } from "@/lib/fetch data/fetchInfo";
+import { fireApp } from "@/important/firebase";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
 import updateBio from "@/lib/update data/updateBio";
 import updateDisplayName from "@/lib/update data/updateDisplayName";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -16,12 +18,22 @@ export default function TextDetails() {
     const debounceMyBio = useDebounce(myBio, 500);
 
     useEffect(() => {
-        async function performFetch() {
-            const [disName, bio] = await fetchInfo();
-            setDisplayName(`${disName}`);
-            setMyBio(bio);
+        function fetchInfo() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { displayName, bio: bioText } = docSnap.data();
+                    const bio = bioText ? bioText : "";
+                    setDisplayName(`${displayName}`);
+                    setMyBio(bio);
+                }
+            });
         }
-        performFetch();
+
+        fetchInfo();
     }, []);
 
     useEffect(() => {
