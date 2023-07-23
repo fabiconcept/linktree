@@ -1,9 +1,43 @@
 "use client"
 
-import { useState } from "react"
+import { fireApp } from "@/important/firebase";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { updateThemeGradientDirection } from "@/lib/update data/updateTheme";
+import { collection, doc, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react"
 
 export default function GradientPicker() {
     const [pick, setPick] = useState(0);
+    const [hasPicked, setHasPicked] = useState(false);
+
+    const handleUpdateTheme = async() => {
+        await updateThemeGradientDirection(pick);
+    }
+
+    useEffect(() => {
+        function fetchTheme() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+        
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { gradientDirection } = docSnap.data();
+                    setPick(gradientDirection ? gradientDirection : 0);
+                }
+            });
+        }
+        
+        fetchTheme();
+    }, []);
+
+    useEffect(() => {
+        if (!hasPicked) {
+            setHasPicked(true);
+            return;
+        }
+        handleUpdateTheme();
+    }, [pick]);
 
     return (
         <div className="my-4 grid gap-3">

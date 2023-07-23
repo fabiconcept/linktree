@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import Image from "next/image";
 import { setSessionCookie } from "@/lib/authentication/session";
-import { collection } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
+import { fireApp } from "@/important/firebase";
 
 export default function Form() {
     const [existingUsernames, setExistingUsernames] = useState([]);
