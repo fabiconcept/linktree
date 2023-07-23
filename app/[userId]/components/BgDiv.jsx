@@ -26,13 +26,13 @@ export default function BgDiv() {
                                 alt="profile"
                                 height={1000}
                                 width={1000}
-                                className="min-w-full h-full object-contain"
+                                className="min-w-full h-full object-cover scale-[1.25]"
                                 priority
                             />
                         );
                     } else {
                         setBackgroundPicture(
-                            <div className="h-[95%] aspect-square w-[95%] rounded-full bg-gray-300 border grid place-items-center">
+                            <div className="h-full aspect-square w-full bg-gray-300 border grid place-items-center">
                                 <span className="text-3xl font-semibold uppercase">
                                     {displayName === '' ? "" : displayName.split('')[0]}
                                 </span>
@@ -45,8 +45,8 @@ export default function BgDiv() {
         fetchProfilePicture();
     }, []);
     return (
-        <div className="h-[6rem] w-[6rem] mb-2 rounded-full border overflow-hidden bg-white grid place-items-center">
-            {profilePicture}
+        <div className="fixed h-screen w-screen z-0 top-0 left-0 opacity-70 overflow-hidden">
+            {backgroundPicture}
         </div>
     )
 }

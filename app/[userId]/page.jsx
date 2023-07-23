@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaEllipsis } from "react-icons/fa6";
 import ProfilePic from "./components/ProfilePic";
 import UserInfo from "./components/UserInfo";
+import BgDiv from "./components/BgDiv";
 
 export const generateMetaData = ({ params: { userId } }) =>{
     return ({
@@ -12,9 +13,7 @@ export const generateMetaData = ({ params: { userId } }) =>{
 export default function UserLinksPage({ params: { userId } }) {
     return (
         <div className="w-screen h-screen">
-            <div className="fixed h-screen w-screen z-0 top-0 left-0 opacity-70 overflow-hidden">
-                <Image src={"https://linktree.sirv.com/Images/profile/1658454113690.jpg"} alt="logo" height={1000} width={1000} className="min-w-full h-full object-cover scale-[1.25]" />
-            </div>
+            <BgDiv/>
             <div className="fixed h-screen w-screen bg-gray-200 z-10 top-0 left-0 bg-opacity-[0.55] backdrop-blur-[50px]"></div>
 
             <div className="relative z-20 md:w-[50rem] w-full flex flex-col items-center h-full mx-auto">
