@@ -1,7 +1,11 @@
 "use client"
 
 import { useDebounce } from "@/Local Hooks/useDebounce";
+import { fireApp } from "@/important/firebase";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { updateThemeBackgroundColor } from "@/lib/update data/updateTheme";
 import { isValidHexCode } from "@/lib/utilities";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 
 export default function ColorPicker() {
@@ -13,8 +17,42 @@ export default function ColorPicker() {
     useEffect(() => {
         if (colorText !== "") {
             setValidColor(isValidHexCode(colorText));
+            if (!isValidHexCode(colorText)) {
+                return;
+            }
+    
+            handleUpdateTheme(colorText);
         }
     }, [debounceColor]);
+
+    useEffect(() => {
+        if (!validColor) {
+            return;
+        }
+
+        handleUpdateTheme(colorText);
+    }, [validColor]);
+
+    const handleUpdateTheme = async(text) => {
+        await updateThemeBackgroundColor(text);
+    }
+
+    useEffect(() => {
+        function fetchTheme() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+        
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { backgroundColor } = docSnap.data();
+                    setColorText(backgroundColor ? backgroundColor : "#e8edf5")
+                }
+            });
+        }
+        
+        fetchTheme();
+    }, []);
     return (
         <div className="pt-6 flex items-center">
             <input 
