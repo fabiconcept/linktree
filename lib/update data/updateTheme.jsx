@@ -65,6 +65,69 @@ export async function updateThemeBackgroundColor(color) {
 
 }
 
+export async function updateThemeBtnColor(color) {
+    const username = testForActiveSession();
+    if (username) {
+        try {
+            const AccountDocRef = collection(fireApp, "AccountData");
+            const docRef = doc(AccountDocRef, `${username}`);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, btnColor: color};
+                await setDoc(docRef, objectToUpdate);
+                return;
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+}
+
+export async function updateThemeBtnFontColor(color) {
+    const username = testForActiveSession();
+    if (username) {
+        try {
+            const AccountDocRef = collection(fireApp, "AccountData");
+            const docRef = doc(AccountDocRef, `${username}`);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, btnFontColor: color};
+                await setDoc(docRef, objectToUpdate);
+                return;
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+}
+
+export async function updateThemeBtnShadowColor(color) {
+    const username = testForActiveSession();
+    if (username) {
+        try {
+            const AccountDocRef = collection(fireApp, "AccountData");
+            const docRef = doc(AccountDocRef, `${username}`);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, btnShadowColor: color};
+                await setDoc(docRef, objectToUpdate);
+                return;
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+}
+
 export async function updateThemeGradientDirection(direction) {
     const username = testForActiveSession();
     if (username) {
@@ -96,7 +159,7 @@ export async function updateThemeButton(btn) {
             
             if (docSnap.exists()) {
                 const previousData = docSnap.data();
-                const objectToUpdate = {...previousData, btnDesign: btn};
+                const objectToUpdate = {...previousData, btnType: btn};
                 await setDoc(docRef, objectToUpdate);
                 return;
             }

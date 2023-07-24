@@ -3,17 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { FaCheck, FaX } from "react-icons/fa6";
 import { selectedFontContext } from "../elements/SelectFonts";
 import { useDebounce } from "@/Local Hooks/useDebounce";
-
-const availableFonts_Classic = [
-    { name: "Arvo", id: 1 },
-    { name: "Bitter", id: 2 },
-    { name: "Calistoga", id: 3 },
-    { name: "Crimson Text", id: 4 },
-    { name: "EB Garamond", id: 5 },
-    { name: "IBM Plex Serif", id: 6 },
-    { name: "Libre Baskerville", id: 7 },
-    { name: "Lora", id: 8 },
-]
+import { updateThemeFont } from "@/lib/update data/updateTheme";
+import { availableFonts_Classic } from "@/lib/FontsList";
 
 export default function FontsGallery() {
     const { setOpenFontGallery } = useContext(selectedFontContext);
@@ -50,7 +41,12 @@ export default function FontsGallery() {
         setSelectedFont(id);
     }
 
+    const handleUpdateTheme = async() => {
+        await updateThemeFont(selectedFont);
+    }
+
     const handleSave = async() =>{
+        handleUpdateTheme();
         handleClose();
     }
 

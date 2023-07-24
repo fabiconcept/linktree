@@ -3,12 +3,12 @@
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import { fireApp } from "@/important/firebase";
 import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { updateThemeBackgroundColor } from "@/lib/update data/updateTheme";
+import { updateThemeBackgroundColor, updateThemeBtnColor, updateThemeBtnFontColor, updateThemeBtnShadowColor } from "@/lib/update data/updateTheme";
 import { isValidHexCode } from "@/lib/utilities";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 
-export default function ColorPicker() {
+export default function ColorPicker({colorFor}) {
     const [colorText, setColorText] = useState("#e8edf5");
     const debounceColor = useDebounce(colorText, 500);
     const [validColor, setValidColor] = useState(1);
@@ -34,7 +34,24 @@ export default function ColorPicker() {
     }, [validColor]);
 
     const handleUpdateTheme = async(text) => {
-        await updateThemeBackgroundColor(text);
+        switch (colorFor) {
+            case 0:
+                await updateThemeBackgroundColor(text);
+                break;
+            case 1:
+                await updateThemeBtnColor(text);
+                break;
+            case 2:
+                await updateThemeBtnFontColor(text);
+                break;
+            case 3:
+                await updateThemeBtnShadowColor(text);
+                break;
+        
+            default:
+                await updateThemeBackgroundColor(text);
+                break;
+        }
     }
 
     useEffect(() => {
@@ -45,8 +62,25 @@ export default function ColorPicker() {
         
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
-                    const { backgroundColor } = docSnap.data();
-                    setColorText(backgroundColor ? backgroundColor : "#e8edf5")
+                    const { backgroundColor, btnShadowColor, btnFontColor, btnColor } = docSnap.data();
+                    switch (colorFor) {
+                        case 0:
+                            setColorText(backgroundColor ? backgroundColor : "#e8edf5")
+                            break;
+                        case 1:
+                            setColorText(btnColor ? btnColor : "#e8edf5")
+                            break;
+                        case 2:
+                            setColorText(btnFontColor ? btnFontColor : "#e8edf5")
+                            break;
+                        case 3:
+                            setColorText(btnShadowColor ? btnShadowColor : "#e8edf5")
+                            break;
+                    
+                        default:
+                            setColorText(backgroundColor ? backgroundColor : "#e8edf5")
+                            break;
+                    }
                 }
             });
         }
