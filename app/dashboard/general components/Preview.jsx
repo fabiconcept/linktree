@@ -101,7 +101,7 @@ export default function Preview() {
         <div className="w-[35rem] md:grid hidden place-items-center border-l ml-4" >
             <div className='w-fit h-fit' id='container'>
                 <div className="h-[45rem] scale-[0.8] w-[23rem] bg-black rounded-[3rem] grid place-items-center" id="inner">
-                    <div className="h-[97.5%] relative w-[95%] bg-white bg-opacity-[.1] grid place-items-center rounded-[2.5rem] overflow-hidden relative border">
+                    <div className="h-[97.5%] w-[95%] bg-white bg-opacity-[.1] grid place-items-center rounded-[2.5rem] overflow-hidden relative border">
                         <div className='absolute h-[20px] w-[20px] rounded-full top-2 bg-black'></div>
                         <div className='top-6 left-6 absolute'>
                             <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />
