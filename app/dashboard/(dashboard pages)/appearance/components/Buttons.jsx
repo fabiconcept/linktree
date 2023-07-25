@@ -21,7 +21,7 @@ export default function Buttons() {
             <section className="flex gap-5 text-sm flex-col mb-10">
                 <span className="font-semibold">Outline</span>
                 <div className="items-center flex gap-5">
-                    <Button type={3} modifierClass={"border border-black "} />
+                    <Button type={3} modifierClass={"border border-black"} />
                     <Button type={4} modifierClass={"border border-black rounded-lg"} />
                     <Button type={5} modifierClass={"border border-black rounded-3xl"} />
                 </div>
@@ -45,7 +45,7 @@ export default function Buttons() {
             <section className="flex gap-5 text-sm flex-col mb-10">
                 <span className="font-semibold">Special</span>
                 <div className="items-center flex-wrap flex gap-5">
-                    <div onClick={()=>handleUpdateTheme(13)} className={`min-w-[30%] h-10 cursor-pointer hover:scale-105 active:scale-95 flex-1 border relative border-black bg-black`}>
+                    <div onClick={()=>handleUpdateTheme(12)} className={`min-w-[30%] h-10 cursor-pointer hover:scale-105 active:scale-95 flex-1 border relative border-black bg-black`}>
                         <span className="w-full absolute top-6 translate-y-[1px]">
                             <Image src={"https://linktree.sirv.com/Images/svg%20element/torn.svg"} alt="ele" width={1000} height={100} priority className="w-full scale-[-1]" />
                         </span>
@@ -53,7 +53,7 @@ export default function Buttons() {
                             <Image src={"https://linktree.sirv.com/Images/svg%20element/torn.svg"} alt="ele" width={1000} height={1000} priority className="w-full" />
                         </span>
                     </div>
-                    <div onClick={()=>handleUpdateTheme(14)} className={`min-w-[30%] h-10 cursor-pointer hover:scale-105 active:scale-95 flex-1 border relative border-black bg-black`}>
+                    <div onClick={()=>handleUpdateTheme(13)} className={`min-w-[30%] h-10 cursor-pointer hover:scale-105 active:scale-95 flex-1 border relative border-black bg-black`}>
                         <span className="w-full absolute top-8 translate-y-[6px]">
                             <Image src={"https://linktree.sirv.com/Images/svg%20element/jiggy.svg"} alt="ele" width={1000} height={1000} priority className="w-full" />
                         </span>
@@ -61,15 +61,15 @@ export default function Buttons() {
                             <Image src={"https://linktree.sirv.com/Images/svg%20element/jiggy.svg"} alt="ele" width={1000} height={100} priority className="w-full scale-[-1]" />
                         </span>
                     </div>
-                    <Button type={15} modifierClass={"border border-black relative grid place-items-center after:h-7 after:w-[107%] after:absolute after:border after:border-black"} />
-                    <Button type={16} modifierClass={"border border-black bg-black rounded-3xl"} />
-                    <div onClick={()=>handleUpdateTheme(17)} className={`min-w-[30%] h-10 cursor-pointer hover:scale-105 active:scale-95 flex-1 border relative border-black`}>
+                    <Button type={14} modifierClass={"border border-black relative grid place-items-center after:h-7 after:w-[107%] after:absolute after:border after:border-black"} />
+                    <Button type={15} modifierClass={"border border-black bg-black rounded-3xl"} />
+                    <div onClick={()=>handleUpdateTheme(16)} className={`min-w-[30%] h-10 cursor-pointer hover:scale-105 active:scale-95 flex-1 border relative border-black`}>
                         <div className={"h-2 w-2 border border-black bg-white absolute -top-1 -left-1"}></div>
                         <div className={"h-2 w-2 border border-black bg-white absolute -top-1 -right-1"}></div>
                         <div className={"h-2 w-2 border border-black bg-white absolute -bottom-1 -left-1"}></div>
                         <div className={"h-2 w-2 border border-black bg-white absolute -bottom-1 -right-1"}></div>
                     </div>
-                    <Button type={18} modifierClass={"border border-black bg-black rounded-l-3xl"} />
+                    <Button type={17} modifierClass={"border border-black bg-black rounded-l-3xl"} />
                 </div>
             </section>
             <section className="flex text-sm flex-col mb-10">

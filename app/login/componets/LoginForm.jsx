@@ -86,7 +86,7 @@ export default function LoginForm() {
             const existingUsernames = [];
         
             const collectionRef = collection(fireApp, "accounts");
-        
+            
             onSnapshot(collectionRef, (querySnapshot) => {
                 querySnapshot.forEach((credential) => {
                     const data = credential.data();

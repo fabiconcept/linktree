@@ -9,6 +9,7 @@ import { useState } from "react"
 
 export default function UserInfo({userId}) {
     const [displayName, setDisplayName] = useState("");
+    const [themeFontColor, setThemeFontColor] = useState("");
     const [myBio, setMyBio] = useState("");
     const router = useRouter();
 
@@ -28,9 +29,10 @@ export default function UserInfo({userId}) {
                 if (!docSnapshot.exists()) {
                     return;
                 }
-                const { displayName, bio: bioText } = docSnapshot.data();
+                const { displayName, bio: bioText, themeFontColor } = docSnapshot.data();
                 const bio = bioText ? bioText : "";
                 setDisplayName(displayName);
+                setThemeFontColor(themeFontColor ? themeFontColor: "");
                 setMyBio(bio);
             });
         }
@@ -40,8 +42,8 @@ export default function UserInfo({userId}) {
 
     return (
         <>
-            <span className="font-semibold text-lg py-2">@{displayName}</span>
-            <span className="opacity-60 text-center max-w-[80%]">{myBio}</span>
+            <span style={{color: `${themeFontColor}`}} className="font-semibold sm:text-lg text-base py-2">@{displayName}</span>
+            <span style={{color: `${themeFontColor}`}} className="opacity-60 text-center text-sm max-w-[80%]">{myBio}</span>
         </>
     )
 }

@@ -38,34 +38,34 @@ export function validatePassword(password) {
 export function generateId() {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let myId = 'user';
-  
+
     // Generate a random 4-digit number
     const randomNumber = Math.floor(Math.random() * 10000);
     myId += randomNumber.toString().padStart(4, '0');
-  
+
     // Add two random letters
     for (let i = 0; i < 2; i++) {
-      const randomIndex = Math.floor(Math.random() * letters.length);
-      myId += letters[randomIndex];
+        const randomIndex = Math.floor(Math.random() * letters.length);
+        myId += letters[randomIndex];
     }
-  
+
     return myId;
 }
 
 export function realEscapeString(str) {
     // List of characters to escape
     const escapeChars = {
-      '\x00': '\\0',
-      '\x08': '\\b',
-      '\x09': '\\t',
-      '\x1a': '\\Z',
-      '\n': '\\n',
-      '\r': '\\r',
-      '\"': '\\"',
-      '\'': '\\\'',
-      '\\': '\\\\',
+        '\x00': '\\0',
+        '\x08': '\\b',
+        '\x09': '\\t',
+        '\x1a': '\\Z',
+        '\n': '\\n',
+        '\r': '\\r',
+        '\"': '\\"',
+        '\'': '\\\'',
+        '\\': '\\\\',
     };
-  
+
     // Replace special characters with their escaped counterparts
     return str.replace(/[\x00\x08\x09\x1a\n\r"\'\\]/g, (char) => escapeChars[char]);
 }
@@ -88,7 +88,7 @@ export function testPromiseStatus(promise) {
 export function isValidURL(text) {
     // Regular expression pattern to match a valid URL format
     const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
-    
+
     return urlPattern.test(text);
 }
 
@@ -101,12 +101,12 @@ export function generateRandomId() {
     }
     return `${id}-${id}-${id}-${id}-${id}${hex.charAt(Math.floor(Math.random() * hex.length))}`;
 }
-  
+
 export function capitalizeFirstLetter(text) {
     if (typeof text !== 'string' || text.length === 0) {
-      return text;
+        return text;
     }
-  
+
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
@@ -119,5 +119,35 @@ export function generateUniqueId() {
     const timestamp = new Date().getTime();
     const randomString = Math.random().toString(25).substring(2, 15);
     return `${randomString}-${timestamp}`;
+}
+
+export function makeValidUrl(url) {
+    if (url.startsWith('https://') || url.startsWith('http://')) {
+        return url;
+    } else {
+        return `https://${url}`;
+    }
+}
+
+export function hexToRgba(hex, alpha) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+
+    if (alpha) {
+        return `rgb(${r},${g},${b},${alpha})`;
+    } else {
+        return `rgb(${r},${g},${b})`;
+    }
+}
+
+export function isSuitableForWhiteText(backgroundColor) {
+    const r = parseInt(backgroundColor.slice(1, 3), 16);
+    const g = parseInt(backgroundColor.slice(3, 5), 16);
+    const b = parseInt(backgroundColor.slice(5, 7), 16);
+
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+    return luminance > 0.5;
 }
   

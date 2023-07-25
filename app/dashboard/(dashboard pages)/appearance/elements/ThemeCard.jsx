@@ -9,11 +9,26 @@ import { FaCheck } from "react-icons/fa6";
 
 export default function ThemeCard({ type, pic, text }) {
     const [isSelectedTheme, setIsSelectedTheme] = useState(false);
+    const [themeColor, setThemeColor] = useState("");
 
     const handleUpdateTheme = async() => {
-        await updateTheme(text ? text : "Custom");
+        await updateTheme(text ? text : "Custom", themeColor);
     }
 
+    useEffect(() => {
+        switch (text) {
+            case 'Lake Black':
+                setThemeColor("#fff");
+                break;
+            case 'Starry Night':
+                setThemeColor("#fff");
+                break;
+        
+            default:
+                setThemeColor("#000");
+                break;
+        }
+    }, []);
     
     useEffect(() => {
         function fetchTheme() {

@@ -33,6 +33,7 @@ const createAccount = async (data) => {
             displayName: cleanUsername,
             links: [],
             profilePhoto: "",
+            selectedTheme: "Lake White",
         });
     } catch (error) {
         throw new Error(error);

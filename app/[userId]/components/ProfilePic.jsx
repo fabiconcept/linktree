@@ -1,17 +1,17 @@
 "use client"
 import { fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function ProfilePic() {
+export default function ProfilePic({userId}) {
     const [profilePicture, setProfilePicture] = useState(null);
 
     useEffect(() => {
-        function fetchProfilePicture() {
-            const currentUser = testForActiveSession();
+        async function fetchProfilePicture() {
+            const currentUser = await fetchUserData(userId);;
             const collectionRef = collection(fireApp, "AccountData");
             const docRef = doc(collectionRef, `${currentUser}`);
 

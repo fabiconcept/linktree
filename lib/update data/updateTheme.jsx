@@ -2,7 +2,7 @@ import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { testForActiveSession } from "../authentication/testForActiveSession";
 import { fireApp } from "@/important/firebase";
 
-export async function updateTheme(theme) {
+export async function updateTheme(theme, themeColor) {
     const username = testForActiveSession();
     if (username) {
         try {
@@ -12,7 +12,7 @@ export async function updateTheme(theme) {
             
             if (docSnap.exists()) {
                 const previousData = docSnap.data();
-                const objectToUpdate = {...previousData, selectedTheme: theme};
+                const objectToUpdate = {...previousData, selectedTheme: theme, themeFontColor: themeColor};
                 await setDoc(docRef, objectToUpdate);
                 return;
             }

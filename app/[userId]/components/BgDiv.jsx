@@ -1,24 +1,35 @@
 "use client"
 import { fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import { useState } from "react";
 import { useEffect } from "react";
+import LakeWhite from "../elements/themes/LakeWhite";
+import LakeBlack from "../elements/themes/LakeBlack";
+import PebbleBlue from "../elements/themes/PebbleBlue";
+import PebbleYellow from "../elements/themes/PebbleYellow";
+import PebblePink from "../elements/themes/PebblePink";
+import BreezePink from "../elements/themes/BreezePink";
+import BreezeOrange from "../elements/themes/BreezeOrange";
+import BreezeGreen from "../elements/themes/BreezeGreen";
 
-export default function BgDiv() {
+export default function BgDiv({userId}) {
     const [backgroundPicture, setBackgroundPicture] = useState(null);
+    const [bgType, setBgType] = useState("");
 
     useEffect(() => {
-        function fetchProfilePicture() {
-            const currentUser = testForActiveSession();
+        async function fetchProfilePicture() {
+            const currentUser = await fetchUserData(userId);;
             const collectionRef = collection(fireApp, "AccountData");
             const docRef = doc(collectionRef, `${currentUser}`);
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
-                    const { profilePhoto, displayName } = docSnap.data();
+                    const { profilePhoto, displayName, selectedTheme } = docSnap.data();
 
+                    setBgType(selectedTheme);
+                    
                     if (profilePhoto !== '') {
                         setBackgroundPicture(
                             <Image
@@ -45,8 +56,15 @@ export default function BgDiv() {
         fetchProfilePicture();
     }, []);
     return (
-        <div className="fixed h-screen w-screen z-0 top-0 left-0 opacity-70 overflow-hidden">
-            {backgroundPicture}
-        </div>
-    )
+        <>
+            {bgType === "Lake White" && <LakeWhite backgroundPicture={backgroundPicture}/>}
+            {bgType === "Lake Black" && <LakeBlack backgroundPicture={backgroundPicture}/>}
+            {bgType === "Pebble Blue" && <PebbleBlue />}
+            {bgType === "Pebble Yellow" && <PebbleYellow />}
+            {bgType === "Pebble Pink" && <PebblePink />}
+            {bgType === "Breeze Pink" && <BreezePink />}
+            {bgType === "Breeze Orange" && <BreezeOrange />}
+            {bgType === "Breeze Green" && <BreezeGreen />}
+        </>
+    );
 }

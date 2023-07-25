@@ -52,7 +52,7 @@ export default function AddBtn() {
                 setBtnStyle(`p-3 cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] text-white bg-btnPrimary hover:bg-btnPrimaryAlt h-[3rem] overflow-visible`);
                 break;
             case 1:
-                setBtnStyle(`bg-white border h-[20.5rem] overflow-hidden`);
+                setBtnStyle(`bg-white border sm:min-h-[20.5rem] min-h-[18rem] overflow-hidden`);
                 break;
 
             default:
