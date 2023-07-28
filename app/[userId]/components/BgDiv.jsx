@@ -14,6 +14,9 @@ import BreezePink from "../elements/themes/BreezePink";
 import BreezeOrange from "../elements/themes/BreezeOrange";
 import BreezeGreen from "../elements/themes/BreezeGreen";
 import Confetti from "../elements/themes/Confetti";
+import CloudRed from "../elements/themes/CloudRed";
+import CloudGreen from "../elements/themes/CloudGreen";
+import CloudBlue from "../elements/themes/CloudBlue";
 
 export default function BgDiv({userId}) {
     const [backgroundPicture, setBackgroundPicture] = useState(null);
@@ -67,6 +70,9 @@ export default function BgDiv({userId}) {
             {bgType === "Breeze Orange" && <BreezeOrange />}
             {bgType === "Breeze Green" && <BreezeGreen />}
             {bgType === "Confetti" && <Confetti />}
+            {bgType === "Cloud Red" && <CloudRed />}
+            {bgType === "Cloud Green" && <CloudGreen />}
+            {bgType === "Cloud Blue" && <CloudBlue />}
         </>
     );
 }
