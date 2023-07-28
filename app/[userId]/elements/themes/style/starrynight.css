@@ -1,0 +1,118 @@
+:root {
+    --twinkle-duration: 4s;
+}
+
+.stars-wrapper {
+    position: relative;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#16161d, #1f1f3a, #3b2f4a);
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-animation: twinkle var(--twinkle-duration) ease-in-out infinite;
+    animation: twinkle var(--twinkle-duration) ease-in-out infinite;
+}
+
+.stars:nth-child(2) {
+    -webkit-animation-delay: calc(var(--twinkle-duration) * -0.33);
+    animation-delay: calc(var(--twinkle-duration) * -0.33);
+}
+
+.stars:nth-child(3) {
+    -webkit-animation-delay: calc(var(--twinkle-duration) * -0.66);
+    animation-delay: calc(var(--twinkle-duration) * -0.66);
+}
+
+@-webkit-keyframes twinkle {
+    25% {
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    25% {
+        opacity: 0;
+    }
+}
+
+.star {
+    fill: white;
+}
+
+.star:nth-child(3n) {
+    opacity: 0.8;
+}
+
+.star:nth-child(7n) {
+    opacity: 0.6;
+}
+
+.star:nth-child(13n) {
+    opacity: 0.4;
+}
+
+.star:nth-child(19n) {
+    opacity: 0.2;
+}
+
+.comet {
+    transform-origin: center center;
+    -webkit-animation: comet 10s linear infinite;
+    animation: comet 10s linear infinite;
+}
+
+@-webkit-keyframes comet {
+
+    0%,
+    40% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    60%,
+    100% {
+        transform: translateX(-100vmax);
+        opacity: 0;
+    }
+}
+
+@keyframes comet {
+
+    0%,
+    40% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    60%,
+    100% {
+        transform: translateX(-100vmax);
+        opacity: 0;
+    }
+}
+
+.comet-b {
+    -webkit-animation-delay: -3.3s;
+    animation-delay: -3.3s;
+}
+
+.comet-c {
+    -webkit-animation-delay: -5s;
+    animation-delay: -5s;
+}

@@ -23,6 +23,9 @@ export default function ThemeCard({ type, pic, text }) {
             case 'Starry Night':
                 setThemeColor("#fff");
                 break;
+            case '3D Blocks':
+                setThemeColor("#fff");
+                break;
         
             default:
                 setThemeColor("#000");

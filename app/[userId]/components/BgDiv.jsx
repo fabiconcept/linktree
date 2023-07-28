@@ -18,6 +18,8 @@ import CloudRed from "../elements/themes/CloudRed";
 import CloudGreen from "../elements/themes/CloudGreen";
 import CloudBlue from "../elements/themes/CloudBlue";
 import Rainbow from "../elements/themes/Rainbow";
+import StarryNight from "../elements/themes/StarryNight";
+import Blocks3D from "../elements/themes/3DBloocks";
 
 export default function BgDiv({userId}) {
     const [backgroundPicture, setBackgroundPicture] = useState(null);
@@ -75,6 +77,8 @@ export default function BgDiv({userId}) {
             {bgType === "Cloud Green" && <CloudGreen />}
             {bgType === "Cloud Blue" && <CloudBlue />}
             {bgType === "Rainbow" && <Rainbow />}
+            {bgType === "Starry Night" && <StarryNight />}
+            {bgType === "3D Blocks" && <Blocks3D />}
         </>
     );
 }
