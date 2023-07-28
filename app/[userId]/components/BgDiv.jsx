@@ -17,6 +17,7 @@ import Confetti from "../elements/themes/Confetti";
 import CloudRed from "../elements/themes/CloudRed";
 import CloudGreen from "../elements/themes/CloudGreen";
 import CloudBlue from "../elements/themes/CloudBlue";
+import Rainbow from "../elements/themes/Rainbow";
 
 export default function BgDiv({userId}) {
     const [backgroundPicture, setBackgroundPicture] = useState(null);
@@ -73,6 +74,7 @@ export default function BgDiv({userId}) {
             {bgType === "Cloud Red" && <CloudRed />}
             {bgType === "Cloud Green" && <CloudGreen />}
             {bgType === "Cloud Blue" && <CloudBlue />}
+            {bgType === "Rainbow" && <Rainbow />}
         </>
     );
 }
