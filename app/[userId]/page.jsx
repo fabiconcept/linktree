@@ -20,7 +20,7 @@ export default function UserLinksPage({ params: { userId } }) {
                     <FaEllipsis className="scale-80" />
                 </div>
                 
-                <div className="flex flex-col items-center flex-1 overflow-auto">
+                <div className="flex flex-col items-center flex-1 overflow-auto px-3">
                     <ProfilePic userId={userId} />
                     <UserInfo userId={userId} />
                     <MyLinks userId={userId} />
