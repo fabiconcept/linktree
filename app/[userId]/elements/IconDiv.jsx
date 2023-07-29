@@ -28,7 +28,7 @@ export default function IconDiv({url}) {
     }, [url]);
 
     return (
-        <div className="h-[2rem] w-fit rounded-lg p-[1px] bg-white aspect-square">
+        <div className="h-[2rem] w-fit rounded-lg p-[2px] bg-white aspect-square">
             <Image src={iconToDisplay} alt="link Icon" height={50} width={50} className="object-fit h-full aspect-square" />
         </div>
     );
