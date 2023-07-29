@@ -19,7 +19,7 @@ import CloudGreen from "../elements/themes/CloudGreen";
 import CloudBlue from "../elements/themes/CloudBlue";
 import Rainbow from "../elements/themes/Rainbow";
 import StarryNight from "../elements/themes/StarryNight";
-import Blocks3D from "../elements/themes/3DBloocks";
+import Blocks3D from "../elements/themes/3DBlocks";
 
 export default function BgDiv({userId}) {
     const [backgroundPicture, setBackgroundPicture] = useState(null);
