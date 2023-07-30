@@ -45,7 +45,7 @@ export default function ProfilePic({userId}) {
         fetchProfilePicture();
     }, []);
     return (
-        <div className="h-[6rem] w-[6rem] mb-2 rounded-full border overflow-hidden bg-white grid place-items-center">
+        <div className="min-h-[6rem] w-[6rem] mb-2 rounded-full border overflow-hidden bg-white grid place-items-center">
             {profilePicture}
         </div>
     )

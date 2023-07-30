@@ -1,3 +1,4 @@
-.btn:nth-child(1) {
-    background-color: rgb(120, 255, 42);
+.btn::before {
+    background-image: linear-gradient(rgba(0, 0, 0, .7) .25em, transparent .1em);
+    background-size: .5em .5em;
 }
