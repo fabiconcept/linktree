@@ -1,8 +1,16 @@
-import "../style/waves.css";
+import { darkenColor } from "@/lib/utilities";
+// import "../style/waves.css";
+import "../style/wave.css";
 
-export default function Waves() {
+export default function Waves({color}) {
     return (
-        <div className="header fixed top-0 left-0 w-full h-full flex flex-col justify-end">
+        <div 
+            className="header fixed top-0 left-0 w-full h-full flex flex-col justify-end"
+            style={{
+                "--color-1": `${color}`,
+                "--color-2": `${darkenColor(color, 50)}`,
+            }}
+        >
             <div>
                 <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                     <defs>

@@ -84,7 +84,9 @@ export default function Button({ url, content, userId }) {
             setSpecialElements(null);
             setBtnFontStyle({
                 color: "#fff"
-            })
+            });
+
+            console.log(String(getCompanyFromUrl(rootName)).toLocaleLowerCase());
             switch (String(getCompanyFromUrl(rootName)).toLocaleLowerCase()) {
                 case 'tiktok':
                     setAccentColor(["#ff0050", "#00f2ea"]);

@@ -65,20 +65,20 @@ export default function ColorPicker({colorFor}) {
                     const { backgroundColor, btnShadowColor, btnFontColor, btnColor } = docSnap.data();
                     switch (colorFor) {
                         case 0:
-                            setColorText(backgroundColor ? backgroundColor : "#e8edf5")
+                            setColorText(backgroundColor ? backgroundColor : "#e8edf5");
                             break;
                         case 1:
-                            setColorText(btnColor ? btnColor : "#e8edf5")
+                            setColorText(btnColor ? btnColor : "#e8edf5");
                             break;
                         case 2:
-                            setColorText(btnFontColor ? btnFontColor : "#e8edf5")
+                            setColorText(btnFontColor ? btnFontColor : "#e8edf5");
                             break;
                         case 3:
-                            setColorText(btnShadowColor ? btnShadowColor : "#e8edf5")
+                            setColorText(btnShadowColor ? btnShadowColor : "#e8edf5");
                             break;
                     
                         default:
-                            setColorText(backgroundColor ? backgroundColor : "#e8edf5")
+                            setColorText(backgroundColor ? backgroundColor : "#e8edf5");
                             break;
                     }
                 }

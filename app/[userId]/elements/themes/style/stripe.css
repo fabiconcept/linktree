@@ -10,10 +10,10 @@
 
 .stripe {
     background: repeating-linear-gradient(55deg,
-            #3E444B,
-            #3E444B 15px,
-            #65696F 15px,
-            #65696F 30px);
+            var(--color-1),
+            var(--color-1) 15px,
+            var(--color-2) 15px,
+            var(--color-2) 30px);
     background-position: 0 100%;
     background-size: 100% 200%;
     animation: infiniteScroll 10s linear infinite;

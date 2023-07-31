@@ -10,11 +10,11 @@
 
 .zigzag {
     background:
-        linear-gradient(135deg, #65696F 25%, transparent 25%) -50px 0,
-        linear-gradient(225deg, #65696F 25%, transparent 25%) -50px 0,
-        linear-gradient(315deg, #65696F 25%, transparent 25%),
-        linear-gradient(45deg, #65696F 25%, transparent 25%);
+        linear-gradient(135deg, var(--color-1) 25%, transparent 25%) -50px 0,
+        linear-gradient(225deg, var(--color-1) 25%, transparent 25%) -50px 0,
+        linear-gradient(315deg, var(--color-1) 25%, transparent 25%),
+        linear-gradient(45deg, var(--color-1) 25%, transparent 25%);
     background-size: 101px 101px;
-    background-color: #3E444B;
+    background-color: var(--color-2);
     animation: zigzagScroll 5s linear infinite;
 }

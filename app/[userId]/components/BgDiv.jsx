@@ -3,7 +3,7 @@ import { fireApp } from "@/important/firebase";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import LakeWhite from "../elements/themes/LakeWhite";
 import LakeBlack from "../elements/themes/LakeBlack";
@@ -20,11 +20,16 @@ import CloudBlue from "../elements/themes/CloudBlue";
 import Rainbow from "../elements/themes/Rainbow";
 import StarryNight from "../elements/themes/StarryNight";
 import Blocks3D from "../elements/themes/3DBlocks";
-import Custom from "../elements/themes/Custom";
+import CustomTheme from "../elements/themes/CustomTheme";
 
-export default function BgDiv({userId}) {
+export const BgContext = React.createContext();
+
+export default function BgDiv({ userId }) {
     const [backgroundPicture, setBackgroundPicture] = useState(null);
     const [bgType, setBgType] = useState("");
+    const [bgTheme, setBgTheme] = useState('Flat Colour');
+    const [gradientDirection, setGradientDirection]= useState("");
+    const [bgColor, setBgColor] = useState("#e8edf5");
 
     useEffect(() => {
         async function fetchProfilePicture() {
@@ -34,10 +39,14 @@ export default function BgDiv({userId}) {
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
-                    const { profilePhoto, displayName, selectedTheme } = docSnap.data();
+                    const { profilePhoto, displayName, selectedTheme, backgroundType, gradientDirection, backgroundColor } = docSnap.data();
 
                     setBgType(selectedTheme);
-                    
+                    setBgTheme(backgroundType ? backgroundType : "Flat Colour");
+                    setGradientDirection(gradientDirection ? gradientDirection : 0);
+                    setBgColor(backgroundColor ? backgroundColor : "#e8edf5");
+
+
                     if (profilePhoto !== '') {
                         setBackgroundPicture(
                             <Image
@@ -64,9 +73,10 @@ export default function BgDiv({userId}) {
         fetchProfilePicture();
     }, []);
     return (
-        <>
-            {bgType === "Lake White" && <LakeWhite backgroundPicture={backgroundPicture}/>}
-            {bgType === "Lake Black" && <LakeBlack backgroundPicture={backgroundPicture}/>}
+        <BgContext.Provider value={{bgTheme, bgColor, gradientDirection}}>
+
+            {bgType === "Lake White" && <LakeWhite backgroundPicture={backgroundPicture} />}
+            {bgType === "Lake Black" && <LakeBlack backgroundPicture={backgroundPicture} />}
             {bgType === "Pebble Blue" && <PebbleBlue />}
             {bgType === "Pebble Yellow" && <PebbleYellow />}
             {bgType === "Pebble Pink" && <PebblePink />}
@@ -80,7 +90,7 @@ export default function BgDiv({userId}) {
             {bgType === "Rainbow" && <Rainbow />}
             {bgType === "Starry Night" && <StarryNight />}
             {bgType === "3D Blocks" && <Blocks3D />}
-            {bgType === "Custom" && <Custom />}
-        </>
+            {bgType === "Custom" && <CustomTheme />}
+        </BgContext.Provider>
     );
 }
