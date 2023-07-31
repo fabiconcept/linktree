@@ -1,5 +1,4 @@
 import { darkenColor } from "@/lib/utilities";
-// import "../style/waves.css";
 import "../style/wave.css";
 
 export default function Waves({color}) {
@@ -7,8 +6,8 @@ export default function Waves({color}) {
         <div 
             className="header fixed top-0 left-0 w-full h-full flex flex-col justify-end"
             style={{
-                "--color-1": `${color}`,
-                "--color-2": `${darkenColor(color, 50)}`,
+                "--color-2": `${color}`,
+                "--color-1": `${darkenColor(color, 100)}`,
             }}
         >
             <div>
