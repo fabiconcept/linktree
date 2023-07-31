@@ -151,3 +151,19 @@ export function isSuitableForWhiteText(backgroundColor) {
     return luminance > 0.5;
 }
   
+
+export function darkenColor(hexColor, amount) {
+    hexColor = hexColor.replace('#', '');
+
+    const r = parseInt(hexColor.substring(0, 2), 16);
+    const g = parseInt(hexColor.substring(2, 4), 16);
+    const b = parseInt(hexColor.substring(4, 6), 16);
+
+    const darkR = Math.max(r - amount, 0);
+    const darkG = Math.max(g - amount, 0);
+    const darkB = Math.max(b - amount, 0);
+
+    const darkHex = `#${(darkR).toString(16).padStart(2, '0')}${(darkG).toString(16).padStart(2, '0')}${(darkB).toString(16).padStart(2, '0')}`;
+
+    return darkHex;
+}

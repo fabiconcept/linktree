@@ -1,3 +1,4 @@
+import FlatColor from "./Custom Backgrounds/FlatColor";
 import Stripe from "./Custom Backgrounds/Stripe";
 import Waves from "./Custom Backgrounds/Waves";
 import ZigZag from "./Custom Backgrounds/ZigZag";
@@ -10,6 +11,7 @@ export default function Custom() {
             {/* <ZigZag /> */}
             {/* <Stripe /> */}
             <Waves />
+            <FlatColor/>
         </div>
     );
 }
