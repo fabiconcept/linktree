@@ -1,0 +1,20 @@
+@keyframes zigzagScroll {
+    0% {
+        background-position: -50px 0, -50px 0, 0 0, 0 0;
+    }
+
+    100% {
+        background-position: -50px 100px, -50px 100px, 0 100px, 0 100px;
+    }
+}
+
+.zigzag {
+    background:
+        linear-gradient(135deg, #65696F 25%, transparent 25%) -50px 0,
+        linear-gradient(225deg, #65696F 25%, transparent 25%) -50px 0,
+        linear-gradient(315deg, #65696F 25%, transparent 25%),
+        linear-gradient(45deg, #65696F 25%, transparent 25%);
+    background-size: 101px 101px;
+    background-color: #3E444B;
+    animation: zigzagScroll 5s linear infinite;
+}

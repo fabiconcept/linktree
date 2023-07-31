@@ -1,107 +1,140 @@
-.polka {
-    background-image:
-        radial-gradient(rgb(255, 255, 255) 30.8%, transparent 1%),
-        radial-gradient(rgb(255, 255, 255) 30.8%, transparent 1%);
-    background-position: 0px 0px, 76px 76px;
-    background-size: 152px 152px;
-    background-color: rgb(255, 51, 51);
-    animation: beep 5s ease infinite;
-}
+@keyframes polkaAnimation {
 
-@keyframes beep {
-    0%, 100% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 10%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 10%, transparent 1%);
+    0%,
+    100% {
+        background-image:
+            radial-gradient(#65696F 10%, transparent 1%),
+            radial-gradient(#65696F 10%, transparent 1%);
     }
 
-    5% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 12.5%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 12.5%, transparent 1%);
+    3% {
+        background-image:
+            radial-gradient(#65696F 13%, transparent 1%),
+            radial-gradient(#65696F 13%, transparent 1%);
     }
 
-    10%, 90% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 15%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 15%, transparent 1%);
+    6% {
+        background-image:
+            radial-gradient(#65696F 16%, transparent 1%),
+            radial-gradient(#65696F 16%, transparent 1%);
+    }
+
+    9% {
+        background-image:
+            radial-gradient(#65696F 19%, transparent 1%),
+            radial-gradient(#65696F 19%, transparent 1%);
+    }
+
+    12% {
+        background-image:
+            radial-gradient(#65696F 22%, transparent 1%),
+            radial-gradient(#65696F 22%, transparent 1%);
     }
 
     15% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 17.5%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 17.5%, transparent 1%);
+        background-image:
+            radial-gradient(#65696F 25%, transparent 1%),
+            radial-gradient(#65696F 25%, transparent 1%);
     }
 
-    20%, 80% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 20%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 20%, transparent 1%);
+    18% {
+        background-image:
+            radial-gradient(#65696F 28%, transparent 1%),
+            radial-gradient(#65696F 28%, transparent 1%);
     }
 
-    25% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 22.5%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 22.5%, transparent 1%);
+    21% {
+        background-image:
+            radial-gradient(#65696F 31%, transparent 1%),
+            radial-gradient(#65696F 31%, transparent 1%);
     }
 
-    30%, 70% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 25%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 25%, transparent 1%);
+    24% {
+        background-image:
+            radial-gradient(#65696F 34%, transparent 1%),
+            radial-gradient(#65696F 34%, transparent 1%);
     }
 
-    35% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 27.5%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 27.5%, transparent 1%);
+    27% {
+        background-image:
+            radial-gradient(#65696F 37%, transparent 1%),
+            radial-gradient(#65696F 37%, transparent 1%);
     }
 
-    40%, 60% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 30%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 30%, transparent 1%);
+    30% {
+        background-image:
+            radial-gradient(#65696F 40%, transparent 1%),
+            radial-gradient(#65696F 40%, transparent 1%);
+    }
+
+    33% {
+        background-image:
+            radial-gradient(#65696F 37%, transparent 1%),
+            radial-gradient(#65696F 37%, transparent 1%);
+    }
+
+    36% {
+        background-image:
+            radial-gradient(#65696F 34%, transparent 1%),
+            radial-gradient(#65696F 34%, transparent 1%);
+    }
+
+    39% {
+        background-image:
+            radial-gradient(#65696F 31%, transparent 1%),
+            radial-gradient(#65696F 31%, transparent 1%);
+    }
+
+    42% {
+        background-image:
+            radial-gradient(#65696F 28%, transparent 1%),
+            radial-gradient(#65696F 28%, transparent 1%);
     }
 
     45% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 32.5%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 32.5%, transparent 1%);
+        background-image:
+            radial-gradient(#65696F 25%, transparent 1%),
+            radial-gradient(#65696F 25%, transparent 1%);
     }
 
-    50% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 35%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 35%, transparent 1%);
+    48% {
+        background-image:
+            radial-gradient(#65696F 22%, transparent 1%),
+            radial-gradient(#65696F 22%, transparent 1%);
     }
 
-    55% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 32.5%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 32.5%, transparent 1%);
+    51% {
+        background-image:
+            radial-gradient(#65696F 19%, transparent 1%),
+            radial-gradient(#65696F 19%, transparent 1%);
     }
 
-    60%, 65% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 30%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 30%, transparent 1%);
+    54% {
+        background-image:
+            radial-gradient(#65696F 16%, transparent 1%),
+            radial-gradient(#65696F 16%, transparent 1%);
     }
 
-    75% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 27.5%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 27.5%, transparent 1%);
+    57% {
+        background-image:
+            radial-gradient(#65696F 13%, transparent 1%),
+            radial-gradient(#65696F 13%, transparent 1%);
     }
 
-    80%, 85% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 25%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 25%, transparent 1%);
+    60% {
+        background-image:
+            radial-gradient(#65696F 10%, transparent 1%),
+            radial-gradient(#65696F 10%, transparent 1%);
     }
+}
 
-    95% {
-        background-image: 
-            radial-gradient(rgb(255, 255, 255) 20%, transparent 1%)
-            radial-gradient(rgb(255, 255, 255) 20%, transparent 1%);
-    }
+
+.polka {
+    background-image:
+        radial-gradient(#65696F 30.8%, transparent 1%),
+        radial-gradient(#65696F 30.8%, transparent 1%);
+    background-position: 0px 0px, 20px 20px;
+    background-size: 40px 40px;
+    background-color: #3E444B;
+    animation: polkaAnimation 5s infinite alternate ease-in-out;
 }

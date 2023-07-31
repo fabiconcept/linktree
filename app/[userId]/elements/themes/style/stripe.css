@@ -1,0 +1,20 @@
+@keyframes infiniteScroll {
+    0% {
+        background-position: 0 100%;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.stripe {
+    background: repeating-linear-gradient(55deg,
+            #3E444B,
+            #3E444B 15px,
+            #65696F 15px,
+            #65696F 30px);
+    background-position: 0 100%;
+    background-size: 100% 200%;
+    animation: infiniteScroll 10s linear infinite;
+}
