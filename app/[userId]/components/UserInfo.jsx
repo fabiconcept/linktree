@@ -42,8 +42,8 @@ export default function UserInfo({userId}) {
 
     return (
         <>
-            <span style={{color: `${themeFontColor}`}} className="font-semibold sm:text-lg text-base py-2">@{displayName}</span>
-            <span style={{color: `${themeFontColor}`}} className="opacity-60 text-center text-sm max-w-[80%]">{myBio}</span>
+            {displayName && <span style={{color: `${themeFontColor}`}} className="font-semibold sm:text-lg text-base py-2">@{displayName}</span>}
+            {myBio && <span style={{color: `${themeFontColor}`}} className="opacity-60 text-center text-sm max-w-[80%]">{myBio}</span>}
         </>
     )
 }
