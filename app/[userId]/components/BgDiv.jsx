@@ -30,6 +30,8 @@ export default function BgDiv({ userId }) {
     const [bgTheme, setBgTheme] = useState('Flat Colour');
     const [gradientDirection, setGradientDirection]= useState("");
     const [bgColor, setBgColor] = useState("#e8edf5");
+    const [bgImage, setBgImage] = useState('');
+    const [bgVideo, setBgVideo] = useState('');
 
     useEffect(() => {
         async function fetchProfilePicture() {
@@ -39,13 +41,14 @@ export default function BgDiv({ userId }) {
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
-                    const { profilePhoto, displayName, selectedTheme, backgroundType, gradientDirection, backgroundColor } = docSnap.data();
+                    const { profilePhoto, displayName, selectedTheme, backgroundType, gradientDirection, backgroundColor, backgroundImage, backgroundVideo } = docSnap.data();
 
                     setBgType(selectedTheme);
                     setBgTheme(backgroundType ? backgroundType : "Flat Colour");
                     setGradientDirection(gradientDirection ? gradientDirection : 0);
                     setBgColor(backgroundColor ? backgroundColor : "#e8edf5");
-
+                    setBgVideo(backgroundVideo);
+                    setBgImage(backgroundImage);
 
                     if (profilePhoto !== '') {
                         setBackgroundPicture(
@@ -73,7 +76,7 @@ export default function BgDiv({ userId }) {
         fetchProfilePicture();
     }, []);
     return (
-        <BgContext.Provider value={{bgTheme, bgColor, gradientDirection}}>
+        <BgContext.Provider value={{bgTheme, bgColor, gradientDirection, bgImage, bgVideo}}>
 
             {bgType === "Lake White" && <LakeWhite backgroundPicture={backgroundPicture} />}
             {bgType === "Lake Black" && <LakeBlack backgroundPicture={backgroundPicture} />}
