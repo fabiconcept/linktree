@@ -1,4 +1,5 @@
 import './globals.css';
+import './styles/fonts.css';
 import { Inter } from 'next/font/google';
 import NextTopLoader from "nextjs-toploader";
 

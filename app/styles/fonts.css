@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Bitter:wght@500&family=Bungee+Spice&family=Calistoga&family=Crimson+Text&family=Dancing+Script&family=EB+Garamond&family=Handjet:wght@500&family=IBM+Plex+Serif:wght@500&family=Libre+Baskerville&family=Lora&family=Noto+Sans+JP:wght@500&family=Noto+Sans+SC:wght@500&display=swap');
+
+/* Arvo */
+.font-arvo {
+    font-family: 'Arvo', serif;
+}
+
+/* Bitter */
+.font-bitter {
+    font-family: 'Bitter', serif;
+    font-weight: 500;
+}
+
+/* Bungee Spice */
+.font-bungee-spice {
+    font-family: 'Bungee Spice', cursive;
+}
+
+/* Calistoga */
+.font-calistoga {
+    font-family: 'Calistoga', cursive;
+}
+
+/* Crimson Text */
+.font-crimson-text {
+    font-weight: 500;
+    font-family: 'Crimson Text', serif;
+}
+
+/* Dancing Script */
+.font-dancing-script {
+    font-weight: 500;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* EB Garamond */
+.font-eb-garamond {
+    font-weight: 500;
+    font-family: 'EB Garamond', serif;
+}
+
+/* Handjet */
+.font-handjet {
+    font-weight: 500;
+    font-family: 'Handjet', cursive;
+}
+
+/* IBM Plex Serif */
+.font-ibm-plex-serif {
+    font-family: 'IBM Plex Serif', serif;
+}
+
+/* Libre Baskerville */
+.font-libre-baskerville {
+    font-family: 'Libre Baskerville', serif;
+}
+
+/* Lora */
+.font-lora {
+    font-family: 'Lora', serif;
+}
+
+/* Noto Sans JP */
+.font-noto-sans-jp {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Noto Sans SC */
+.font-noto-sans-sc {
+    font-family: 'Noto Sans SC', sans-serif;
+}

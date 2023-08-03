@@ -10,17 +10,20 @@ import { useEffect, useState } from "react";
 import IconDiv from "./IconDiv";
 import "./style/3d.css";
 import { baseUrlIcons, getCompanyFromUrl } from "@/lib/BrandLinks";
+import { availableFonts_Classic } from "@/lib/FontsList";
+import ButtonText from "./ButtonText";
 
 export default function Button({ url, content, userId }) {
     const [modifierClass, setModifierClass] = useState("");
     const [specialElements, setSpecialElements] = useState(null);
-    const [selectedTheme, setSelectedTheme]= useState('');
+    const [selectedTheme, setSelectedTheme] = useState('');
     const [btnType, setBtnType] = useState(0);
     const [btnShadowColor, setBtnShadowColor] = useState('');
     const [btnFontColor, setBtnFontColor] = useState('');
     const [btnColor, setBtnColor] = useState('');
     const [accentColor, setAccentColor] = useState([]);
     const [btnFontStyle, setBtnFontStyle] = useState(null);
+    const [selectedFontClass, setSelectedFontClass] = useState("");
     const router = useRouter();
 
     function getRootNameFromUrl(url) {
@@ -56,10 +59,13 @@ export default function Button({ url, content, userId }) {
                 if (!docSnapshot.exists()) {
                     return;
                 }
-                const { btnType, btnShadowColor, btnFontColor, btnColor, selectedTheme } = docSnapshot.data();
+                const { btnType, btnShadowColor, btnFontColor, btnColor, selectedTheme, fontType } = docSnapshot.data();
+                const fontName = availableFonts_Classic[fontType ? fontType - 1 : 0];
+                setSelectedFontClass(fontName.class);
+
                 setBtnColor(btnColor ? btnColor : "#fff");
                 setSelectedTheme(selectedTheme);
-                setBtnFontColor(btnFontColor ? btnFontColor: "#000");
+                setBtnFontColor(btnFontColor ? btnFontColor : "#000");
                 setBtnShadowColor(btnShadowColor ? btnShadowColor : "#000");
                 setBtnType(btnType);
             });
@@ -118,7 +124,7 @@ export default function Button({ url, content, userId }) {
                 case 'facebook':
                     setAccentColor(["#4267B2", "#898F9C"]);
                     break;
-            
+
                 default:
                     setAccentColor(["#191414", "#14171A"]);
                     break;
@@ -193,10 +199,10 @@ export default function Button({ url, content, userId }) {
                 setSpecialElements(
                     <>
                         <span className="w-full absolute left-0 bottom-0 translate-y-[4px]">
-                            <Image src={"https://linktree.sirv.com/Images/svg%20element/jiggy.svg"} style={{fill: modifierStyles.backgroundColor}} alt="ele" width={1000} height={8} priority className="w-full" />
+                            <Image src={"https://linktree.sirv.com/Images/svg%20element/jiggy.svg"} style={{ fill: modifierStyles.backgroundColor }} alt="ele" width={1000} height={8} priority className="w-full" />
                         </span>
                         <span className="w-full absolute left-0 top-0 -translate-y-[3px]">
-                            <Image src={"https://linktree.sirv.com/Images/svg%20element/jiggy.svg"} style={{fill: modifierStyles.backgroundColor}} alt="ele" width={1000} height={8} priority className="w-full scale-[-1]" />
+                            <Image src={"https://linktree.sirv.com/Images/svg%20element/jiggy.svg"} style={{ fill: modifierStyles.backgroundColor }} alt="ele" width={1000} height={8} priority className="w-full scale-[-1]" />
                         </span>
                     </>
                 );
@@ -219,7 +225,7 @@ export default function Button({ url, content, userId }) {
                         <div className={"h-2 w-2 border border-black bg-white absolute -bottom-1 -right-1"}></div>
                     </>
                 );
-                break;  
+                break;
             default:
                 setModifierClass("");
                 setSpecialElements(null);
@@ -232,7 +238,7 @@ export default function Button({ url, content, userId }) {
             return;
         }
 
-        function getShadow () {
+        function getShadow() {
             switch (btnType) {
                 case 6:
                     return `4px 4px 0 0 ${hexToRgba(btnShadowColor)}`;
@@ -265,7 +271,7 @@ export default function Button({ url, content, userId }) {
             return;
         }
 
-        function getBtnColor () {
+        function getBtnColor() {
             switch (btnType) {
                 case 12:
                     return ``;
@@ -290,7 +296,7 @@ export default function Button({ url, content, userId }) {
             return;
         }
 
-        function getBtnFontColor () {
+        function getBtnFontColor() {
             switch (btnType) {
                 case 12:
                     return `#fff`;
@@ -310,7 +316,7 @@ export default function Button({ url, content, userId }) {
         }));
     }, [btnFontColor, btnType, selectedTheme]);
 
-    useEffect(()=>{
+    useEffect(() => {
         if (accentColor.length > 0) {
             setModifierStyles({
                 backgroundColor: `${accentColor[0]}`,
@@ -327,7 +333,7 @@ export default function Button({ url, content, userId }) {
         >
             {specialElements}
             <IconDiv url={url} />
-            <span className="font-semibold truncate max-w-[90%] flex-1" style={btnFontStyle}>{content}</span>
+            <ButtonText btnFontStyle={btnFontStyle} content={content} fontClass={selectedFontClass} />
         </Link>
     );
 }

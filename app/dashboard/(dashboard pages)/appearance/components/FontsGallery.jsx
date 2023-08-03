@@ -80,7 +80,7 @@ export default function FontsGallery() {
                     <section className="flex flex-col gap-1">
                         {classicFonts.length > 0 &&<span className="opacity-50 py-3">Classic</span>}
                         {classicFonts.length > 0 && classicFonts.map((fontItem => (
-                            <div className={`select-none px-5 py-3 flex items-center justify-between cursor-pointer w-full rounded-3xl ${selectedFont === fontItem.id ? "bg-btnPrimary bg-opacity-20" : "hover:bg-black hover:bg-opacity-5"}`} key={fontItem.id} onClick={() => handleSelectItem(fontItem.id)}>
+                            <div className={`${fontItem.class} select-none px-5 py-3 flex items-center justify-between cursor-pointer w-full rounded-3xl ${selectedFont === fontItem.id ? "bg-btnPrimary bg-opacity-20" : "hover:bg-black hover:bg-opacity-5"}`} key={fontItem.id} onClick={() => handleSelectItem(fontItem.id)}>
                                 {fontItem.name}
                                 {selectedFont === fontItem.id && <span className="flex items-center gap-1 text-sm text-btnPrimaryAlt">
                                     <FaCheck />

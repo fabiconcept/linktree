@@ -20,20 +20,20 @@ export default function SelectFonts() {
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const { fontType } = docSnap.data();
-                    const fontName = availableFonts_Classic[fontType? fontType-1 : 0]
-                    setSelectedFont(fontName.name);
+                    const fontName = availableFonts_Classic[fontType ? fontType-1 : 0]
+                    setSelectedFont(fontName);
                 }
             });
         }
         
-        fetchTheme();
+        fetchTheme(); 
     }, []);
     return (
         <selectedFontContext.Provider value={{openFontGallery, setOpenFontGallery}}>
-            <div className="w-full my-4 group rounded-lg py-5 px-4 border shadow-lg flex items-center gap-4 cursor-pointer hover:bg-black hover:bg-opacity-10 active:scale-95" onClick={()=>setOpenFontGallery(true)}>
+            <div className={`${selectedFont.class} w-full my-4 group rounded-lg py-5 px-4 border shadow-lg flex items-center gap-4 cursor-pointer hover:bg-black hover:bg-opacity-10 active:scale-95`} onClick={()=>setOpenFontGallery(true)}>
                 <span className="p-3 rounded-md group-hover:bg-white group-hover:bg-opacity-100 bg-black bg-opacity-10 text-xl font-semibold">Aa</span>
                 <span className="font-semibold flex-1 truncate">
-                    {selectedFont}
+                    {selectedFont.name}
                 </span>
             </div>
             {openFontGallery && <FontsGallery />}
