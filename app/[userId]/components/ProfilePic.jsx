@@ -27,7 +27,7 @@ export default function ProfilePic({userId}) {
                                 alt="profile"
                                 height={1000}
                                 width={1000}
-                                className="min-w-full h-full object-contain"
+                                className="min-w-full h-full object-contain pointer-events-none"
                                 priority
                             />
                         );
@@ -48,8 +48,9 @@ export default function ProfilePic({userId}) {
         }
         fetchProfilePicture();
     }, []);
+    
     return (
-        <div className={`min-h-[6rem] w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center`}>
+        <div className={`min-h-[6rem] w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
             {profilePicture}
         </div>
     )

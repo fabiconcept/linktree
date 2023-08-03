@@ -48,9 +48,9 @@ export default function MyLinks({ userId }) {
         <div className="flex flex-col gap-4 my-4 w-full px-5 py-1 items-center max-h-fit">
             {displayLinks.map((link) => {
                 if (link.type === 0) {
-                    return (<span style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{link.title}</span>)
+                    return (<span style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{link.title}</span>);
                 }else{
-                    return (<Button key={link.id} content={link.title} url={link.url} userId={userId} />)
+                    return (<Button key={link.id} content={link.title} url={link.url} userId={userId} />);
                 }
             })}
         </div>
