@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 export default function ProfilePic({userId}) {
     const [profilePicture, setProfilePicture] = useState(null);
+    const [hasProfilePic, setHasProfilePic] = useState(false);
 
     useEffect(() => {
         async function fetchProfilePicture() {
@@ -30,7 +31,10 @@ export default function ProfilePic({userId}) {
                                 priority
                             />
                         );
+
+                        setHasProfilePic(true);
                     } else {
+                        setHasProfilePic(false);
                         setProfilePicture(
                             <div className="h-[95%] aspect-square w-[95%] rounded-full bg-gray-300 border grid place-items-center">
                                 <span className="text-3xl font-semibold uppercase">
@@ -45,7 +49,7 @@ export default function ProfilePic({userId}) {
         fetchProfilePicture();
     }, []);
     return (
-        <div className="min-h-[6rem] w-[6rem] mb-2 rounded-full border overflow-hidden bg-white grid place-items-center">
+        <div className={`min-h-[6rem] w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center`}>
             {profilePicture}
         </div>
     )
