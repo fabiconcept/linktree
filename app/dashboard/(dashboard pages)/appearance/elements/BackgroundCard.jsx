@@ -36,8 +36,8 @@ export default function BackgroundCard({ text, colorValue, backImg }) {
             return;
         }
     
-        if (text === "Video" && selectedFile.size > 5 * 1024 * 1024) {
-            toast.error('Please select a video smaller than 5MB.');
+        if (text === "Video" && selectedFile.size > 20 * 1024 * 1024) {
+            toast.error('Please select a video smaller than 20MB.');
             return;
         }
     
