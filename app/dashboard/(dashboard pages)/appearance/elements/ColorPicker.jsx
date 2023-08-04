@@ -12,9 +12,15 @@ export default function ColorPicker({colorFor}) {
     const [colorText, setColorText] = useState("#e8edf5");
     const debounceColor = useDebounce(colorText, 500);
     const [validColor, setValidColor] = useState(1);
+    const [colorHasLoaded, setColorHasLoaded] = useState(false);
     const colorPickRef = useRef();
 
     useEffect(() => {
+        if (!colorHasLoaded) {
+            setColorHasLoaded(true);
+            return;
+        }
+
         if (colorText !== "") {
             setValidColor(isValidHexCode(colorText));
             if (!isValidHexCode(colorText)) {
@@ -87,6 +93,7 @@ export default function ColorPicker({colorFor}) {
         
         fetchTheme();
     }, []);
+    
     return (
         <div className="pt-6 flex items-center">
             <input 
