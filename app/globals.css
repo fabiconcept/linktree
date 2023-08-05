@@ -160,19 +160,48 @@
   opacity: 0;
 }
 
-.leave {
-  animation: enter ease-in-out .5s reverse;
-  animation-delay: .15s;
+.enterCard {
+  animation: enterCard ease-in-out .25s forwards;
   opacity: 0;
+}
+
+.leaveCard {
+  animation: leaveCard ease-in-out .25s forwards;
+  pointer-events: none;
 }
 
 @keyframes enter {
   from {
     transform: translateY(-100%);
+    opacity: 0;
   }
 
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes enterCard {
+  from {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes leaveCard {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  to {
+    transform: translateY(-10%);
+    opacity: 0;
   }
 }
