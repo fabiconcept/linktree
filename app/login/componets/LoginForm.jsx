@@ -139,6 +139,7 @@ export default function LoginForm() {
         }
 
         setCanProceed(true);
+        setErrorMessage("");
     }, [hasError]);
     
     return (
@@ -186,7 +187,7 @@ export default function LoginForm() {
                         {isLoading && <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />}
                     </button>
 
-                    {!canProceed && <span className="text-sm text-red-500 text-center">{errorMessage}</span>}
+                    {!isLoading && <span className="text-sm text-red-500 text-center">{errorMessage}</span>}
                 </form>
                 <p className="text-center sm:text-base text-sm"><span className="opacity-60">Don&apos;t have an account?</span> <Link href={"/signup"} className="text-themeGreen">Sign up</Link> </p>
             </section>
