@@ -184,12 +184,12 @@
 
 @keyframes enterCard {
   from {
-    transform: translateY(-10%);
+    transform: translateY(-10%) scale(0.95);
     opacity: 0;
   }
 
   to {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
@@ -197,11 +197,11 @@
 @keyframes leaveCard {
   from {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   
   to {
-    transform: translateY(-10%);
+    transform: translateY(-10%) scale(0.95);
     opacity: 0;
   }
 }
