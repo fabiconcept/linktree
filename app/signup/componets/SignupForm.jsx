@@ -54,7 +54,6 @@ export default function SignUpForm() {
             setTimeout(() => {
                 router.push("/dashboard");
             }, 1000);
-            setIsLoading(false);
         }
     }
 
@@ -170,6 +169,7 @@ export default function SignUpForm() {
         }
 
         setCanProceed(true);
+        setErrorMessage("");
     }, [hasError]);
 
     return (
@@ -234,7 +234,7 @@ export default function SignUpForm() {
                         {isLoading && <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />}
                     </button>
 
-                    {!canProceed && <span className="text-sm text-red-500 text-center">{errorMessage}</span>}
+                    {!isLoading && <span className="text-sm text-red-500 text-center">{errorMessage}</span>}
                 </form>
                 <p className="text-center"><span className="opacity-60">Already have an account?</span> <Link className="text-themeGreen" href={"/login"}>Log in</Link> </p>
             </section>
