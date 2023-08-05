@@ -40,7 +40,7 @@ export default function DropDown() {
     };
 
     return (
-        <div className="relative" ref={dropCardRef}>
+        <div className="relative flex-1" ref={dropCardRef}>
             <div className={`cursor-pointer p-3 rounded-xl flex justify-between items-center w-[100%] bg-blue-950 bg-opacity-5 ${dropDownOpen ? "border-2 border-black" : "border-transparent border-2 cursor-pointer hover:border-black hover:border-opacity-10"} select-none`} onClick={handleSHowProfileCard}>
                 <div className="flex items-center gap-3">
                     <Image src={LinkTabs[currentTab].imgActive} alt="icon" height={24} width={24} />
