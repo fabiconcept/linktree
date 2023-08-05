@@ -105,6 +105,7 @@ export default function NavBar() {
                 break;
         }
     }, [router]);
+    
     return (
         <NavContext.Provider value={{ username, myLink, profilePicture, showProfileCard, setShowProfileCard, }}>
             <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-3 mx-auto bg-white border backdrop-blur-lg">
