@@ -28,7 +28,7 @@ export default function ProfileCard() {
                                 height={16}
                                 width={16}
                             />
-                            <span>My Account {`${showProfileCard}`}</span>
+                            <span>My Account</span>
                         </LiElement>
                         <LiElement url={"/dashboard/logout"}>
                             <Image

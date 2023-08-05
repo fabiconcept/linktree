@@ -19,6 +19,13 @@ export default function NavBar() {
     const [myLink, setMyLink] = useState("");
     const [showProfileCard, setShowProfileCard] = useState(false);
 
+    const handleSHowProfileCard = () =>{
+        if (username === "") {
+            return;
+        }
+        setShowProfileCard(!showProfileCard);
+    }
+
     const profileCardRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -131,7 +138,7 @@ export default function NavBar() {
                         <Image src={"https://linktree.sirv.com/Images/icons/share.svg"} alt="links" height={15} width={15} />
                     </div>
                     <div className="relative" ref={profileCardRef}>
-                        <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden" onClick={()=>setShowProfileCard(!showProfileCard)}>
+                        <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden" onClick={handleSHowProfileCard}>
                             {profilePicture}
                         </div>
                         <ProfileCard />
