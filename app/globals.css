@@ -160,12 +160,19 @@
   opacity: 0;
 }
 
+.leave {
+  animation: enter ease-in-out .5s reverse;
+  animation-delay: .15s;
+  opacity: 0;
+}
+
 @keyframes enter {
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(0);
-  opacity: 1;
+    opacity: 1;
   }
 }

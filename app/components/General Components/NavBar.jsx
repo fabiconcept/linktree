@@ -5,18 +5,49 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ProfileCard from "../NavComponents/ProfileCard";
+import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+
+export const NavContext = React.createContext();
 
 export default function NavBar() {
     const router = usePathname();
     const [activePage, setActivePage] = useState();
     const [profilePicture, setProfilePicture] = useState(null);
+    const [username, setUsername] = useState("");
+    const [myLink, setMyLink] = useState("");
+    const [showProfileCard, setShowProfileCard] = useState(false);
+
+    const profileCardRef = useRef(null);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (profileCardRef.current && !profileCardRef.current.contains(event.target)) {
+                setShowProfileCard(false);
+            }
+        };
+
+        if (showProfileCard) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [showProfileCard, setShowProfileCard]);
 
     useEffect(() => {
-        function fetchProfilePicture() {
+        async function fetchProfilePicture() {
             const currentUser = testForActiveSession();
             const collectionRef = collection(fireApp, "AccountData");
             const docRef = doc(collectionRef, `${currentUser}`);
+
+            const myData = await fetchUserData(currentUser);
+            const { username } = myData;
+            setUsername(username);
+            setMyLink(`localhost:3000/${username}`);
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
@@ -29,7 +60,7 @@ export default function NavBar() {
                                 alt="profile"
                                 height={1000}
                                 width={1000}
-                                className="min-w-full h-full object-contain"
+                                className="min-w-full h-full object-cover"
                                 priority
                             />
                         );
@@ -68,40 +99,45 @@ export default function NavBar() {
         }
     }, [router]);
     return (
-        <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-6 mx-auto bg-white border backdrop-blur-lg">
-            <div className="flex items-center gap-8">
-                <Link href={'/dashboard'}>
-                    <Image src={"https://linktree.sirv.com/Images/logo-icon.svg"} alt="logo" height={23} width={23} className="" priority />
-                </Link>
+        <NavContext.Provider value={{ username, myLink, profilePicture, showProfileCard, setShowProfileCard, }}>
+            <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-3 mx-auto bg-white border backdrop-blur-lg">
+                <div className="flex items-center gap-8">
+                    <Link href={'/dashboard'}>
+                        <Image src={"https://linktree.sirv.com/Images/logo-icon.svg"} alt="logo" height={23} width={23} className="" priority />
+                    </Link>
 
-                <div className="hidden md:flex items-center gap-6">
-                    <Link href={'/dashboard'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 0 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
-                        <Image src={"https://linktree.sirv.com/Images/icons/links.svg"} alt="links" height={16} width={16} />
-                        Links
-                    </Link>
-                    <Link href={'/dashboard/appearance'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 1 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
-                        <Image src={"https://linktree.sirv.com/Images/icons/appearance.svg"} alt="links" height={16} width={16} />
-                        Appearance
-                    </Link>
-                    <Link href={'/dashboard'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 2 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
-                        <Image src={"https://linktree.sirv.com/Images/icons/analytics.svg"} alt="links" height={16} width={16} />
-                        analytics
-                    </Link>
-                    <Link href={'/dashboard/settings'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 3 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
-                        <Image src={"https://linktree.sirv.com/Images/icons/setting.svg"} alt="links" height={16} width={16} />
-                        settings
-                    </Link>
+                    <div className="hidden md:flex items-center gap-6">
+                        <Link href={'/dashboard'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 0 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                            <Image src={"https://linktree.sirv.com/Images/icons/links.svg"} alt="links" height={16} width={16} />
+                            Links
+                        </Link>
+                        <Link href={'/dashboard/appearance'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 1 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                            <Image src={"https://linktree.sirv.com/Images/icons/appearance.svg"} alt="links" height={16} width={16} />
+                            Appearance
+                        </Link>
+                        <Link href={'/dashboard'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 2 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                            <Image src={"https://linktree.sirv.com/Images/icons/analytics.svg"} alt="links" height={16} width={16} />
+                            analytics
+                        </Link>
+                        <Link href={'/dashboard/settings'} className={`flex items-center gap-2 px-2 py-2 active:scale-90 active:opacity-40 hover:bg-black hover:bg-opacity-[0.075] rounded-lg text-sm font-semibold ${activePage === 3 ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
+                            <Image src={"https://linktree.sirv.com/Images/icons/setting.svg"} alt="links" height={16} width={16} />
+                            settings
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                    <div className="p-3 flex items-center gap-2 rounded-3xl border cursor-pointer hover:bg-gray-100 active:scale-90">
+                        <Image src={"https://linktree.sirv.com/Images/icons/share.svg"} alt="links" height={15} width={15} />
+                    </div>
+                    <div className="relative" ref={profileCardRef}>
+                        <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden" onClick={()=>setShowProfileCard(!showProfileCard)}>
+                            {profilePicture}
+                        </div>
+                        <ProfileCard />
+                    </div>
                 </div>
             </div>
-
-            <div className="flex items-center gap-3">
-                <div className="p-3 flex items-center gap-2 rounded-3xl border cursor-pointer hover:bg-gray-100 active:scale-90">
-                    <Image src={"https://linktree.sirv.com/Images/icons/share.svg"} alt="links" height={15} width={15} />
-                </div>
-                <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden">
-                    {profilePicture}
-                </div>
-            </div>
-        </div>
+        </NavContext.Provider>
     );
 }
