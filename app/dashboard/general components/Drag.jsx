@@ -10,7 +10,7 @@ const DraggableList = ({ array }) => {
     const [items, setItems] = useState([]);
 
     useEffect(()=>{
-        setItems([...array]);
+        setItems([...array]); 
     }, [array]);
 
     const handleDragEnd = (result) => {
@@ -25,7 +25,7 @@ const DraggableList = ({ array }) => {
 
     return (
         <DragDropContext onDragEnd={handleDragEnd}>
-            <Droppable droppableId="draggable-list">
+            <Droppable droppableId="draggable-list" mode='virtual'>
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps} className='flex flex-col gap-8'>
                         {items.map((item, index) => {

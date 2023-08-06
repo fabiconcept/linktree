@@ -221,9 +221,9 @@ export default function Special({ item, index }) {
                         </div>
                         <div className='grid sm:pr-2 gap-2 place-items-center'>
                             <div className={`scale-[0.8] sm:scale-100 ${!contentFilled ? "opacity-60 pointer-events-none" : "" }`}>
-                                <label class="cursor-pointer relative flex justify-between items-center group p-2 text-xl">
-                                    <input type="checkbox" onChange={handleCheckboxChange} checked={checkboxChecked} class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
-                                    <span class="cursor-pointer w-9 h-6 flex items-center flex-shrink-0 ml-4 p-1 bg-gray-400 rounded-full duration-300 ease-in-out peer-checked:bg-green-600 after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-3 group-hover:after:translate-x-[2px]"></span>
+                                <label className="cursor-pointer relative flex justify-between items-center group p-2 text-xl">
+                                    <input type="checkbox" onChange={handleCheckboxChange} checked={checkboxChecked} className="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
+                                    <span className="cursor-pointer w-9 h-6 flex items-center flex-shrink-0 ml-4 p-1 bg-gray-400 rounded-full duration-300 ease-in-out peer-checked:bg-green-600 after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-3 group-hover:after:translate-x-[2px]"></span>
                                 </label>
                             </div>
                             <div className={`${wantsToDelete ? "bg-btnPrimary" : "hover:bg-black hover:bg-opacity-[0.05]"} relative p-2 ml-3 active:scale-90 cursor-pointer group rounded-lg`} onClick={() => setWantsToDelete(!wantsToDelete)}>
