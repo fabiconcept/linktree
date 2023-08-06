@@ -36,7 +36,8 @@ export default function AddIconModal() {
         const selectedItem = item;
         setSettingIconModalOpen({
             status: true,
-            type: selectedItem.type
+            type: selectedItem.type,
+            operation: 0
         });
         handleClose();
     }
@@ -52,7 +53,7 @@ export default function AddIconModal() {
                 <div className="grid grid-cols-[32px_auto_32px] p-5 items-center">
                     <span></span>
                     <span className="text-center font-semibold">Add Icon</span>
-                    <div className="cursor-pointer" onClick={handleClose}><Image src={"https://linktree.sirv.com/Images/icons/svgexport-40.svg"} alt="x" width={15} height={15} /></div>
+                    <div className="cursor-pointer grid place-items-center h-md aspect-square rounded-lg active:border-black border border-transparent active:scale-90 hover:bg-black hover:bg-opacity-5" onClick={handleClose}><Image src={"https://linktree.sirv.com/Images/icons/svgexport-40.svg"} alt="x" width={15} height={15} /></div>
                 </div>
 
                 <div className="mx-5">

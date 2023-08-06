@@ -6,6 +6,7 @@ import React from "react";
 import Position from "./Position";
 import Link from "next/link";
 import AddIconModal from "./AddIconModal";
+import EditIconModal from "./EditIconModal";
 
 export const SocialContext = React.createContext();
 
@@ -13,7 +14,8 @@ export default function SocialSetting() {
     const [addIconModalOpen, setAddIconModalOpen] = useState(false);
     const [settingIconModalOpen, setSettingIconModalOpen] = useState({
         status: false,
-        type: 0
+        type: 0,
+        operation: 0,
     });
     const [socialsArray, setSocialsArray] = useState([
         { id: "8f0033b8-ccd7-5762-a26b-666536f93ff8", type: 0 },
@@ -21,7 +23,7 @@ export default function SocialSetting() {
     ]);
 
     return (
-        <SocialContext.Provider value={{ socialsArray, setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen }}>
+        <SocialContext.Provider value={{ socialsArray, setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen, settingIconModalOpen }}>
             <div className="w-full my-4 px-2" id="Settings--SocialLinks">
                 <div className="flex items-center gap-3 py-4">
                     <Image
@@ -48,6 +50,8 @@ export default function SocialSetting() {
                     <Link className="text-btnPrimary active:text-btnPrimaryAlt underline mt-3" href={"/dashboard/analytics"}>See analytics</Link>
                 </div>
                 {addIconModalOpen && <AddIconModal />}
+                {settingIconModalOpen.status && <EditIconModal />}
+
             </div>
         </SocialContext.Provider>
     );
