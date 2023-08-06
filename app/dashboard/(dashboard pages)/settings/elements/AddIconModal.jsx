@@ -1,7 +1,7 @@
 "use client"
 
 import { useContext, useEffect, useState } from "react";
-import { SocialContext } from "./SocialSetting";
+import { SocialContext } from "../components/SocialSetting";
 import Image from "next/image";
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import { SocialsList } from "@/lib/SocialsList";

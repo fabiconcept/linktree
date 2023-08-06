@@ -146,7 +146,6 @@ export async function updateThemeGradientDirection(direction) {
             throw new Error(error);
         }
     }
-
 }
 
 export async function updateThemeButton(btn) {

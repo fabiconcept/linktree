@@ -1,10 +1,43 @@
 'use client'
 
-import { useState } from "react";
+import { fireApp } from "@/important/firebase";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { updateSocialPosition } from "@/lib/update data/updateSocials";
+import { collection, doc, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 export default function Position() {
     const [pick, setPick] = useState(0);
     const [hasPicked, setHasPicked] = useState(false);
+
+    const handleUpdatePosition = async() => {
+        await updateSocialPosition(pick);
+    }
+
+    useEffect(() => {
+        function fetchTheme() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+        
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { socialPosition } = docSnap.data();
+                    setPick(socialPosition ? socialPosition : 0);
+                }
+            });
+        }
+        
+        fetchTheme();
+    }, []);
+
+    useEffect(() => {
+        if (!hasPicked) {
+            setHasPicked(true);
+            return;
+        }
+        handleUpdatePosition();
+    }, [pick]);
 
 
     return (
