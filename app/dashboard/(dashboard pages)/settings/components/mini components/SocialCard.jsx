@@ -20,7 +20,7 @@ const DraggableList = ({array}) => {
         <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="droppable">
                 {(provided) => (
-                    <ul {...provided.droppableProps} ref={provided.innerRef} className='pl-4'>
+                    <ul {...provided.droppableProps} ref={provided.innerRef} className='pl-4 grid gap-1'>
                         {items.map((item, index) => (
                             <SocialElement index={index} item={item} key={item.id} />
                         ))}

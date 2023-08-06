@@ -3,16 +3,24 @@ import Image from "next/image";
 import SocialCard from "./mini components/SocialCard";
 import { useState } from "react";
 import React from "react";
+import Position from "./Position";
+import Link from "next/link";
 
 export const SocialContext = React.createContext();
 
 export default function SocialSetting() {
+    const [addIconModalOpen, setAddIconModalOpen] = useState(false);
+    const [settingIconModalOpen, setSettingIconModalOpen] = useState({
+        status: false,
+        type: 0
+    });
     const [socialsArray, setSocialsArray] = useState([
         { id: "8f0033b8-ccd7-5762-a26b-666536f93ff8", type: 0 },
         { id: "59e6a60e-a396-566a-8d22-22ccb3b6431e", type: 1 },
     ]);
+
     return (
-        <SocialContext.Provider value={{ setSocialsArray }}>
+        <SocialContext.Provider value={{ setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen }}>
             <div className="w-full my-4 px-2" id="Settings--SocialLinks">
                 <div className="flex items-center gap-3 py-4">
                     <Image
@@ -28,8 +36,15 @@ export default function SocialSetting() {
                         <span className="font-semibold">Be iconic</span>
                         <span className="opacity-90">Add icons linking to your social profiles, email and more.</span>
                     </div>
-                    <div className="w-fit rounded-3xl bg-btnPrimary hover:bg-btnPrimaryAlt text-white py-3 px-4 my-6 cursor-pointer active:scale-90 select-none">Add Icon</div>
+                    <div className="w-fit rounded-3xl bg-btnPrimary hover:bg-btnPrimaryAlt text-white py-3 px-4 my-7 cursor-pointer active:scale-90 select-none">Add Icon</div>
                     <SocialCard array={socialsArray} />
+                    <p className="my-4 opacity-60 text-sm">Drag and drop the icons above to reorder them.</p>
+                    <div className="grid gap-1 text-sm mt-5">
+                        <span className="font-semibold">Position</span>
+                        <span className="opacity-90">Display icons at the:</span>
+                    </div>
+                    <Position />
+                    <Link className="text-btnPrimary active:text-btnPrimaryAlt underline mt-3" href={"/dashboard/analytics"}>See analytics</Link>
                 </div>
             </div>
         </SocialContext.Provider>
