@@ -38,7 +38,8 @@ export default function AddIconModal() {
             status: true,
             type: selectedItem.type,
             operation: 0,
-            value: ""
+            value: "",
+            active: false
         });
         handleClose();
     }

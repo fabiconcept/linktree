@@ -13,6 +13,7 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 export const ManageLinksContent = React.createContext();
 export default function ManageLinks() {
     const [data, setData] = useState([]);
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     const addItem = () => {
         const newItem ={id: `${generateRandomId()}`, title: "", isActive: true, type: 0};
@@ -22,7 +23,8 @@ export default function ManageLinks() {
     };
     
     useEffect(() => {
-        if (data.length === 0) {
+        if (!hasLoaded) {
+            setHasLoaded(true);
             return;
         }
         updateLinks(data);

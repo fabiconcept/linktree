@@ -7,11 +7,17 @@ import { Draggable } from "react-beautiful-dnd";
 import { SocialContext } from "../components/SocialSetting";
 
 export default function SocialElement({ item, index }) {
-    const { setSettingIconModalOpen } = useContext(SocialContext);
-    const [checkboxChecked, setCheckboxChecked] = useState(true);
+    const { setSettingIconModalOpen, setSocialsArray } = useContext(SocialContext);
+    const [checkboxChecked, setCheckboxChecked] = useState(item.active);
 
     const handleCheckboxChange = (event) => {
-        setCheckboxChecked(event.target.checked);
+        const checkedStatus = event.target.checked;
+        setSocialsArray((previousItems) =>
+            previousItems.map(
+                pItem => pItem.id === item.id ? { ...pItem, active: checkedStatus } : pItem
+            )
+        );
+        setCheckboxChecked(checkedStatus);
     };
 
     const handleEdit = () =>{
@@ -22,6 +28,8 @@ export default function SocialElement({ item, index }) {
             value: item.value,
         });
     }
+
+
     return (
         <Draggable draggableId={item.id} index={index} key={item.id}>
             {(provided, snapshot) => (

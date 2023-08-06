@@ -7,6 +7,10 @@ import Position from "./Position";
 import Link from "next/link";
 import AddIconModal from "./AddIconModal";
 import EditIconModal from "./EditIconModal";
+import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { collection, doc, onSnapshot } from "firebase/firestore";
+import { fireApp } from "@/important/firebase";
+import { updateSocials } from "@/lib/update data/updateSocials";
 
 export const SocialContext = React.createContext();
 
@@ -16,11 +20,34 @@ export default function SocialSetting() {
         status: false,
         type: 0,
         operation: 0,
+        active: false
     });
     const [socialsArray, setSocialsArray] = useState([]);
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() => {
-        console.log(socialsArray);
+        function fetchLinks() {
+            const currentUser = testForActiveSession();
+            const collectionRef = collection(fireApp, "AccountData");
+            const docRef = doc(collectionRef, `${currentUser}`);
+
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const { socials } = docSnap.data();
+                    setSocialsArray(socials ? socials : []);
+                }
+            });
+        }
+
+        fetchLinks();
+    }, []);
+
+    useEffect(() => {
+        if (!hasLoaded) {
+            setHasLoaded(true);
+            return;
+        }
+        updateSocials(socialsArray);
     }, [socialsArray]);
 
     return (

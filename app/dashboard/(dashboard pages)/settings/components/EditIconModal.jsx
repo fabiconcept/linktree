@@ -108,7 +108,7 @@ export default function EditIconModal() {
             return;
         }
         
-        setSocialsArray((previousArray)=> [...previousArray, {id: defaultData.id, type: defaultData.type, value: valueText}]);
+        setSocialsArray((previousArray)=> [...previousArray, {id: defaultData.id, type: defaultData.type, value: valueText, active: true}]);
         handleClose();
     }
 
