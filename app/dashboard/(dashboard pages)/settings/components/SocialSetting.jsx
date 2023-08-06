@@ -5,6 +5,7 @@ import { useState } from "react";
 import React from "react";
 import Position from "./Position";
 import Link from "next/link";
+import AddIconModal from "./AddIconModal";
 
 export const SocialContext = React.createContext();
 
@@ -20,7 +21,7 @@ export default function SocialSetting() {
     ]);
 
     return (
-        <SocialContext.Provider value={{ setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen }}>
+        <SocialContext.Provider value={{ socialsArray, setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen }}>
             <div className="w-full my-4 px-2" id="Settings--SocialLinks">
                 <div className="flex items-center gap-3 py-4">
                     <Image
@@ -36,7 +37,7 @@ export default function SocialSetting() {
                         <span className="font-semibold">Be iconic</span>
                         <span className="opacity-90">Add icons linking to your social profiles, email and more.</span>
                     </div>
-                    <div className="w-fit rounded-3xl bg-btnPrimary hover:bg-btnPrimaryAlt text-white py-3 px-4 my-7 cursor-pointer active:scale-90 select-none">Add Icon</div>
+                    <div className="w-fit rounded-3xl bg-btnPrimary hover:bg-btnPrimaryAlt text-white py-3 px-4 my-7 cursor-pointer active:scale-90 select-none" onClick={()=>setAddIconModalOpen(true)}>Add Icon</div>
                     <SocialCard array={socialsArray} />
                     <p className="my-4 opacity-60 text-sm">Drag and drop the icons above to reorder them.</p>
                     <div className="grid gap-1 text-sm mt-5">
@@ -46,6 +47,7 @@ export default function SocialSetting() {
                     <Position />
                     <Link className="text-btnPrimary active:text-btnPrimaryAlt underline mt-3" href={"/dashboard/analytics"}>See analytics</Link>
                 </div>
+                {addIconModalOpen && <AddIconModal />}
             </div>
         </SocialContext.Provider>
     );
