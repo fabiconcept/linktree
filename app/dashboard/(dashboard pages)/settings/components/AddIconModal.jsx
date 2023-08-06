@@ -37,7 +37,8 @@ export default function AddIconModal() {
         setSettingIconModalOpen({
             status: true,
             type: selectedItem.type,
-            operation: 0
+            operation: 0,
+            value: ""
         });
         handleClose();
     }

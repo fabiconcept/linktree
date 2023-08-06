@@ -2,15 +2,26 @@
 
 import { SocialsList } from "@/lib/SocialsList";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { SocialContext } from "../components/SocialSetting";
 
 export default function SocialElement({ item, index }) {
+    const { setSettingIconModalOpen } = useContext(SocialContext);
     const [checkboxChecked, setCheckboxChecked] = useState(true);
 
     const handleCheckboxChange = (event) => {
         setCheckboxChecked(event.target.checked);
     };
+
+    const handleEdit = () =>{
+        setSettingIconModalOpen({
+            status: true,
+            type: item.type,
+            operation: 1,
+            value: item.value,
+        });
+    }
     return (
         <Draggable draggableId={item.id} index={index} key={item.id}>
             {(provided, snapshot) => (
@@ -27,7 +38,7 @@ export default function SocialElement({ item, index }) {
                         <Image src={"https://linktree.sirv.com/Images/icons/elipsis.svg"} className='select-none cursor-grab active:cursor-grabbing' alt='elipsis-v icon' width={15} height={15} />
                     </div>
                     
-                    <div className='flex-1 flex items-center justify-between p-3 hover:bg-black hover:bg-opacity-5 cursor-pointer rounded-lg active:scale-95 active:opacity-60'>
+                    <div className='flex-1 flex items-center justify-between p-3 hover:bg-black hover:bg-opacity-5 cursor-pointer rounded-lg active:scale-95 active:opacity-60' onClick={handleEdit}>
                         <div className='flex-1 flex items-center gap-3'>
                             <Image src={SocialsList[item.type].icon} alt='icon' height={25} width={25} />
                             <span className='font-semibold'>{SocialsList[item.type].title}</span>

@@ -22,6 +22,7 @@ export default function EditIconModal() {
 
     useEffect(() => {
         setDefaultData(SocialsList[settingIconModalOpen.type]);
+        setValueText(settingIconModalOpen.value);
     }, []);
 
     useEffect(() => {
@@ -140,8 +141,12 @@ export default function EditIconModal() {
     }
 
     const handleRemove = () =>{
-
+        setSocialsArray((previousItems) =>
+            previousItems.filter(item => item.id !== defaultData.id)
+        );
+        handleClose();
     }
+
     return (
         <div className="fixed top-0 left-0 h-screen w-screen grid place-items-center z-[99999999999]">
             <div className="absolute h-full w-full bg-black bg-opacity-25 top-0 left-0" onClick={handleClose}></div>
@@ -180,9 +185,9 @@ export default function EditIconModal() {
 
                 {validInput == 2 && <p className="text-red-500 mx-7 my-2 text-sm">{defaultData.error}</p>}
 
-                {settingIconModalOpen.operation === 0 && <p className="mx-8 my-5 text-xs opacity-50">Example: {defaultData.example}</p>}
+                {settingIconModalOpen.operation === 0 && <p className="mx-8 mt-5 text-xs opacity-50">Example: {defaultData.example}</p>}
 
-                {<div className={`mx-5 flex items-center gap-3 justify-center p-3 rounded-3xl active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border select-none ${validInput === 1 ? "bg-btnPrimary text-white cursor-pointer" : "bg-black bg-opacity-30 opacity-40"} font-semibold`} onClick={handleBtnChoice}>
+                {<div className={`mx-5 flex items-center gap-3 justify-center mt-5 p-3 rounded-3xl active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border select-none ${validInput === 1 ? "bg-btnPrimary text-white cursor-pointer" : "bg-black bg-opacity-30 opacity-40"} font-semibold`} onClick={handleBtnChoice}>
                     {settingIconModalOpen.operation === 0 ?  "Add to Linktree": "Save"}
                 </div>}
                 {settingIconModalOpen.operation === 1 && <div className={`mx-5 mt-3 flex items-center gap-3 justify-center p-3 rounded-3xl active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border font-semibold cursor-pointer select-none`} onClick={handleRemove}>

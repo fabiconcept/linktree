@@ -19,6 +19,10 @@ export default function SocialSetting() {
     });
     const [socialsArray, setSocialsArray] = useState([]);
 
+    useEffect(() => {
+        console.log(socialsArray);
+    }, [socialsArray]);
+
     return (
         <SocialContext.Provider value={{ socialsArray, setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen, settingIconModalOpen }}>
             <div className="w-full my-4 px-2" id="Settings--SocialLinks">
@@ -37,13 +41,15 @@ export default function SocialSetting() {
                         <span className="opacity-90">Add icons linking to your social profiles, email and more.</span>
                     </div>
                     <div className="w-fit rounded-3xl bg-btnPrimary hover:bg-btnPrimaryAlt text-white py-3 px-4 my-7 cursor-pointer active:scale-90 select-none" onClick={()=>setAddIconModalOpen(true)}>Add Icon</div>
-                    <SocialCard array={socialsArray} />
-                    <p className="my-4 opacity-60 text-sm">Drag and drop the icons above to reorder them.</p>
-                    <div className="grid gap-1 text-sm mt-5">
-                        <span className="font-semibold">Position</span>
-                        <span className="opacity-90">Display icons at the:</span>
-                    </div>
-                    <Position />
+                    {socialsArray.length > 0 && <div>
+                        <SocialCard array={socialsArray} />
+                        <p className="my-4 opacity-60 text-sm">Drag and drop the icons above to reorder them.</p>
+                        <div className="grid gap-1 text-sm mt-5">
+                            <span className="font-semibold">Position</span>
+                            <span className="opacity-90">Display icons at the:</span>
+                        </div>
+                        <Position />
+                    </div>}
                     <Link className="text-btnPrimary active:text-btnPrimaryAlt underline mt-3" href={"/dashboard/analytics"}>See analytics</Link>
                 </div>
                 {addIconModalOpen && <AddIconModal />}
