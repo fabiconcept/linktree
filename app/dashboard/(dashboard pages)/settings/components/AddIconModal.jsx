@@ -32,8 +32,8 @@ export default function AddIconModal() {
         setShowSocials(tempArr);
     }, [debouceSearchParam]);
 
-    const handleSelect = ({id}) =>{
-
+    const handleSelect = (item) =>{
+        const selectedItem = item;
     }
 
     const handleClose = () => {
@@ -80,7 +80,7 @@ export default function AddIconModal() {
                         {showSocials.length > 0 && showSocials.map((socialItem) => {
                             if (socialsArray.some(item => item.id === socialItem.id)) {
                                 return (
-                                    <div key={socialItem.id} className="flex justify-between p-4 hover:bg-black hover:bg-opacity-5 cursor-pointer items-center rounded-lg active:scale-95 active:opacity-60 hover:border-black hover:border-opacity-20 border border-transparent" onClick={()=>handleSelect(socialItem.id)}>
+                                    <div key={socialItem.id} className="flex justify-between p-4 hover:bg-black hover:bg-opacity-5 cursor-pointer items-center rounded-lg active:scale-95 active:opacity-60 hover:border-black hover:border-opacity-20 border border-transparent" onClick={()=>handleSelect(socialItem)}>
                                         <div className="flex gap-3 items-center">
                                             <Image src={socialItem.icon} alt="x" width={25} height={25} />
                                             <span className="font-semibold">{socialItem.title}</span>
@@ -93,7 +93,7 @@ export default function AddIconModal() {
                             }
 
                             return (
-                                <div key={socialItem.id} className="flex justify-between p-4 hover:bg-black hover:bg-opacity-5 cursor-pointer items-center rounded-lg active:scale-95 active:opacity-60 hover:border-black hover:border-opacity-20 border border-transparent" onClick={()=>handleSelect(socialItem.id)}>
+                                <div key={socialItem.id} className="flex justify-between p-4 hover:bg-black hover:bg-opacity-5 cursor-pointer items-center rounded-lg active:scale-95 active:opacity-60 hover:border-black hover:border-opacity-20 border border-transparent" onClick={()=>handleSelect(socialItem)}>
                                     <div className="flex gap-3 items-center">
                                         <Image src={socialItem.icon} alt="x" width={25} height={25} />
                                         <span className="font-semibold">{socialItem.title}</span>
