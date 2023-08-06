@@ -5,16 +5,20 @@ import { SocialContext } from "./SocialSetting";
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import Image from "next/image";
 import { SocialsList } from "@/lib/SocialsList";
+import { isValidEmail, isValidURL, validateEmail } from "@/lib/utilities";
 
 export default function EditIconModal() {
-    const { setSettingIconModalOpen, settingIconModalOpen, setAddIconModalOpen } = useContext(SocialContext);
+    const { setSettingIconModalOpen, settingIconModalOpen, setAddIconModalOpen, setSocialsArray } = useContext(SocialContext);
     const [defaultData, setDefaultData] = useState({});
     const [validInput, setValidInput] = useState(0);
     const [valueText, setValueText] = useState("");
     const [inputType, setInputType] = useState('');
     const debouceValueText = useDebounce(valueText, 500);
 
-
+    function isValidWhatsAppNumber(inputNumber) {
+        const pattern = /^\+\d{1,3}\s?\d{6,14}$/;
+        return pattern.test(inputNumber);
+    }
 
     useEffect(() => {
         setDefaultData(SocialsList[settingIconModalOpen.type]);
@@ -49,19 +53,38 @@ export default function EditIconModal() {
             return;
         }
 
-        // Continue here
-
         switch (defaultData.valueType) {
             case "url":
+                if (isValidURL(valueText)) {
+                    setValidInput(1);
+                    return;
+                }
+                setValidInput(2);
                 break;
             case "text":
+                setValidInput(1);
                 break;
             case "number":
+                if (isValidWhatsAppNumber(valueText)) {
+                    setValidInput(1);
+                    return;
+                }
+                setValidInput(2);
                 break;
             case "email":
+                if (isValidEmail(valueText)) {
+                    setValidInput(1);
+                    return;
+                }
+                setValidInput(2);
                 break;
 
             default:
+                if (isValidURL(valueText)) {
+                    setValidInput(1);
+                    return;
+                }
+                setValidInput(2);
                 break;
         }
     }, [debouceValueText]);
@@ -80,7 +103,40 @@ export default function EditIconModal() {
     }
 
     const handleAdd = () =>{
+        if (validInput !== 1) {
+            return;
+        }
+        
+        setSocialsArray((previousArray)=> [...previousArray, {id: defaultData.id, type: defaultData.type, value: valueText}]);
+        handleClose();
+    }
 
+    const handleSave = () =>{
+        if (validInput !== 1) {
+            return;
+        }
+
+        setSocialsArray((previousItems) =>
+            previousItems.map(
+                item => item.id === defaultData.id ? { ...item, value: valueText } : item
+            )
+        );
+        handleClose();
+    }
+
+    const handleBtnChoice = () =>{
+        switch (settingIconModalOpen.operation) {
+            case 0:
+                handleAdd();
+                break;
+            case 1:
+                console.log("case 1")
+                handleSave();
+                break;
+        
+            default:
+                break;
+        }
     }
 
     const handleRemove = () =>{
@@ -112,7 +168,7 @@ export default function EditIconModal() {
                                         onChange={(e) => setValueText(e.target.value)}
                                     />
                                     <label
-                                        className="absolute pointer-events-none text-sm text-concrete left-3 transition-all transform -translate-y-2.5 scale-[0.85] top-[13px] origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:tracking-normal peer-focus:scale-[0.85] peer-focus:-translate-y-2.5 max-w-[calc(100%-16px)] truncate"
+                                        className="absolute pointer-events-none text-sm text-concrete left-3 transition-all transform -translate-y-2.5 scale-[0.85] top-[13px] origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1 peer-placeholder-shown:tracking-normal peer-focus:scale-[0.85] peer-placeholder-shown:font-normal font-semibold peer-focus:font-semibold peer-focus:-translate-y-2.5 max-w-[calc(100%-16px)] truncate"
                                     >
                                         {defaultData.placeholder}
                                     </label>
@@ -126,7 +182,7 @@ export default function EditIconModal() {
 
                 {settingIconModalOpen.operation === 0 && <p className="mx-8 my-5 text-xs opacity-50">Example: {defaultData.example}</p>}
 
-                {<div className={`mx-5 flex items-center gap-3 justify-center p-3 rounded-3xl active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border select-none ${validInput === 1 ? "bg-btnPrimary text-white cursor-pointer" : "bg-black bg-opacity-30 opacity-40"} font-semibold`} onClick={handleAdd}>
+                {<div className={`mx-5 flex items-center gap-3 justify-center p-3 rounded-3xl active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border select-none ${validInput === 1 ? "bg-btnPrimary text-white cursor-pointer" : "bg-black bg-opacity-30 opacity-40"} font-semibold`} onClick={handleBtnChoice}>
                     {settingIconModalOpen.operation === 0 ?  "Add to Linktree": "Save"}
                 </div>}
                 {settingIconModalOpen.operation === 1 && <div className={`mx-5 mt-3 flex items-center gap-3 justify-center p-3 rounded-3xl active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border font-semibold cursor-pointer select-none`} onClick={handleRemove}>

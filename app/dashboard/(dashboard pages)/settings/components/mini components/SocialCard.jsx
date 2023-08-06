@@ -1,10 +1,14 @@
 "use client"
-import React, { useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useEffect, useState } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import SocialElement from '../../elements/SocialElement';
 
 const DraggableList = ({array}) => {
-    const [items, setItems] = useState([...array]);
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        setItems([...array]);
+    }, [array]);
 
     const handleDragEnd = (result) => {
         if (!result.destination) return; // Item was dropped outside the list

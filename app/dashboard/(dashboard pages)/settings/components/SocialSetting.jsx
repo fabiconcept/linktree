@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import SocialCard from "./mini components/SocialCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import Position from "./Position";
 import Link from "next/link";
@@ -17,10 +17,7 @@ export default function SocialSetting() {
         type: 0,
         operation: 0,
     });
-    const [socialsArray, setSocialsArray] = useState([
-        { id: "8f0033b8-ccd7-5762-a26b-666536f93ff8", type: 0 },
-        { id: "59e6a60e-a396-566a-8d22-22ccb3b6431e", type: 1 },
-    ]);
+    const [socialsArray, setSocialsArray] = useState([]);
 
     return (
         <SocialContext.Provider value={{ socialsArray, setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen, settingIconModalOpen }}>
