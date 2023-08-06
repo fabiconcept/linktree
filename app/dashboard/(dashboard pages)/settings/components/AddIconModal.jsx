@@ -7,7 +7,7 @@ import { useDebounce } from "@/Local Hooks/useDebounce";
 import { SocialsList } from "@/lib/SocialsList";
 
 export default function AddIconModal() {
-    const { setAddIconModalOpen, socialsArray } = useContext(SocialContext);
+    const { setAddIconModalOpen, setSettingIconModalOpen, socialsArray } = useContext(SocialContext);
     const [searchParam, setSearchParam] = useState("");
     const [showSocials, setShowSocials] = useState([]);
     const debouceSearchParam = useDebounce(searchParam, 500);
@@ -34,6 +34,11 @@ export default function AddIconModal() {
 
     const handleSelect = (item) =>{
         const selectedItem = item;
+        setSettingIconModalOpen({
+            status: true,
+            type: selectedItem.type
+        });
+        handleClose();
     }
 
     const handleClose = () => {
@@ -80,7 +85,7 @@ export default function AddIconModal() {
                         {showSocials.length > 0 && showSocials.map((socialItem) => {
                             if (socialsArray.some(item => item.id === socialItem.id)) {
                                 return (
-                                    <div key={socialItem.id} className="flex justify-between p-4 hover:bg-black hover:bg-opacity-5 cursor-pointer items-center rounded-lg active:scale-95 active:opacity-60 hover:border-black hover:border-opacity-20 border border-transparent" onClick={()=>handleSelect(socialItem)}>
+                                    <div key={socialItem.id} className="flex justify-between p-4 hover:bg-black hover:bg-opacity-5 cursor-pointer items-center rounded-lg active:scale-95 active:opacity-60 hover:border-black hover:border-opacity-20 border border-transparent">
                                         <div className="flex gap-3 items-center">
                                             <Image src={socialItem.icon} alt="x" width={25} height={25} />
                                             <span className="font-semibold">{socialItem.title}</span>
