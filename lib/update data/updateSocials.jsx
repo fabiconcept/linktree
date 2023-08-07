@@ -87,3 +87,69 @@ export async function updateSupportBannerStatus(status) {
         }
     }
 }
+
+export async function updateSensitiveType(type) {
+    const username = testForActiveSession();
+    if (username) {
+        try {
+            const AccountDocRef = collection(fireApp, "AccountData");
+            const docRef = doc(AccountDocRef, `${username}`);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, sensitivetype: type};
+                await setDoc(docRef, objectToUpdate);
+                return;
+            }
+
+            await addDoc(docRef, {sensitivetype: type});
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+}
+
+export async function updateSensitiveStatus(status) {
+    const username = testForActiveSession();
+    if (username) {
+        try {
+            const AccountDocRef = collection(fireApp, "AccountData");
+            const docRef = doc(AccountDocRef, `${username}`);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, sensitiveStatus: status};
+                await setDoc(docRef, objectToUpdate);
+                return;
+            }
+
+            await addDoc(docRef, {sensitiveStatus: status});
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+}
+
+export async function updateCustomMetaData(metadata) {
+    const username = testForActiveSession();
+    if (username) {
+        try {
+            const AccountDocRef = collection(fireApp, "AccountData");
+            const docRef = doc(AccountDocRef, `${username}`);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const previousData = docSnap.data();
+                const objectToUpdate = {...previousData, metaData: metadata};
+                await setDoc(docRef, objectToUpdate);
+                return;
+            }
+
+            await addDoc(docRef, {metaData: metadata});
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+}

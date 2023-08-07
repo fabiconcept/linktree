@@ -1,4 +1,6 @@
 import Controller from "./components/Controller";
+import SEO from "./components/SEO";
+import SensitiveMaterial from "./components/SensitiveMaterial";
 import SocialSetting from "./components/SocialSetting";
 import SupportBanner from "./components/SupportBanner";
 
@@ -8,6 +10,8 @@ export default function SettingsPage() {
             <Controller />
             <SocialSetting />
             <SupportBanner />
+            <SensitiveMaterial />
+            <SEO />
         </div>
     );
 } 

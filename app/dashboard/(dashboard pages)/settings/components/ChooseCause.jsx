@@ -40,13 +40,13 @@ export default function ChooseCause() {
                 </div>
             </div>
 
-            {choices[chosenGroup] && <div className="w-full flex p-5 gap-4 rounded-lg bg-black bg-opacity-90">
+            {choices[chosenGroup] && <div className="w-full flex sm:flex-row flex-col sm:items-start items-center p-5 gap-4 rounded-lg bg-black bg-opacity-90">
                 <div className="rounded-full overflow-hidden h-fit w-fit grid place-items-center">
                     <Image src={"https://linktree.sirv.com/Images/icons/logo.gif"} alt="Logo" className="object-contain h-full" height={150} width={150} />
                 </div>
                 <div className="text-white text-sm">
-                    <p className="font-semibold">{`${choices[chosenGroup].cardTitle}`}</p>
-                    <p className="text-white my-1 mr-2">{`${choices[chosenGroup].cardMessage}`}</p>
+                    <p className="font-semibold sm:text-left text-center">{`${choices[chosenGroup].cardTitle}`}</p>
+                    <p className="text-white my-1 mr-2 sm:text-left text-center">{`${choices[chosenGroup].cardMessage}`}</p>
                     <p className="mt-2"><span className="opacity-40">Your banner will link to this</span> <Link href={choices[chosenGroup].linkTo} className="text-purple-600 underline">Linktree</Link> </p>
                 </div>
             </div>}

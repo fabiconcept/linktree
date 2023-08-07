@@ -52,7 +52,7 @@ export default function SupportBanner() {
             <div className="w-full my-4 px-2" id="Settings--SupportBanner">
                 <div className="flex items-center gap-3 py-4">
                     <Image
-                        src={"https://linktree.sirv.com/Images/icons/social.svg"}
+                        src={"https://linktree.sirv.com/Images/icons/support.svg"}
                         alt="icon"
                         height={24}
                         width={24}
