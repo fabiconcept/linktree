@@ -1,23 +1,20 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import SocialElement from '../../elements/SocialElement';
+import { SocialContext } from '../SocialSetting';
 
-const DraggableList = ({array}) => {
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        setItems([...array]);
-    }, [array]);
+const DraggableList = () => {
+    const { socialsArray, setSocialsArray } = useContext(SocialContext);
 
     const handleDragEnd = (result) => {
         if (!result.destination) return; // Item was dropped outside the list
 
-        const updatedItems = Array.from(items);
+        const updatedItems = Array.from(socialsArray);
         const [reorderedItem] = updatedItems.splice(result.source.index, 1);
         updatedItems.splice(result.destination.index, 0, reorderedItem);
 
-        setItems(updatedItems);
+        setSocialsArray(updatedItems);
     };
 
     return (
@@ -25,7 +22,7 @@ const DraggableList = ({array}) => {
             <Droppable droppableId="droppable">
                 {(provided) => (
                     <ul {...provided.droppableProps} ref={provided.innerRef} className='pl-4 grid gap-1'>
-                        {items.map((item, index) => (
+                        {socialsArray.map((item, index) => (
                             <SocialElement index={index} item={item} key={item.id} />
                         ))}
                         {provided.placeholder}

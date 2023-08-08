@@ -41,7 +41,7 @@ export default function SensitiveMaterial() {
     }, []);
 
     return (
-        <div className="w-full my-4 px-2" id="Settings--SupportBanner">
+        <div className="w-full my-4 px-2" id="Settings--SensitiveMaterial">
             <div className="flex items-center gap-3 py-4">
                 <Image
                     src={"https://linktree.sirv.com/Images/icons/sensitive.svg"}

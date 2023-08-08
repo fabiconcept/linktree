@@ -172,3 +172,10 @@ export function isValidEmail(email) {
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return pattern.test(email);
 }
+
+
+// const handleNavigation = (id, tab) => {
+//     router.push(`/dashboard/settings${tab}`, undefined, { shallow: true });
+//     setCurrentTab(id);
+//     setDropDownOpen(false);
+// };

@@ -34,7 +34,7 @@ export default function DropDown() {
 
 
     const handleNavigation = (id, tab) => {
-        router.push(`/dashboard/settings${tab}`, undefined, { shallow: true });
+        router.push(`${tab}`);
         setCurrentTab(id);
         setDropDownOpen(false);
     };

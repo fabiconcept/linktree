@@ -6,10 +6,13 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react"
 import Button from "../elements/Button";
 import { useRouter } from "next/navigation";
+import Socials from "../elements/Socials";
 
 export default function MyLinks({ userId }) {
     const [myLinksArray, setMyLinksArray] = useState([]);
     const [displayLinks, setDisplayLinks] = useState([]);
+    const [socialArray, setSocialArray] = useState([]);
+    const [socialPosition, setSocialPosition] = useState(null);
     const [themeFontColor, setThemeFontColor] = useState("");
     const router = useRouter();
 
@@ -29,9 +32,11 @@ export default function MyLinks({ userId }) {
                 if (!docSnapshot.exists()) {
                     return;
                 }
-                const { links, themeFontColor } = docSnapshot.data();
+                const { links, themeFontColor, socials, socialPosition } = docSnapshot.data();
                 const rtLinks = links ? links : [];
+                setSocialArray(socials ? socials : []);
                 setMyLinksArray(rtLinks);
+                setSocialPosition(socialPosition ? socialPosition : 0);
                 setThemeFontColor(themeFontColor ? themeFontColor : "");
             });
         }
@@ -46,6 +51,7 @@ export default function MyLinks({ userId }) {
     }, [myLinksArray]);
     return (
         <div className="flex flex-col gap-4 my-4 w-full px-5 py-1 items-center max-h-fit">
+            {socialPosition === 0 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}
             {displayLinks.map((link) => {
                 if (link.type === 0) {
                     return (<span style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{link.title}</span>);
@@ -53,6 +59,7 @@ export default function MyLinks({ userId }) {
                     return (<Button key={link.id} content={link.title} url={link.url} userId={userId} />);
                 }
             })}
+            {socialPosition === 1 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}
         </div>
     )
 }

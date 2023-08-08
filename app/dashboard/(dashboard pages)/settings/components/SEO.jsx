@@ -55,7 +55,7 @@ export default function SEO() {
     }, []);
 
     return (
-        <div className="w-full my-4 px-2" id="Settings--SupportBanner">
+        <div className="w-full my-4 px-2" id="Settings--SEO">
             <div className="flex items-center gap-3 py-4">
                 <Image
                     src={"https://linktree.sirv.com/Images/icons/seo.svg"}
@@ -76,7 +76,7 @@ export default function SEO() {
                                 <div className="relative grow">
                                     <input
                                         placeholder="Meta title"
-                                        className="placeholder-transparent peer px-0 text-base leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
+                                        className="placeholder-transparent font-semibold peer px-0 text-base leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
                                         type="text"
                                         value={metaTitle ? metaTitle : ""}
                                         onChange={(e)=>setMetaTitle(e.target.value)}
@@ -97,7 +97,7 @@ export default function SEO() {
                                 <div className="relative grow">
                                     <input
                                         placeholder="Meta description"
-                                        className="placeholder-transparent peer px-0 text-base leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
+                                        className="placeholder-transparent font-semibold peer px-0 text-base leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
                                         type="text"
                                         value={metaDescription ? metaDescription : ""}
                                         onChange={(e)=>setMetaDescription(e.target.value)}
