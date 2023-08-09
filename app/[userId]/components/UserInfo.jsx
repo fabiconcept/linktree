@@ -33,7 +33,7 @@ export default function UserInfo({userId, hasSensitiveContent}) {
                 }
                 const { displayName, bio: bioText, themeFontColor } = docSnapshot.data();
                 const bio = bioText ? bioText : "";
-                setDisplayName(hasSensitiveContent ? displayName : filter.clean(`${displayName}`));
+                setDisplayName(hasSensitiveContent ? displayName : filter.clean(`${displayName ? displayName : ""}`));
                 setThemeFontColor(themeFontColor ? themeFontColor: "");
                 setMyBio(hasSensitiveContent ? bio : filter.clean(bio));
             });
