@@ -137,7 +137,7 @@ export default function AddBtn() {
 
     return (
         <addBtnContext.Provider value={{ addItem }}>
-            <div className={`${btnStyle} rounded-3xl`} onClick={handleInitialClick}>
+            <div className={`${btnStyle} rounded-3xl transition-[min-height]`} onClick={handleInitialClick}>
                 {content}
                 {modalShowing && <PickBrandModal closeFunction={setModalShowing} />}
             </div>

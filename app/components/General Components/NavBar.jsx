@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import ProfileCard from "../NavComponents/ProfileCard";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+import ShareCard from "../NavComponents/ShareCard";
 
 export const NavContext = React.createContext();
 
@@ -18,15 +19,23 @@ export default function NavBar() {
     const [username, setUsername] = useState("");
     const [myLink, setMyLink] = useState("");
     const [showProfileCard, setShowProfileCard] = useState(false);
+    const [showShareCard, setShowShareCard] = useState(false);
+    const profileCardRef = useRef(null);
+    const shareCardRef = useRef(null);
 
-    const handleSHowProfileCard = () =>{
+    const handleShowProfileCard = () =>{
         if (username === "") {
             return;
         }
         setShowProfileCard(!showProfileCard);
     }
+    const handleShowShareCard = () =>{
+        if (username === "") {
+            return;
+        }
+        setShowShareCard(!showShareCard);
+    }
 
-    const profileCardRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (profileCardRef.current && !profileCardRef.current.contains(event.target)) {
@@ -44,6 +53,24 @@ export default function NavBar() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [showProfileCard, setShowProfileCard]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (profileCardRef.current && !profileCardRef.current.contains(event.target)) {
+                setShowShareCard(false);
+            }
+        };
+
+        if (showShareCard) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [showShareCard, setShowShareCard]);
 
     useEffect(() => {
         async function fetchProfilePicture() {
@@ -107,7 +134,7 @@ export default function NavBar() {
     }, [router]);
     
     return (
-        <NavContext.Provider value={{ username, myLink, profilePicture, showProfileCard, setShowProfileCard, }}>
+        <NavContext.Provider value={{ username, myLink, profilePicture, showProfileCard, setShowProfileCard, showShareCard }}>
             <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-3 mx-auto bg-white border backdrop-blur-lg">
                 <div className="flex items-center gap-8">
                     <Link href={'/dashboard'} className="ml-3">
@@ -138,14 +165,15 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <div className="p-3 flex items-center gap-2 rounded-3xl border cursor-pointer hover:bg-gray-100 active:scale-90">
+                    <div className="p-3 flex items-center gap-2 rounded-3xl border cursor-pointer hover:bg-gray-100 active:scale-90" ref={shareCardRef} onClick={handleShowShareCard}>
                         <Image src={"https://linktree.sirv.com/Images/icons/share.svg"} alt="links" height={15} width={15} />
                     </div>
                     <div className="relative" ref={profileCardRef}>
-                        <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden" onClick={handleSHowProfileCard}>
+                        <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden" onClick={handleShowProfileCard}>
                             {profilePicture}
                         </div>
                         <ProfileCard />
+                        <ShareCard />
                     </div>
                 </div>
             </div>

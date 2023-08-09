@@ -36,6 +36,7 @@ export default function MyLinkDiv() {
                     </span>
                     <Link
                         href={`http://${myUrl}`}
+                        target="_blank"
                         className="underline ml-2"
                     >{myUrl}</Link>
                 </span>

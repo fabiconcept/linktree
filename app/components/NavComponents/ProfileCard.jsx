@@ -41,7 +41,7 @@ export default function ProfileCard() {
                         </LiElement>
                     </ul>
                 </section>
-            </div>
+            </div> 
         </div>
     );
 }
