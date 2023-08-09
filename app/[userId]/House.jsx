@@ -8,7 +8,7 @@ import SupportBanner from "./components/SupportBanner";
 import React, { useEffect, useState } from "react";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { fireApp } from "@/important/firebase";
-import { collection, doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import SensitiveWarning from "./components/SensitiveWarning";
 
 export const HouseContext = React.createContext();
@@ -22,14 +22,14 @@ export default function House({ userId }) {
             const currentUser = await fetchUserData(userId);;
             const collectionRef = collection(fireApp, "AccountData");
             const docRef = doc(collectionRef, `${currentUser}`);
+            const getDocRef = await getDoc(docRef);
 
-            onSnapshot(docRef, (docSnap) => {
-                if (docSnap.exists()) {
-                    const { sensitiveStatus, sensitivetype } = docSnap.data();
-                    setSensitiveWarning(sensitiveStatus ? sensitiveStatus : false);
-                    setSensitiveType(sensitivetype ? sensitivetype : 3);
-                }
-            });
+            if (getDocRef.exists()) {
+                const { sensitiveStatus, sensitivetype } = getDocRef.data();
+                setSensitiveWarning(sensitiveStatus ? sensitiveStatus : false);
+                setSensitiveType(sensitivetype ? sensitivetype : 3);
+            }
+
         }
         fetchProfilePicture();
     }, []);

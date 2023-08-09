@@ -22,7 +22,7 @@ export default function AgeRestriction() {
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const { sensitivetype } = docSnap.data();
-                    setPick(sensitivetype ? sensitivetype : 0);
+                    setPick(sensitivetype ? sensitivetype : 3);
                 }
             });
         }

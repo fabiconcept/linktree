@@ -24,7 +24,7 @@ export default function SensitiveWarning() {
                     width={30}
                     height={30}
                 />
-                <h1 className="font-bold text-2xl">Sensitive Content</h1>
+                <h1 className="font-bold sm:text-2xl text-xl">Sensitive Content</h1>
                 <p className="sm:text-xl text-center">This profile may contain content that is not appropriate for all audiences</p>
 
                 <div className="my-4 w-full">
