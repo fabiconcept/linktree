@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { NavContext } from "../General Components/NavBar";
 import Image from "next/image";
 import ShareLiElement from "./elements/ShareLiElement";
+import { homePage } from "@/lib/ShareCardArrays";
 
 export default function ShareCard() {
     const [currentPage, setCurrentPage] = useState([{page: "home"}]);
@@ -31,13 +32,15 @@ export default function ShareCard() {
                 </div>
                 <p className="text-sm opacity-50 px-3">Get more visitors by sharing your Linktree everywhere.</p>
                 <div className="grid">
-                    <ShareLiElement>
-                        <div className="flex-1 flex gap-3 items-center">
-                            <Image src={""} alt="x" width={60} height={60} />    
-                            <span className="font-semibold">Add to your socials</span>
-                        </div>
-                        <Image src={"https://linktree.sirv.com/Images/icons/arrow.svg"} className="-rotate-90" alt="x" width={15} height={15} />
-                    </ShareLiElement>
+                    {homePage.map((page) => (
+                        <ShareLiElement nextPage={"nextPage"}>
+                            <div className="flex-1 flex gap-3 items-center">
+                                <Image src={page.icon} alt="x" width={60} height={60} />
+                                <span className="font-semibold">{page.title}</span>
+                            </div>
+                            <Image src={page.arrowIcon} className="-rotate-90" alt="x" width={15} height={15} />
+                        </ShareLiElement>
+                    ))}
                 </div>
             </div>
         </div>

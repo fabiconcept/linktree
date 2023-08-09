@@ -72,7 +72,7 @@ export default function LoginForm() {
                     },
                 }
             );
-            setSessionCookie("adminLinker", `${status.userId}`, (60*5));
+            setSessionCookie("adminLinker", `${status.userId}`, (60*24));
             
             setTimeout(() => {
                 setCanProceed(false);
