@@ -12,7 +12,7 @@ export async function generateMetadata ({ params: { userId } }) {
         const { metaData } = docSnap.data();
         
         return ({
-            title: metaData.title ? metaData.title :`${userId} Landing Page`,
+            title: metaData.title ? metaData.title :`@${userId} Landing Page`,
             description: metaData.description ? metaData.description :``,
         });
     }

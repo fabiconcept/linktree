@@ -24,7 +24,7 @@ export default function SupportBanner({ userId }) {
                     const { supportBanner, supportBannerStatus } = docSnap.data();
                     setSupportGroup(supportBanner ? supportBanner : 0);
                     setSupportGroupStatus(supportBannerStatus ? supportBannerStatus : false);
-                    
+
                     setTimeout(() => {
                         setExpanded(true);
                     }, 1000);
@@ -33,10 +33,11 @@ export default function SupportBanner({ userId }) {
         }
         fetchProfilePicture();
     }, []);
+    
     return (
         <>
             {supportGroupStatus && <div className="fixed bottom-0 w-screen left-0 z-[100]">
-                <div className="py-5 px-6 bg-black absolute left-0 w-full bottom-0 text-white banner flex flex-col items-center">
+                <div className="py-4 px-6 bg-black absolute left-0 w-full bottom-0 text-white banner flex flex-col items-center">
                     <div className={`filter invert ${expanded ? "" : "rotate-180"} top-6 absolute right-6 cursor-pointer`}>
                         <Image
                             src={"https://linktree.sirv.com/Images/icons/arr.svg"}

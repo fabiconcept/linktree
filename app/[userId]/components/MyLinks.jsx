@@ -14,6 +14,7 @@ export default function MyLinks({ userId }) {
     const [socialArray, setSocialArray] = useState([]);
     const [socialPosition, setSocialPosition] = useState(null);
     const [themeFontColor, setThemeFontColor] = useState("");
+    const [supportGroupStatus, setSupportGroupStatus] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -32,7 +33,8 @@ export default function MyLinks({ userId }) {
                 if (!docSnapshot.exists()) {
                     return;
                 }
-                const { links, themeFontColor, socials, socialPosition } = docSnapshot.data();
+                const { links, themeFontColor, socials, socialPosition, supportBannerStatus } = docSnapshot.data();
+                setSupportGroupStatus(supportBannerStatus);
                 const rtLinks = links ? links : [];
                 setSocialArray(socials ? socials : []);
                 setMyLinksArray(rtLinks);
@@ -49,8 +51,9 @@ export default function MyLinks({ userId }) {
             myLinksArray.filter((link) => link.isActive !== false)
         );
     }, [myLinksArray]);
+    
     return (
-        <div className="flex flex-col gap-4 my-4 w-full px-5 py-1 items-center max-h-fit">
+        <div className={`flex flex-col gap-4 my-4 w-full px-5 py-1 items-center max-h-fit ${supportGroupStatus ? "pb-12" : ""}`}>
             {socialPosition === 0 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}
             {displayLinks.map((link) => {
                 if (link.type === 0) {
