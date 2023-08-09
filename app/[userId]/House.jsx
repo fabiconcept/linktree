@@ -8,7 +8,7 @@ import SupportBanner from "./components/SupportBanner";
 import React, { useEffect, useState } from "react";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { fireApp } from "@/important/firebase";
-import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import SensitiveWarning from "./components/SensitiveWarning";
 
 export const HouseContext = React.createContext();
