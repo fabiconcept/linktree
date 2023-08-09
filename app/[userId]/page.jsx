@@ -1,6 +1,6 @@
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { fireApp } from "@/important/firebase";
-import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import House from "./House";
 
 export async function generateMetadata ({ params: { userId } }) {

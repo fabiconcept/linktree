@@ -61,7 +61,7 @@ export default function SupportBanner() {
                 </div>
                 <div className="p-5 bg-white rounded-lg">
                     <SupportSwitch />
-                    <ChooseCause />
+                    {showSupport && <ChooseCause />}
                 </div>
             </div>
         </SupportContext.Provider>
