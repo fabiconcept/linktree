@@ -7,8 +7,9 @@ import { useEffect, useState } from "react"
 import Button from "../elements/Button";
 import { useRouter } from "next/navigation";
 import Socials from "../elements/Socials";
+import Filter from "bad-words";
 
-export default function MyLinks({ userId }) {
+export default function MyLinks({ userId, hasSensitiveContent }) {
     const [myLinksArray, setMyLinksArray] = useState([]);
     const [displayLinks, setDisplayLinks] = useState([]);
     const [socialArray, setSocialArray] = useState([]);
@@ -16,6 +17,7 @@ export default function MyLinks({ userId }) {
     const [themeFontColor, setThemeFontColor] = useState("");
     const [supportGroupStatus, setSupportGroupStatus] = useState(false);
     const router = useRouter();
+    const filter = new Filter();
 
     useEffect(() => {
         async function fetchInfo() {
@@ -57,9 +59,9 @@ export default function MyLinks({ userId }) {
             {socialPosition === 0 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}
             {displayLinks.map((link) => {
                 if (link.type === 0) {
-                    return (<span style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{link.title}</span>);
+                    return (<span style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{hasSensitiveContent ? link.title : filter.clean(link.title)}</span>);
                 }else{
-                    return (<Button key={link.id} content={link.title} url={link.url} userId={userId} />);
+                    return (<Button key={link.id} content={hasSensitiveContent ? link.title : filter.clean(link.title)} url={link.url} userId={userId} />);
                 }
             })}
             {socialPosition === 1 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}

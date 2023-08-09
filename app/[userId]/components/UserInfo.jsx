@@ -5,13 +5,15 @@ import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useState } from "react"
+import { useState } from "react";
+import Filter from "bad-words"
 
-export default function UserInfo({userId}) {
+export default function UserInfo({userId, hasSensitiveContent}) {
     const [displayName, setDisplayName] = useState("");
     const [themeFontColor, setThemeFontColor] = useState("");
     const [myBio, setMyBio] = useState("");
     const router = useRouter();
+    const filter = new Filter();
 
     useEffect(() => {
         async function fetchInfo() {
@@ -31,9 +33,9 @@ export default function UserInfo({userId}) {
                 }
                 const { displayName, bio: bioText, themeFontColor } = docSnapshot.data();
                 const bio = bioText ? bioText : "";
-                setDisplayName(displayName);
+                setDisplayName(hasSensitiveContent ? displayName : filter.clean(`${displayName}`));
                 setThemeFontColor(themeFontColor ? themeFontColor: "");
-                setMyBio(bio);
+                setMyBio(hasSensitiveContent ? bio : filter.clean(bio));
             });
         }
 

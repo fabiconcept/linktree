@@ -2,8 +2,9 @@ import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { fireApp } from "@/important/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import House from "./House";
-
+import Filter from "bad-words"
 export async function generateMetadata ({ params: { userId } }) {
+    const filter = new Filter();
     const currentUser = await fetchUserData(userId);;
     const collectionRef = collection(fireApp, "AccountData");
     const docSnap = await getDoc(doc(collectionRef, `${currentUser}`));
@@ -12,8 +13,8 @@ export async function generateMetadata ({ params: { userId } }) {
         const { metaData } = docSnap.data();
         
         return ({
-            title: metaData && metaData.title ? metaData.title :`@${userId} Landing Page`,
-            description: metaData && metaData.description ? metaData.description :``,
+            title: metaData && metaData.title ? filter.clean(metaData.title) :`@${userId} Landing Page`,
+            description: metaData && metaData.description ? filter.clean(metaData.description) :``,
         });
     }
 };

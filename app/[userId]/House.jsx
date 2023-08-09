@@ -15,6 +15,7 @@ export const HouseContext = React.createContext();
 
 export default function House({ userId }) {
     const [sensitiveWarning, setSensitiveWarning] = useState(null);
+    const [hasSensitiveContent, setHasSensitiveContent]= useState(false);
     const [sensitiveType, setSensitiveType] = useState(false);
 
     useEffect(() => {
@@ -27,6 +28,7 @@ export default function House({ userId }) {
             if (getDocRef.exists()) {
                 const { sensitiveStatus, sensitivetype } = getDocRef.data();
                 setSensitiveWarning(sensitiveStatus ? sensitiveStatus : false);
+                setHasSensitiveContent(sensitiveStatus ? sensitiveStatus : false);
                 setSensitiveType(sensitivetype ? sensitivetype : 3);
             }
 
@@ -46,8 +48,8 @@ export default function House({ userId }) {
 
                     <div className="flex flex-col items-center flex-1 overflow-auto py-6 px-3">
                         <ProfilePic userId={userId} />
-                        <UserInfo userId={userId} />
-                        <MyLinks userId={userId} />
+                        <UserInfo userId={userId} hasSensitiveContent={hasSensitiveContent} />
+                        <MyLinks userId={userId} hasSensitiveContent={hasSensitiveContent} />
                     </div>
                 </div>
                 <SupportBanner userId={userId} />
