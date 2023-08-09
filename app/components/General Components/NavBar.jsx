@@ -81,7 +81,7 @@ export default function NavBar() {
             const myData = await fetchUserData(currentUser);
             const { username } = myData;
             setUsername(username);
-            setMyLink(`localhost:3000/${username}`);
+            setMyLink(`http://localhost:3000/${username}`);
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
@@ -134,7 +134,7 @@ export default function NavBar() {
     }, [router]);
     
     return (
-        <NavContext.Provider value={{ username, myLink, profilePicture, showProfileCard, setShowProfileCard, showShareCard }}>
+        <NavContext.Provider value={{ username, myLink, profilePicture, showProfileCard, setShowProfileCard, showShareCard, setShowShareCard }}>
             <div className="w-full justify-between flex items-center rounded-[3rem] py-3 sticky top-0 z-[9999999999] px-3 mx-auto bg-white border backdrop-blur-lg">
                 <div className="flex items-center gap-8">
                     <Link href={'/dashboard'} className="ml-3">

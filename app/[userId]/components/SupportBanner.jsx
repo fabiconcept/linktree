@@ -50,7 +50,7 @@ export default function SupportBanner({ userId }) {
                     {!expanded && <div onClick={() => setExpanded(true)} className="w-full text-center cursor-pointer">
                         <span className="font-semibold max-w-[20rem]">{SupportGroups[supportGroup].title}</span>
                     </div>}
-                    <div className={`flex flex-col text-center w-full gap-5 items-center overflow-hidden ${expanded ? "openBanner" : "closeBanner"}`}
+                    <div className={`flex flex-col text-center w-full gap-5 pt-2 items-center overflow-hidden ${expanded ? "openBanner" : "closeBanner"}`}
                     >
                         <div className="h-fit aspect-square rounded-full overflow-hidden">
                             <Image src={"https://linktree.sirv.com/Images/icons/logo.gif"} alt="logo" height={60} width={60} />
