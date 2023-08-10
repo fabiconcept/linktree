@@ -169,19 +169,20 @@ export default function Special({ item, index }) {
                 >
                     <div className={`h-[8rem] items-center flex`}>
                         <div
-                            className='active:cursor-grabbing h-full px-2 grid place-items-center'
+                            className='active:cursor-grabbing h-full min-w-fit px-4 grid place-items-center'
                             {...provided.dragHandleProps}
                         >
                             <Image
                                 src={"https://linktree.sirv.com/Images/icons/drag.svg"}
                                 alt='"icon'
                                 height={15}
+                                className='object-contain'
                                 width={15}
                             />
                         </div>
 
-                        <div className='flex-1 flex flex-col gap-1 px-3'>
-                            <div className='flex gap-3 items-center text-base cursor-pointer w-full' onClick={handleTriggerEditTitle}>
+                        <div className='flex-1 flex flex-col gap-1'>
+                            <div className='flex gap-3 items-center text-base cursor-pointer w-[95%]' onClick={handleTriggerEditTitle}>
                                 {editingTitle && <input
                                     type="text"
                                     className='w-auto border-none outline-none'
@@ -191,13 +192,13 @@ export default function Special({ item, index }) {
                                     value={titleText}
                                     ref={titleRef}
                                 />}
-                                {!editingTitle && <span className='font-semibold'>{titleText === "" ? "Headline title" : titleText}</span>}
+                                {!editingTitle && <span className='sm:font-semibold font-bold sm:text-base text-sm'>{titleText === "" ? "Headline title" : titleText}</span>}
                                 {!editingTitle && <FaPencil className='text-xs' />}
                             </div>
                             <div className='flex gap-3 items-center relative text-sm opacity-100 cursor-pointer w-full' onClick={handleTriggerEditUrl}>
                                 {editingUrl && <input
                                     type="text"
-                                    className={`w-auto border-none outline-none max-w-[80%]`}
+                                    className={`w-auto border-none outline-none flex-1 truncate`}
                                     placeholder=''
                                     onChange={handleUpdateUrl}
                                     onBlur={() => setEditingUrl(false)}
@@ -211,22 +212,14 @@ export default function Special({ item, index }) {
                                 >please enter a valid url</div>}
                             </div>
                         </div>
-                        <div className={`h-full py-6 ${!contentFilled ? "opacity-60 pointer-events-none" : "" }`}>
-                            <div className={`hover:bg-black hover:bg-opacity-[0.05] relative p-2 ml-3 active:scale-90 cursor-pointer group rounded-lg`} >
-                                <Image src={"https://linktree.sirv.com/Images/icons/upload.svg"} alt="delete" className={`opacity-60 group-hover:opacity-100`} height={17} width={17} />
-                                {<div
-                                    className={`nopointer group-hover:block hidden absolute -translate-x-1/2 left-1/2 translate-y-3 bg-black text-white text-sm rounded-lg px-2 py-1 after:absolute after:h-0 after:w-0 after:border-l-[6px] after:border-r-[6px] after:border-l-transparent after:border-r-transparent after:border-b-[8px] after:border-b-black after:-top-2 after:-translate-x-1/2 after:left-1/2`}
-                                >share</div>}
-                            </div>
-                        </div>
                         <div className='grid sm:pr-2 gap-2 place-items-center'>
-                            <div className={`scale-[0.8] sm:scale-100 ${!contentFilled ? "opacity-60 pointer-events-none" : "" }`}>
+                            <div className={`scale-[0.8] sm:scale-100 ${!contentFilled ? "opacity-60 pointer-events-none" : "" } min-w-fit`}>
                                 <label className="cursor-pointer relative flex justify-between items-center group p-2 text-xl">
                                     <input type="checkbox" onChange={handleCheckboxChange} checked={checkboxChecked} className="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
                                     <span className="cursor-pointer w-9 h-6 flex items-center flex-shrink-0 ml-4 p-1 bg-gray-400 rounded-full duration-300 ease-in-out peer-checked:bg-green-600 after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-3 group-hover:after:translate-x-[2px]"></span>
                                 </label>
                             </div>
-                            <div className={`${wantsToDelete ? "bg-btnPrimary" : "hover:bg-black hover:bg-opacity-[0.05]"} relative p-2 ml-3 active:scale-90 cursor-pointer group rounded-lg`} onClick={() => setWantsToDelete(!wantsToDelete)}>
+                            <div className={`${wantsToDelete ? "bg-btnPrimary" : "hover:bg-black hover:bg-opacity-[0.05]"} relative p-2 ml-3 active:scale-90 cursor-pointer group rounded-lg min-w-fit`} onClick={() => setWantsToDelete(!wantsToDelete)}>
                                 <Image src={"https://linktree.sirv.com/Images/icons/trash.svg"} alt="delete" className={`${wantsToDelete ? "filter invert" : "opacity-60 group-hover:opacity-100"}`} height={17} width={17} />
                                 {!wantsToDelete && <div
                                     className={`z-[999] nopointer group-hover:block hidden absolute -translate-x-1/2 left-1/2 translate-y-3 bg-black text-white text-sm rounded-lg px-2 py-1 after:absolute after:h-0 after:w-0 after:border-l-[6px] after:border-r-[6px] after:border-l-transparent after:border-r-transparent after:border-b-[8px] after:border-b-black after:-top-2 after:-translate-x-1/2 after:left-1/2`}

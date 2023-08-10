@@ -19,6 +19,12 @@ LinkTree is a popular platform that allows users to create a personalized landin
 - React Beautiful DnD: A library for implementing drag and drop functionality in React.
 - React Hot Toast: A toast notification library for React.
 - React Icons: A collection of popular icons for React applications.
+- bad-words: To filter out Sensitive Words from Links Page (this only apply when no warning is issued)
+- crypto-js: Used to encrypt my Cookie Session data
+- js-cookie: Used to Help create, get, delete and edit cookie data
+- qrcode.react: Used to create Unique user QR Code
+- react-confetti: Used to design the confetti theme background
+- react-share: Used to handle Sharing user link to multiple Social Media Platform
 
 ## Installation
 
