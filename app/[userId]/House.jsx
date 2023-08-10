@@ -42,9 +42,9 @@ export default function House({ userId }) {
                 <BgDiv userId={userId} />
 
                 <div className="relative z-20 md:w-[50rem] w-full flex flex-col items-center h-full mx-auto">
-                    <div className="absolute z-10 top-3 right-0 mt-7 mb-4 mr-4 bg-white hover:bg-opacity-80 active:scale-90 duration-100 cursor-pointer border rounded-full ml-auto h-[2.5rem] w-[2.5rem] grid place-items-center">
+                    {/* <div className="absolute z-10 top-3 right-0 mt-7 mb-4 mr-4 bg-white hover:bg-opacity-80 active:scale-90 duration-100 cursor-pointer border rounded-full ml-auto h-[2.5rem] w-[2.5rem] grid place-items-center">
                         <FaEllipsis className="scale-80" />
-                    </div>
+                    </div> */}
 
                     <div className="flex flex-col items-center flex-1 overflow-auto py-6 px-3">
                         <ProfilePic userId={userId} />
