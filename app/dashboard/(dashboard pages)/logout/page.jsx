@@ -1,17 +1,14 @@
-"use client"
 import { removeSessionCookie } from '@/lib/authentication/session';
-import { useRouter } from 'next/navigation';
 
 export default function LogoutPage() {
-    const router = useRouter();
     try {
         async function logOff() {
             await removeSessionCookie("adminLinker");
-            router.push("/login");
+            window.location.href = "/login";
         }
         logOff();
     } catch (error) {
-        router.back();
+        window.history.back();
         throw new Error(error);
     }
 }

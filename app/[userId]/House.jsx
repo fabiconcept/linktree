@@ -1,5 +1,4 @@
 "use client"
-import { FaEllipsis } from "react-icons/fa6";
 import ProfilePic from "./components/ProfilePic";
 import UserInfo from "./components/UserInfo";
 import BgDiv from "./components/BgDiv";
