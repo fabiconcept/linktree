@@ -40,7 +40,7 @@ export default function UserInfo({userId, hasSensitiveContent}) {
         }
 
         fetchInfo();
-    }, []);
+    }, [userId, router, filter, hasSensitiveContent]);
 
     return (
         <>

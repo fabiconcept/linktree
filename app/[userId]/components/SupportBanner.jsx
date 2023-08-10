@@ -32,7 +32,7 @@ export default function SupportBanner({ userId }) {
             });
         }
         fetchProfilePicture();
-    }, []);
+    }, [userId]);
     
     return (
         <>

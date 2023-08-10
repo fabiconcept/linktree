@@ -72,7 +72,7 @@ export default function Button({ url, content, userId }) {
         }
 
         fetchInfo();
-    }, []);
+    }, [router, userId]);
 
     useEffect(() => {
         if (selectedTheme === "3D Blocks") {
@@ -231,7 +231,7 @@ export default function Button({ url, content, userId }) {
                 setSpecialElements(null);
                 break;
         }
-    }, [btnType, selectedTheme]);
+    }, [btnType, selectedTheme, modifierStyles.backgroundColor, url]);
 
     useEffect(() => {
         if (selectedTheme === "3D Blocks") {

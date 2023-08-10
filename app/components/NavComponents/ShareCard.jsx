@@ -46,7 +46,7 @@ export default function ShareCard() {
                         <p className="text-sm opacity-50 px-3">Get more visitors by sharing your Linktree everywhere.</p>
                         <div className="grid my-3">
                             {homePage.map((page) => (
-                                <ShareLiElement nextPage={page.nextPage}>
+                                <ShareLiElement nextPage={page.nextPage} key={page.nextPage}>
                                     <div className="flex-1 flex gap-3 items-center">
                                         <Image src={page.icon} priority alt="x" width={60} height={60} />
                                         <span className="font-semibold">{page.title}</span>
@@ -77,7 +77,7 @@ export default function ShareCard() {
                         </div>
                         <div className="grid my-3">
                             {addSocials.map((page, index) => (
-                                <ShareLiElement nextPage={{page:page.nextPage, index:index}}>
+                                <ShareLiElement nextPage={{page:page.nextPage, index:index}} key={index}>
                                     <div className="flex-1 flex gap-3 items-center">
                                         <Image src={page.icon} alt="x" width={60} height={60} priority />
                                         <span className="font-semibold">{page.title}</span>
@@ -103,8 +103,8 @@ export default function ShareCard() {
                         </div>
                         <p className="text-sm opacity-50 px-3">{homePage[1].p}</p>
                         <div className="grid my-3">
-                            {ShareTo.map((page) => (
-                                <ShareLiElement nextPage={page.nextPage}>
+                            {ShareTo.map((page, index) => (
+                                <ShareLiElement nextPage={page.nextPage} key={index}>
                                     <div className="flex-1 flex gap-3 items-center">
                                         <Image src={page.icon} alt="x" width={60} height={60} />
                                         <span className="font-semibold">{page.title}</span>

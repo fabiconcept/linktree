@@ -24,13 +24,14 @@ export default function PickBrandModal({closeFunction}) {
                             <span className="opacity-60 text-sm">Share content directly on your Linktree</span>
                         </div>
                         <div className="flex flex-wrap px-4 pb-4 gap-x-5 gap-y-2">
-                            {AddContents.map((content) => (
+                            {AddContents.map((content, index) => (
                                 <BrandAdd
                                     btnData={{ itemTitle: `${capitalizeFirstLetter(content.title)} Link`, itemUrl: "", uniqueType: `${capitalizeFirstLetter(content.title)}` }}
                                     imgAlt={content.alt}
                                     imgSrc={content.src}
                                     title={content.title}
                                     p={content.p}
+                                    key={index}
                                 />
                             ))}
                         </div>

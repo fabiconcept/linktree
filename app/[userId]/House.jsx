@@ -34,7 +34,7 @@ export default function House({ userId }) {
 
         }
         fetchProfilePicture();
-    }, []);
+    }, [userId]);
 
     return (
         <HouseContext.Provider value={{ setSensitiveWarning, sensitiveType }}>

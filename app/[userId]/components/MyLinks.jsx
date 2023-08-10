@@ -46,7 +46,7 @@ export default function MyLinks({ userId, hasSensitiveContent }) {
         }
 
         fetchInfo();
-    }, []);
+    }, [router, userId]);
 
     useEffect(() => {
         setDisplayLinks(
@@ -57,9 +57,9 @@ export default function MyLinks({ userId, hasSensitiveContent }) {
     return (
         <div className={`flex flex-col gap-4 my-4 w-full px-5 py-1 items-center max-h-fit ${supportGroupStatus ? "pb-12" : ""}`}>
             {socialPosition === 0 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}
-            {displayLinks.map((link) => {
+            {displayLinks.map((link, index) => {
                 if (link.type === 0) {
-                    return (<span style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{hasSensitiveContent ? link.title : filter.clean(link.title)}</span>);
+                    return (<span key={index} style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{hasSensitiveContent ? link.title : filter.clean(link.title)}</span>);
                 }else{
                     return (<Button key={link.id} content={hasSensitiveContent ? link.title : filter.clean(link.title)} url={link.url} userId={userId} />);
                 }

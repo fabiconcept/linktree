@@ -6,10 +6,11 @@ import Link from "next/link";
 export default function Socials({ socialArray, themeFontColor }) {
     return (
         <div className="flex gap-2 justify-center flex-wrap max-w-full sArray">
-            {socialArray.map((social) => {
+            {socialArray.map((social, index) => {
                 if (social.active) {
                     return (
                         <Link
+                            key={index}
                             href={SocialsList[social.type].valueType !== "url" ? `${SocialsList[social.type].baseUrl}${social.value}` : social.value}
                             target="_blank"
                             className={`hover:scale-[1.25] active:scale-95 min-w-fit sIcon ${isSuitableForWhiteText(themeFontColor) ? "filter invert" : ""}`}

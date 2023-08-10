@@ -47,7 +47,7 @@ export default function ProfilePic({userId}) {
             });
         }
         fetchProfilePicture();
-    }, []);
+    }, [userId]);
     
     return (
         <div className={`min-h-[6rem] w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>

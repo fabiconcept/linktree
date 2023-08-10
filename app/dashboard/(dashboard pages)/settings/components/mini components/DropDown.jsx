@@ -56,8 +56,8 @@ export default function DropDown() {
             </div>
             <div className={`absolute top-14 left-0 bg-white z-10 w-full p-4 grid gap-3 rounded-md ${dropDownOpen ? "enterCard" : "leaveCard"}`} style={{ boxShadow: `0 5px 25px 1px rgba(0, 0, 0, .05)` }}>
                 {LinkTabs.map((tab, index) => (
-                    <div className="px-2 py-3 flex items-center cursor-pointer gap-2 rounded-md hover:bg-blue-950 hover:bg-opacity-10" onClick={()=>handleNavigation(index, tab.tag)}>
-                        <Image src={index === currentTab ? tab.imgActive : tab.img} key={index} alt="icon" height={24} width={24} />
+                    <div key={index} className="px-2 py-3 flex items-center cursor-pointer gap-2 rounded-md hover:bg-blue-950 hover:bg-opacity-10" onClick={()=>handleNavigation(index, tab.tag)}>
+                        <Image src={index === currentTab ? tab.imgActive : tab.img} alt="icon" height={24} width={24} />
                         <span>{tab.text}</span>
                     </div>
                 ))}
