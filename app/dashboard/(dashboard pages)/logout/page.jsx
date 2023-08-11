@@ -1,14 +1,12 @@
-import { removeSessionCookie } from '@/lib/authentication/session';
+import Redirect from "./component/Redirect";
 
 export default function LogoutPage() {
-    try {
-        async function logOff() {
-            await removeSessionCookie("adminLinker");
-            window.location.href = "/login";
-        }
-        logOff();
-    } catch (error) {
-        window.history.back();
-        throw new Error(error);
-    }
+    return (
+        <div className="flex-1 py-2 flex flex-col max-h-full overflow-y-auto">
+            <p className="mx-auto">
+                ...Logging Out...
+            </p>
+            <Redirect />
+        </div>
+    )    
 }

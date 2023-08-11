@@ -64,7 +64,7 @@ export default function Form() {
     }
 
     useEffect(() => {
-
+        
         function fetchExistingUsername() {
             const existingUsernames = [];
         

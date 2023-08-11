@@ -74,7 +74,8 @@ export default function BgDiv({ userId }) {
             });
         }
         fetchProfilePicture();
-    }, []);
+    }, [userId]);
+    
     return (
         <BgContext.Provider value={{bgTheme, bgColor, gradientDirection, bgImage, bgVideo}}>
 

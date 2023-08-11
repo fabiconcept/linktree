@@ -37,7 +37,7 @@ export default function Position() {
             return;
         }
         handleUpdatePosition();
-    }, [pick]);
+    }, [pick, handleUpdatePosition]);
 
 
     return (

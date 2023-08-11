@@ -23,7 +23,7 @@ export default function EditIconModal() {
     useEffect(() => {
         setDefaultData(SocialsList[settingIconModalOpen.type]);
         setValueText(settingIconModalOpen.value);
-    }, []);
+    }, [settingIconModalOpen?.value, settingIconModalOpen?.type]);
 
     useEffect(() => {
         if (defaultData) {
@@ -108,7 +108,14 @@ export default function EditIconModal() {
             return;
         }
         
-        setSocialsArray((previousArray)=> [...previousArray, {id: defaultData.id, type: defaultData.type, value: valueText, active: true}]);
+        setSocialsArray((previousArray)=> 
+            [...previousArray, {
+                id: defaultData.id, 
+                type: defaultData.type, 
+                value: valueText, 
+                active: true
+            }]);
+
         handleClose();
     }
 

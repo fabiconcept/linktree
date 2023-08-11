@@ -69,19 +69,19 @@ export default function Special({ item, index }) {
         if (!editingUrl && urlText !== item.url) {
             editArrayUrl();
         }
-    }, [editingUrl]);
+    }, [editingUrl, editArrayUrl]);
 
     useEffect(() => {
         if (!editingTitle && titleText !== item.title) {
             editArrayTitle();
         }
-    }, [editingTitle]);
+    }, [editingTitle, editArrayTitle]);
 
     useEffect(() => {
         if (checkboxChecked !== item.isActive) {
             editArrayActiveStatus();
         }
-    }, [debounceCheckbox]);
+    }, [debounceCheckbox, editArrayActiveStatus]);
 
 
     useEffect(() => {

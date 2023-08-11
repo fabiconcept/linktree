@@ -4,7 +4,7 @@ import { fireApp } from "@/important/firebase";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useState } from "react";
 import Filter from "bad-words"
 
@@ -13,7 +13,7 @@ export default function UserInfo({userId, hasSensitiveContent}) {
     const [themeFontColor, setThemeFontColor] = useState("");
     const [myBio, setMyBio] = useState("");
     const router = useRouter();
-    const filter = new Filter();
+    const filter = useMemo(() => new Filter(), []);
 
     useEffect(() => {
         async function fetchInfo() {

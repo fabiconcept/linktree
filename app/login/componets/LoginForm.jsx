@@ -104,25 +104,25 @@ export default function LoginForm() {
     useEffect(()=>{
         if(username !== "") {
             if(!existingUsernames.includes(String(username).toLowerCase())){
-                setHasError({...hasError, username: 1});
+                setHasError((prevData)=> ({...prevData, username: 1}));
                 setErrorMessage("This username is not registered to any user.");
                 return;
             }
             
-            setHasError({...hasError, username: 2});
+            setHasError((prevData)=> ({...prevData, username: 2}));
             return;
 
         }else{
-            setHasError({...hasError, username: 0});
+            setHasError((prevData)=> ({...prevData, username: 0}));
         }
-    }, [debouncepassword, existingUsernames]);
+    }, [debouncepassword, existingUsernames, username]);
 
     useEffect(()=>{
         if(password !== "") {
-            setHasError({...hasError, password: 2});
+            setHasError((prevData)=> ({...prevData, password: 2}));
             return;
         }else{
-            setHasError({...hasError, password: 0});
+            setHasError((prevData)=> ({...prevData, password: 0}));
         }
 
     }, [password]);

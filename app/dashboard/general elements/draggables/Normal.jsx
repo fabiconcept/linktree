@@ -13,7 +13,6 @@ export default function Normal({ item, index }) {
     const [editing, setEditing] = useState(false);
     const [textContent, setTextContent] = useState(item.title);
     const [wantsToDelete, setWantsToDelete] = useState(false);
-    const radioRef = useRef();
     const titleRef = useRef();
     const [checkboxChecked, setCheckboxChecked] = useState(item.isActive);
     const debounceCheckbox = useDebounce(checkboxChecked, 500);
@@ -81,13 +80,13 @@ export default function Normal({ item, index }) {
         if (checkboxChecked !== item.isActive) {
             editArrayActiveStatus();
         }
-    }, [debounceCheckbox]);
+    }, [debounceCheckbox, editArrayActiveStatus]);
 
     useEffect(() => {
         if (!editing && textContent !== item.title) {
             editArray();
         }
-    }, [editing]);
+    }, [editing, item.title, editArray]);
 
     return (
         <Draggable draggableId={item.id} index={index}>

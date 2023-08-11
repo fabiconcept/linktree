@@ -31,7 +31,7 @@ export default function ThemeCard({ type, pic, text }) {
                 setThemeColor("#000");
                 break;
         }
-    }, []);
+    }, [text]);
     
     useEffect(() => {
         function fetchTheme() {
@@ -48,7 +48,7 @@ export default function ThemeCard({ type, pic, text }) {
         }
         
         fetchTheme();
-    }, []);
+    }, [text]);
 
     return (
         <>

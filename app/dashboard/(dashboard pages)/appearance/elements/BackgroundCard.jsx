@@ -164,7 +164,7 @@ export default function BackgroundCard({ text, colorValue, backImg }) {
         }
 
         fetchTheme();
-    }, []);
+    }, [setIsGradient, text]);
 
     return (
         <div className="min-w-[8rem] flex-1 items-center flex flex-col">

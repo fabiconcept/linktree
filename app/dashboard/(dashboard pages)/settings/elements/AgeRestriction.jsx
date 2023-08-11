@@ -36,7 +36,7 @@ export default function AgeRestriction() {
         }
         
         handleUpdateType();
-    }, [pick]);
+    }, [pick, handleUpdateType]);
 
 
     return (

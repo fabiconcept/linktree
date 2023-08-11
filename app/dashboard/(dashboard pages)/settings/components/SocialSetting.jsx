@@ -48,7 +48,7 @@ export default function SocialSetting() {
             return;
         }
         updateSocials(socialsArray);
-    }, [socialsArray]);
+    }, [socialsArray, hasLoaded]);
 
     return (
         <SocialContext.Provider value={{ socialsArray, setSocialsArray, setSettingIconModalOpen, setAddIconModalOpen, settingIconModalOpen }}>

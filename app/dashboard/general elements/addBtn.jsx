@@ -142,5 +142,5 @@ export default function AddBtn() {
                 {modalShowing && <PickBrandModal closeFunction={setModalShowing} />}
             </div>
         </addBtnContext.Provider>
-    )
+    );
 }

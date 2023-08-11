@@ -28,7 +28,7 @@ export default function ManageLinks() {
             return;
         }
         updateLinks(data);
-    }, [data]);
+    }, [data, hasLoaded]);
 
     useEffect(() => {
         function fetchLinks() {

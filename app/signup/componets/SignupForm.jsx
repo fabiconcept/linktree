@@ -60,68 +60,67 @@ export default function SignUpForm() {
     useEffect(() => {
         if (username !== "") {
             if (existingUsernames.includes(String(username).toLowerCase())) {
-                setHasError({ ...hasError, username: 1 });
+                setHasError((prevData) => ({ ...prevData, username: 1 }));
                 setErrorMessage("This username is already taken.");
                 return;
             }
 
             if (String(username).length < 3) {
-                setHasError({ ...hasError, username: 1 });
+                setHasError((prevData) => ({ ...prevData, username: 1 }));
                 setErrorMessage("Username is too short.");
                 return;
             }
 
             if (/[^a-zA-Z0-9\-_]/.test(username)) {
-                setHasError({ ...hasError, username: 1 });
+                setHasError((prevData) => ({ ...prevData, username: 1 }));
                 setErrorMessage("Invalid username format");
                 return;
             }
 
 
-            setHasError({ ...hasError, username: 2 });
+            setHasError((prevData) => ({ ...prevData, username: 2 }));
             return;
 
         } else {
-            setHasError({ ...hasError, username: 0 });
+            setHasError((prevData) => ({ ...prevData, username: 0 }));
         }
-    }, [debouncedUsername]);
+    }, [debouncedUsername, existingUsernames]);
 
     useEffect(() => {
         if (email !== "") {
             if (existingEmail.includes(String(email).toLowerCase())) {
-                setHasError({ ...hasError, email: 1 });
+                setHasError((prevData) => ({ ...prevData, email: 1 }));
                 setErrorMessage("You already have an account with us!");
                 return;
             }
 
             if (!validateEmail(email)) {
-                setHasError({ ...hasError, email: 1 });
+                setHasError((prevData) => ({ ...prevData, email: 1 }));
                 setErrorMessage("Invalid Email format!");
                 return;
             }
 
-            setHasError({ ...hasError, email: 2 });
+            setHasError((prevData) => ({ ...prevData, email: 2 }));
             return;
         } else {
-            setHasError({ ...hasError, email: 0 });
+            setHasError((prevData) => ({ ...prevData, email: 0 }));
         }
 
-    }, [debouncedEmail]);
+    }, [debouncedEmail, existingEmail]);
 
     useEffect(() => {
         if (password !== "") {
             if (typeof (validatePassword(password)) !== "boolean") {
-                setHasError({ ...hasError, password: 1 });
+                setHasError((prevData) => ({ ...prevData, password: 1 }));
                 setErrorMessage(validatePassword(password));
                 return;
             }
 
-            setHasError({ ...hasError, password: 2 });
+            setHasError((prevData) => ({ ...prevData, password: 2 }));
             return;
         } else {
-            setHasError({ ...hasError, password: 0 });
+            setHasError((prevData) => ({ ...prevData, password: 0 }));
         }
-
     }, [debouncedPassword]);
 
     useEffect(() => {
@@ -145,7 +144,7 @@ export default function SignUpForm() {
                 });
                 
                 setExistingUsernames(existingUsernames);
-                setExistingEmail(existingEmail);
+                setExistingEmail(existingEmails);
             });
         }
 

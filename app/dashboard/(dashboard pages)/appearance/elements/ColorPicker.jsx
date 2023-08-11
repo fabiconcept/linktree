@@ -15,30 +15,6 @@ export default function ColorPicker({colorFor}) {
     const [colorHasLoaded, setColorHasLoaded] = useState(false);
     const colorPickRef = useRef();
 
-    useEffect(() => {
-        if (!colorHasLoaded) {
-            setColorHasLoaded(true);
-            return;
-        }
-
-        if (colorText !== "") {
-            setValidColor(isValidHexCode(colorText));
-            if (!isValidHexCode(colorText)) {
-                return;
-            }
-    
-            handleUpdateTheme(colorText);
-        }
-    }, [debounceColor]);
-
-    useEffect(() => {
-        if (!validColor) {
-            return;
-        }
-
-        handleUpdateTheme(colorText);
-    }, [validColor]);
-
     const handleUpdateTheme = async(text) => {
         switch (colorFor) {
             case 0:
@@ -59,6 +35,31 @@ export default function ColorPicker({colorFor}) {
                 break;
         }
     }
+
+    
+    useEffect(() => {
+        if (!colorHasLoaded) {
+            setColorHasLoaded(true);
+            return;
+        }
+
+        if (colorText !== "") {
+            setValidColor(isValidHexCode(colorText));
+            if (!isValidHexCode(colorText)) {
+                return;
+            }
+    
+            handleUpdateTheme(colorText);
+        }
+    }, [debounceColor, colorHasLoaded, handleUpdateTheme]);
+
+    useEffect(() => {
+        if (!validColor) {
+            return;
+        }
+
+        handleUpdateTheme(colorText);
+    }, [validColor, colorText, handleUpdateTheme]);
 
     useEffect(() => {
         function fetchTheme() {
@@ -92,7 +93,7 @@ export default function ColorPicker({colorFor}) {
         }
         
         fetchTheme();
-    }, []);
+    }, [colorFor]);
     
     return (
         <div className="pt-6 flex items-center">
