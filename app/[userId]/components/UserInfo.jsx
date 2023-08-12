@@ -43,8 +43,8 @@ export default function UserInfo({userId, hasSensitiveContent}) {
 
     return (
         <>
-            {String(displayName).length > 0 && <span style={{color: `${themeFontColor}`}} className="font-semibold sm:text-lg text-base py-2">@{displayName}</span>}
-            {String(myBio).length > 0 && <span style={{color: `${themeFontColor}`}} className="opacity-80 text-center text-sm max-w-[80%]">{myBio}</span>}
+            {String(displayName).length > 0 && <span style={{color: `${themeFontColor}`}} className="font-semibold text-lg py-2">@{displayName}</span>}
+            {String(myBio).length > 0 && <span style={{color: `${themeFontColor}`}} className="opacity-80 text-center text-base max-w-[85%]">{myBio}</span>}
         </>
     )
 }
