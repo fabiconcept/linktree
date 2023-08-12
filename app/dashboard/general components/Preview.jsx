@@ -7,6 +7,7 @@ import { fetchUserData } from '@/lib/fetch data/fetchUserData';
 
 export default function Preview() {
     const [username, setUsername] = useState("");
+    const baseURL = window.location.origin;
 
     useEffect(() => {
         const sessionUsername = getSessionCookie("adminLinker");
@@ -107,7 +108,7 @@ export default function Preview() {
                             <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />
                         </div>
                         <div className="h-full w-full">
-                            <iframe src={`http://localhost:3000/${username}`} frameBorder="0" className='h-full bg-white w-full'></iframe>
+                            <iframe src={`$${baseURL}${username}`} frameBorder="0" className='h-full bg-white w-full'></iframe>
                         </div>
                     </div>
                 </div>

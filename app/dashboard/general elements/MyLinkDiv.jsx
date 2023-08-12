@@ -19,9 +19,11 @@ export default function MyLinkDiv() {
     useEffect(() => {
         async function fetchLinks() {
             const currentUser = testForActiveSession();
+            const baseURL = window.location.origin;
             const userName = await fetchUserData(currentUser);
+            
             const { username } = userName;
-            setMyUrl(`localhost:3000/${username}`);
+            setMyLink(`${baseURL}${username}`);
         }
 
         fetchLinks();

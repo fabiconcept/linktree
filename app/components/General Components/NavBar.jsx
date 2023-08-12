@@ -10,6 +10,7 @@ import ProfileCard from "../NavComponents/ProfileCard";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import ShareCard from "../NavComponents/ShareCard";
 
+
 export const NavContext = React.createContext();
 
 export default function NavBar() {
@@ -77,11 +78,12 @@ export default function NavBar() {
             const currentUser = testForActiveSession();
             const collectionRef = collection(fireApp, "AccountData");
             const docRef = doc(collectionRef, `${currentUser}`);
+            const baseURL = window.location.origin;
 
             const myData = await fetchUserData(currentUser);
             const { username } = myData;
             setUsername(username);
-            setMyLink(`http://localhost:3000/${username}`);
+            setMyLink(`${baseURL}${username}`);
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
