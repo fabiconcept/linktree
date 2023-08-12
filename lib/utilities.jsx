@@ -191,9 +191,9 @@ export const filterProperly = (sentence) =>{
         if (filter.isProfane(testWord)) {
             const firstLetter = testWord.charAt(0);
             const asterisks = '*'.repeat(testWord.length - 1);
-            outputString = `${outputString} ${firstLetter}${asterisks}`;
+            outputString = `${outputString ? `${outputString} ` : ""}${firstLetter}${asterisks}`;
         }else{
-            outputString = `${outputString} ${testWord}`;
+            outputString = `${outputString ? `${outputString} ` : ""}${testWord}`;
         }
     }
 
