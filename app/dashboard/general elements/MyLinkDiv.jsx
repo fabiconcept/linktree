@@ -19,11 +19,9 @@ export default function MyLinkDiv() {
     useEffect(() => {
         async function fetchLinks() {
             const currentUser = testForActiveSession();
-            const baseURL = window.location.origin;
             const userName = await fetchUserData(currentUser);
-            
             const { username } = userName;
-            setMyLink(`${baseURL}${username}`);
+            setMyUrl(`https://linktree-fabiconcept.vercel.app/${username}`);
         }
 
         fetchLinks();
@@ -33,17 +31,17 @@ export default function MyLinkDiv() {
         <>
             {myUrl && <div className="w-full p-3 rounded-3xl border-b bg-white mb-4 flex justify-between items-center sticky top-0 z-10">
                 <span className="text-sm">
-                    <span className="font-semibold">
+                    <span className="font-semibold sm:block hidden">
                         Your Linktree is live:
                     </span>
                     <Link
-                        href={`http://${myUrl}`}
+                        href={`${myUrl}`}
                         target="_blank"
-                        className="underline ml-2"
+                        className="underline ml-2 sm:font-normal font-semibold w-[15rem] truncate"
                     >{myUrl}</Link>
                 </span>
                 <div
-                    className={`font-semibold py-3 px-4 rounded-3xl border cursor-pointer hover:bg-black hover:bg-opacity-5 active:scale-90 ${copied ? "text-green-600" : ""}`}
+                    className={`font-semibold py-3 px-4 whitespace-nowrap rounded-3xl border cursor-pointer hover:bg-black hover:bg-opacity-5 active:scale-90 ${copied ? "text-green-600" : ""}`}
                     onClick={handleCopy}
                 >
                     {copied ? "Copied!" : "Copy URL"}

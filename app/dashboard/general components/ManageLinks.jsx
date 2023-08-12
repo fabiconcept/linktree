@@ -49,7 +49,7 @@ export default function ManageLinks() {
 
     return (
         <ManageLinksContent.Provider value={{setData, data}}>
-            <div className="h-full flex-col gap-4 py-1 flex px-2 transition-[min-height]">
+            <div className="h-full flex-col gap-4 py-1 flex sm:px-2 px-1 transition-[min-height]">
                 <AddBtn />
 
                 <div className={`flex items-center gap-3 justify-center rounded-3xl cursor-pointer active:scale-95 active:opacity-60 active:translate-y-1 hover:scale-[1.005] border hover:bg-black hover:bg-opacity-[0.05] w-fit text-sm p-3 mt-3`} onClick={addItem}>

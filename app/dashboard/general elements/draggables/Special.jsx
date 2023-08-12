@@ -185,7 +185,7 @@ export default function Special({ item, index }) {
                             <div className='flex gap-3 items-center text-base cursor-pointer w-[95%]' onClick={handleTriggerEditTitle}>
                                 {editingTitle && <input
                                     type="text"
-                                    className='w-auto border-none outline-none'
+                                    className='sm:w-auto border-none outline-none'
                                     placeholder='Enter text'
                                     onChange={handleUpdateTitle}
                                     onBlur={() => setEditingTitle(false)}
@@ -198,14 +198,14 @@ export default function Special({ item, index }) {
                             <div className='flex gap-3 items-center relative text-sm opacity-100 cursor-pointer w-full' onClick={handleTriggerEditUrl}>
                                 {editingUrl && <input
                                     type="text"
-                                    className={`w-auto border-none outline-none flex-1 truncate`}
+                                    className={`w-[10rem] sm:w-fit border-none outline-none sm:flex-1`}
                                     placeholder=''
                                     onChange={handleUpdateUrl}
                                     onBlur={() => setEditingUrl(false)}
                                     value={urlText}
                                     ref={urlRef}
                                 />}
-                                {!editingUrl && <span className={`${urlIsValid === 1 ? 'text-red-500': '' }`}>{urlText === "" ? "URL" : urlText}</span>}
+                                {!editingUrl && <span className={`w-[10rem] truncate sm:w-fit ${urlIsValid === 1 ? 'text-red-500': '' }`}>{urlText === "" ? "URL" : urlText}</span>}
                                 {!editingUrl && <FaPencil className='text-xs' />}
                                 {urlIsValid === 1 && <div
                                     className={`z-[999] nopointer absolute translate-y-7 font-semibold bg-red-500 text-white text-xs rounded px-2 py-1 after:absolute after:h-0 after:w-0 after:border-l-[6px] after:border-r-[6px] after:border-l-transparent after:border-r-transparent after:border-b-[8px] after:border-b-red-500 after:-top-2 after:left-3`}
@@ -249,7 +249,7 @@ export default function Special({ item, index }) {
                         </div>
                     </div>}
                     {!wantsToDelete && <div className='overflow-hidden rounded-b-3xl border-t border-themeYellow'>
-                        <div className='px-6 py-3 text-sm bg-themeYellowLight'>Enter your {item.urlKind ? item.urlKind : "Custom"} URL, then setup your link</div>
+                        <div className='px-6 py-3 sm:text-sm text-xs bg-themeYellowLight'>Enter your {item.urlKind ? item.urlKind : "Custom"} URL, then setup your link</div>
                     </div>}
                 </div>
             )}

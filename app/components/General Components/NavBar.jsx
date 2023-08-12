@@ -10,7 +10,6 @@ import ProfileCard from "../NavComponents/ProfileCard";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import ShareCard from "../NavComponents/ShareCard";
 
-
 export const NavContext = React.createContext();
 
 export default function NavBar() {
@@ -78,12 +77,11 @@ export default function NavBar() {
             const currentUser = testForActiveSession();
             const collectionRef = collection(fireApp, "AccountData");
             const docRef = doc(collectionRef, `${currentUser}`);
-            const baseURL = window.location.origin;
 
             const myData = await fetchUserData(currentUser);
             const { username } = myData;
             setUsername(username);
-            setMyLink(`${baseURL}${username}`);
+            setMyLink(`https://linktree-fabiconcept.vercel.app/${username}`);
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
