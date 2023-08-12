@@ -4,7 +4,7 @@ export default function Themes() {
     
     return (
         <div className="w-full bg-white rounded-3xl my-3 flex flex-col p-6">
-            <div className="flex flex-wrap gap-4 w-full">
+            <div className="flex flex-wrap sm:gap-4 gap-2 w-full">
                 <ThemeCard />
                 <ThemeCard type={1} text={"Pebble Blue"} pic={"https://linktree.sirv.com/Images/bg/selector-pebble-blue.png"} />
                 <ThemeCard type={1} text={"Pebble Yellow"} pic={"https://linktree.sirv.com/Images/bg/selector-pebble-yellow.adffcf319fe3cb16a9b7.png"} />
