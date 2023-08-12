@@ -191,6 +191,7 @@
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
+    z-index: 50;
   }
 }
 
@@ -202,6 +203,7 @@
   to {
     transform: translateY(-10%) scale(0.95);
     opacity: 0;
+    z-index: 1;
   }
 }
 
@@ -215,4 +217,8 @@
 
 .closeBanner {
   max-height: 0;
+}
+
+.navCard:has(.leaveCard) {
+  display: none;
 }

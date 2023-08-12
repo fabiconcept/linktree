@@ -21,7 +21,7 @@ export default function MLink({myUrl}) {
                 width={24}
                 height={24}
             />
-            <span className="flex-1 text-sm">{myUrl}</span>
+            <span className="flex-1 text-sm w-[13rem] truncate">{myUrl}</span>
             <span className={`${copied ? "text-green-700" : "text-black"}`}>
                 {copied ? "Copied" : "Copy"}
             </span>

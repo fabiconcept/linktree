@@ -6,7 +6,7 @@ export default function Profile({profilePicture, username, link}) {
             </div>
             <section>
                 <div className="font-semibold">@{username}</div>
-                <div className="text-xs opacity-80">{link}</div>
+                <div className="text-xs opacity-80 w-[13rem] truncate">{link}</div>
             </section>
         </div>
     );

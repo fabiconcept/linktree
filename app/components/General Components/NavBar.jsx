@@ -28,12 +28,15 @@ export default function NavBar() {
             return;
         }
         setShowProfileCard(!showProfileCard);
+        setShowShareCard(false);
     }
+
     const handleShowShareCard = () =>{
         if (username === "") {
             return;
         }
         setShowShareCard(!showShareCard);
+        setShowProfileCard(false);
     }
 
     useEffect(() => {
@@ -165,11 +168,13 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <div className="p-3 flex items-center gap-2 rounded-3xl border cursor-pointer hover:bg-gray-100 active:scale-90" ref={shareCardRef} onClick={handleShowShareCard}>
+                    <div className="p-3 flex items-center relative gap-2 rounded-3xl border cursor-pointer hover:bg-gray-100 active:scale-90 overflow-hidden" ref={shareCardRef}>
                         <Image src={"https://linktree.sirv.com/Images/icons/share.svg"} alt="links" height={15} width={15} />
+                        <div className="absolute z-10 w-full h-full sm:block hidden" onClick={handleShowShareCard}></div>
                     </div>
                     <div className="relative" ref={profileCardRef}>
-                        <div className="grid place-items-center rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden" onClick={handleShowProfileCard}>
+                        <div className="grid place-items-center relative rounded-full border h-[2.5rem] w-[2.5rem] cursor-pointer hover:scale-110 active:scale-95 overflow-hidden">
+                            <div className="absolute z-10 w-full h-full sm:block hidden" onClick={handleShowProfileCard}></div>
                             {profilePicture}
                         </div>
                         <ProfileCard />
