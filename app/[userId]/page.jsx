@@ -3,6 +3,7 @@ import { fireApp } from "@/important/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import House from "./House";
 import Filter from "bad-words"
+import { Toaster } from "react-hot-toast";
 export async function generateMetadata ({ params: { userId } }) {
     const filter = new Filter();
     const currentUser = await fetchUserData(userId);;
@@ -22,6 +23,7 @@ export async function generateMetadata ({ params: { userId } }) {
 export default function UserLinksPage({ params: { userId } }) {
     return (
         <div className="w-screen h-screen flex flex-col">
+            <Toaster />
             <House userId={userId}/>
         </div>
     );

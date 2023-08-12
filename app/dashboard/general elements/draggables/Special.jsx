@@ -249,7 +249,7 @@ export default function Special({ item, index }) {
                         </div>
                     </div>}
                     {!wantsToDelete && <div className='overflow-hidden rounded-b-3xl border-t border-themeYellow'>
-                        <div className='px-6 py-3 text-sm bg-themeYellowLight'>Enter your {item.urlKind} URL, then setup your link</div>
+                        <div className='px-6 py-3 text-sm bg-themeYellowLight'>Enter your {item.urlKind ? item.urlKind : "Custom"} URL, then setup your link</div>
                     </div>}
                 </div>
             )}

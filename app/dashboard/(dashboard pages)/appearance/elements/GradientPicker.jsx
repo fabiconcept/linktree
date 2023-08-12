@@ -37,7 +37,7 @@ export default function GradientPicker() {
             return;
         }
         handleUpdateTheme();
-    }, [pick, hasPicked, handleUpdateTheme]);
+    }, [pick]);
 
     return (
         <div className="my-4 grid gap-3">

@@ -47,6 +47,7 @@ export default function AddIconModal() {
     const handleClose = () => {
         setAddIconModalOpen(false);
     }
+    
     return (
         <div className="fixed top-0 left-0 h-screen w-screen grid place-items-center z-[99999999999]">
             <div className="absolute h-full w-full bg-black bg-opacity-25 top-0 left-0" onClick={handleClose}></div>

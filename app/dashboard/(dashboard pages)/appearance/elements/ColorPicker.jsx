@@ -35,8 +35,7 @@ export default function ColorPicker({colorFor}) {
                 break;
         }
     }
-
-    
+  
     useEffect(() => {
         if (!colorHasLoaded) {
             setColorHasLoaded(true);
@@ -51,7 +50,7 @@ export default function ColorPicker({colorFor}) {
     
             handleUpdateTheme(colorText);
         }
-    }, [debounceColor, colorHasLoaded, handleUpdateTheme]);
+    }, [debounceColor]);
 
     useEffect(() => {
         if (!validColor) {
@@ -59,7 +58,7 @@ export default function ColorPicker({colorFor}) {
         }
 
         handleUpdateTheme(colorText);
-    }, [validColor, colorText, handleUpdateTheme]);
+    }, [validColor]);
 
     useEffect(() => {
         function fetchTheme() {

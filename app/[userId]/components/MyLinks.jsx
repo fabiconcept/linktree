@@ -8,6 +8,7 @@ import Button from "../elements/Button";
 import { useRouter } from "next/navigation";
 import Socials from "../elements/Socials";
 import Filter from "bad-words";
+import { filterProperly } from "@/lib/utilities";
 
 export default function MyLinks({ userId, hasSensitiveContent }) {
     const [myLinksArray, setMyLinksArray] = useState([]);
@@ -59,9 +60,9 @@ export default function MyLinks({ userId, hasSensitiveContent }) {
             {socialPosition === 0 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}
             {displayLinks.map((link, index) => {
                 if (link.type === 0) {
-                    return (<span key={index} style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{hasSensitiveContent ? link.title : filter.clean(link.title)}</span>);
+                    return (<span key={index} style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{hasSensitiveContent ? link.title : filterProperly(link.title)}</span>);
                 }else{
-                    return (<Button key={link.id} content={hasSensitiveContent ? link.title : filter.clean(link.title)} url={link.url} userId={userId} />);
+                    return (<Button key={link.id} content={hasSensitiveContent ? link.title : filterProperly(link.title)} url={link.url} userId={userId} />);
                 }
             })}
             {socialPosition === 1 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}

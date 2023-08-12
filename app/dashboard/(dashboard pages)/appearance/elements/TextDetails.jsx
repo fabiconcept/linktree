@@ -42,7 +42,7 @@ export default function TextDetails() {
             return;
         }
         updateDisplayName(displayName);
-    }, [debounceDisplayName, dataLoaded]);
+    }, [debounceDisplayName]);
 
     useEffect(() => {
         if (!dataLoadedBio) {
@@ -50,7 +50,7 @@ export default function TextDetails() {
             return;
         }
         updateBio(myBio);
-    }, [debounceMyBio, dataLoadedBio]);
+    }, [debounceMyBio]);
 
     return (
         <div className="flex px-6 pb-6 pt-2 flex-col gap-2">

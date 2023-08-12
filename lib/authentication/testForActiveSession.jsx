@@ -2,7 +2,7 @@ import { getSessionCookie } from "./session";
 
 export const testForActiveSession = () => {
     const sessionUsername = getSessionCookie("adminLinker");
-    if (sessionUsername === undefined) {
+    if (!sessionUsername) {
         window.location.href = "/login";
         return;
     }

@@ -2,18 +2,17 @@
 
 import { fireApp } from "@/important/firebase";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+import { filterProperly } from "@/lib/utilities";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import Filter from "bad-words"
 
 export default function UserInfo({userId, hasSensitiveContent}) {
     const [displayName, setDisplayName] = useState("");
     const [themeFontColor, setThemeFontColor] = useState("");
     const [myBio, setMyBio] = useState("");
     const router = useRouter();
-    const filter = useMemo(() => new Filter(), []);
 
     useEffect(() => {
         async function fetchInfo() {
@@ -33,19 +32,19 @@ export default function UserInfo({userId, hasSensitiveContent}) {
                 }
                 const { displayName, bio: bioText, themeFontColor } = docSnapshot.data();
                 const bio = bioText ? bioText : "";
-                setDisplayName(hasSensitiveContent ? displayName : filter.clean(`${displayName ? displayName : ""}`));
+                setDisplayName(hasSensitiveContent ? displayName : filterProperly(`${displayName ? displayName : ""}`));
                 setThemeFontColor(themeFontColor ? themeFontColor: "");
-                setMyBio(hasSensitiveContent ? bio : filter.clean(bio));
+                setMyBio(hasSensitiveContent ? bio : filterProperly(bio));
             });
         }
 
         fetchInfo();
-    }, [userId, router, filter, hasSensitiveContent]);
+    }, [userId, hasSensitiveContent]);
 
     return (
         <>
-            {displayName && <span style={{color: `${themeFontColor}`}} className="font-semibold sm:text-lg text-base py-2">@{displayName}</span>}
-            {myBio && <span style={{color: `${themeFontColor}`}} className="opacity-80 text-center text-sm max-w-[80%]">{myBio}</span>}
+            {String(displayName).length > 0 && <span style={{color: `${themeFontColor}`}} className="font-semibold sm:text-lg text-base py-2">@{displayName}</span>}
+            {String(myBio).length > 0 && <span style={{color: `${themeFontColor}`}} className="opacity-80 text-center text-sm max-w-[80%]">{myBio}</span>}
         </>
     )
 }

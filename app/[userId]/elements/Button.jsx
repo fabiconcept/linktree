@@ -9,9 +9,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import IconDiv from "./IconDiv";
 import "./style/3d.css";
-import { baseUrlIcons, getCompanyFromUrl } from "@/lib/BrandLinks";
+import { getCompanyFromUrl } from "@/lib/BrandLinks";
 import { availableFonts_Classic } from "@/lib/FontsList";
 import ButtonText from "./ButtonText";
+import { FaCopy } from "react-icons/fa6";
+import { toast } from "react-hot-toast";
 
 export default function Button({ url, content, userId }) {
     const [modifierClass, setModifierClass] = useState("");
@@ -25,7 +27,41 @@ export default function Button({ url, content, userId }) {
     const [btnFontStyle, setBtnFontStyle] = useState(null);
     const [selectedFontClass, setSelectedFontClass] = useState("");
     const router = useRouter();
+    const [modifierStyles, setModifierStyles] = useState({
+        backgroundColor: "",
+        color: "",
+        boxShadow: "",
+    });
 
+    /**
+     * The `handleCopy` function copies a given URL to the clipboard and displays a success toast
+     * notification.
+     */
+    const handleCopy = (myUrl) => {
+        if (myUrl) {
+            navigator.clipboard.writeText(myUrl);
+            toast.success(
+                "Link copied",
+                {
+                    style: {
+                        border: '1px solid #6fc276',
+                        padding: '16px',
+                        color: '#6fc276',
+                    },
+                    iconTheme: {
+                        primary: '#6fc276',
+                        secondary: '#FFFAEE',
+                    },
+                }
+            );
+        }
+    };
+
+    /**
+     * The function `getRootNameFromUrl` takes a URL as input and returns the root name (hostname) of
+     * the URL.
+     * @returns the root name of the given URL.
+     */
     function getRootNameFromUrl(url) {
         try {
             const urlObj = new URL(makeValidUrl(url));
@@ -37,11 +73,6 @@ export default function Button({ url, content, userId }) {
         }
     }
 
-    const [modifierStyles, setModifierStyles] = useState({
-        backgroundColor: "",
-        color: "",
-        boxShadow: "",
-    });
 
     useEffect(() => {
         async function fetchInfo() {
@@ -92,7 +123,6 @@ export default function Button({ url, content, userId }) {
                 color: "#fff"
             });
 
-            console.log(String(getCompanyFromUrl(rootName)).toLocaleLowerCase());
             switch (String(getCompanyFromUrl(rootName)).toLocaleLowerCase()) {
                 case 'tiktok':
                     setAccentColor(["#ff0050", "#00f2ea"]);
@@ -123,6 +153,18 @@ export default function Button({ url, content, userId }) {
                     break;
                 case 'facebook':
                     setAccentColor(["#4267B2", "#898F9C"]);
+                    break;
+                case 'linktree':
+                    setAccentColor(["#43E660", "#657786"]);
+                    break;
+                case 'pornhub':
+                    setAccentColor(["#ffa31a", "#1b1b1b"]);
+                    break;
+                case 'xvideos':
+                    setAccentColor(["#C9221E", "#ffffff"]);
+                    break;
+                case 'xnxx':
+                    setAccentColor(["#5D9FFF", "#000092"]);
                     break;
 
                 default:
@@ -326,14 +368,22 @@ export default function Button({ url, content, userId }) {
     }, [accentColor]);
 
     return (
-        <Link
-            href={makeValidUrl(url)}
-            className={`${modifierClass} cursor-pointer flex gap-3 items-center hover:scale-[1.025] active:scale-95 md:w-[35rem] sm:w-[30] w-[20rem] min-h-10 py-3 px-3`}
+        <div
+            className={`${modifierClass} relative justify-between items-center flex hover:scale-[1.025] peer-active:scale-95 md:w-[35rem] sm:w-[30] w-[20rem]`}
             style={modifierStyles}
         >
-            {specialElements}
-            <IconDiv url={url} />
-            <ButtonText btnFontStyle={btnFontStyle} content={content} fontClass={selectedFontClass} />
-        </Link>
+            <Link
+                className={`cursor-pointer flex gap-3 items-center min-h-10 py-3 px-3 flex-1 peer`}
+                href={makeValidUrl(url)}
+                target="_blank"
+            >
+                {specialElements}
+                <IconDiv url={url} />
+                <ButtonText btnFontStyle={btnFontStyle} content={content} fontClass={selectedFontClass} />
+            </Link>
+            <div onClick={()=>handleCopy(url)} className="absolute p-2 h-9 right-3 grid place-items-center aspect-square rounded-full border border-white group cursor-pointer bg-black text-white hover:scale-105 active:scale-90">
+                <FaCopy className="rotate-10 group-hover:rotate-0" />
+            </div>
+        </div>
     );
 }

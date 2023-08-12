@@ -17,7 +17,8 @@ export default function LoginForm() {
     const [username, setUsername]= useState("");
     const [existingUsernames, setExistingUsernames] = useState([]);
     const [password, setPassword]= useState("");
-    const debouncepassword = useDebounce(username, 500);
+    const debounceUsername = useDebounce(username, 500);
+    const debouncePassword = useDebounce(password, 500);
     const [canProceed, setCanProceed] = useState(false);
     const [hasError, setHasError]= useState({
             username: 0,
@@ -115,7 +116,7 @@ export default function LoginForm() {
         }else{
             setHasError((prevData)=> ({...prevData, username: 0}));
         }
-    }, [debouncepassword, existingUsernames, username]);
+    }, [debounceUsername, existingUsernames]);
 
     useEffect(()=>{
         if(password !== "") {
@@ -125,7 +126,7 @@ export default function LoginForm() {
             setHasError((prevData)=> ({...prevData, password: 0}));
         }
 
-    }, [password]);
+    }, [debouncePassword]);
 
     useEffect(()=>{
         if (hasError.username === 1) {

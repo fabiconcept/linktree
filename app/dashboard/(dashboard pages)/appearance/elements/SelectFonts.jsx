@@ -28,6 +28,7 @@ export default function SelectFonts() {
         
         fetchTheme(); 
     }, []);
+    
     return (
         <selectedFontContext.Provider value={{openFontGallery, setOpenFontGallery}}>
             <div className={`${selectedFont.class} w-full my-4 group rounded-lg py-5 px-4 border shadow-lg flex items-center gap-4 cursor-pointer hover:bg-black hover:bg-opacity-10 active:scale-95`} onClick={()=>setOpenFontGallery(true)}>

@@ -1,3 +1,5 @@
+import Filter from "bad-words";
+
 export function validateEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
@@ -173,9 +175,27 @@ export function isValidEmail(email) {
     return pattern.test(email);
 }
 
+export const filterProperly = (sentence) =>{
+    const filter = new Filter();
+    const words = String(sentence).split(" ");
 
-// const handleNavigation = (id, tab) => {
-//     router.push(`/dashboard/settings${tab}`, undefined, { shallow: true });
-//     setCurrentTab(id);
-//     setDropDownOpen(false);
-// };
+    let outputString = "";
+
+    if (words.length < 1) {
+        return "";
+    }
+
+    for (const word in words) {
+        const testWord = words[word];
+
+        if (filter.isProfane(testWord)) {
+            const firstLetter = testWord.charAt(0);
+            const asterisks = '*'.repeat(testWord.length - 1);
+            outputString = `${outputString} ${firstLetter}${asterisks}`;
+        }else{
+            outputString = `${outputString} ${testWord}`;
+        }
+    }
+
+    return outputString;
+}
