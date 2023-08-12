@@ -50,7 +50,7 @@ export default function ProfilePic({userId}) {
     }, [userId]);
     
     return (
-        <div className={`min-h-[6rem] w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
+        <div className={`min-h-[5rem] w-[5rem] sm:min-h-[6rem] sm:w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
             {profilePicture}
         </div>
     )
