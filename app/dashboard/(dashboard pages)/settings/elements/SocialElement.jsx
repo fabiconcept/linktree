@@ -49,7 +49,7 @@ export default function SocialElement({ item, index }) {
                     <div className='flex-1 flex items-center justify-between p-3 hover:bg-black hover:bg-opacity-5 cursor-pointer rounded-lg active:scale-95 active:opacity-60' onClick={handleEdit}>
                         <div className='flex-1 flex items-center gap-3'>
                             <Image src={SocialsList[item.type].icon} alt='icon' height={25} width={25} />
-                            <span className='font-semibold'>{SocialsList[item.type].title}</span>
+                            <span className='font-semibold sm:text-base text-sm'>{SocialsList[item.type].title}</span>
                         </div>
                         <Image src={"https://linktree.sirv.com/Images/icons/pen.svg"} alt='edit' height={15} width={15} />
                     </div>

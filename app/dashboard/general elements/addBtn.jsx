@@ -123,7 +123,7 @@ export default function AddBtn() {
                         </div>
                     </div>
                     <div className="flex flex-wrap justify-center gap-3 px-6 py-3">
-                        <div className="flex flex-wrap justify-center gap-4">
+                        <div className="flex flex-wrap justify-center sm:gap-4 gap-2">
                             <BrandItem imgAlt={'tw icon'} btnData={{ itemTitle: "Twitter Handle", itemUrl: "", uniqueType: "Twitter" }} imgSrc={"https://linktree.sirv.com/Images/brands/twitter.svg"} />
                             <BrandItem imgAlt={'tk icon'} btnData={{ itemTitle: "Tiktok Profile", itemUrl: "", uniqueType: "TikTok Account" }} imgSrc={"https://linktree.sirv.com/Images/brands/tiktok.svg"} />
                             <BrandItem imgAlt={'hd icon'} btnData={{ itemTitle: "Instagram Handle", itemUrl: "", uniqueType: "Instagram" }} imgSrc={"https://linktree.sirv.com/Images/brands/header.svg"} />
