@@ -2,7 +2,7 @@
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import { fireApp } from "@/important/firebase";
 import { loginAccount } from "@/lib/authentication/login";
-import { setSessionCookie } from "@/lib/authentication/session";
+import { getSessionCookie, setSessionCookie } from "@/lib/authentication/session";
 import { collection, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";

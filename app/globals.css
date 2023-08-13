@@ -222,3 +222,7 @@
 .navCard:has(.leaveCard) {
   display: none;
 }
+
+.userBtn:has(a:active) {
+  transform: scale(.95);
+}

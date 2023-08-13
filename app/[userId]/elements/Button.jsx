@@ -369,11 +369,11 @@ export default function Button({ url, content, userId }) {
 
     return (
         <div
-            className={`${modifierClass} relative justify-between items-center flex hover:scale-[1.025] peer-active:scale-95 md:w-[35rem] sm:w-[30] w-[20rem]`}
+            className={`${modifierClass} userBtn relative justify-between items-center flex hover:scale-[1.025] md:w-[35rem] sm:w-[30] w-[20rem]`}
             style={modifierStyles}
         >
             <Link
-                className={`cursor-pointer flex gap-3 items-center min-h-10 py-3 px-3 flex-1 peer`}
+                className={`cursor-pointer flex gap-3 items-center min-h-10 py-3 px-3 flex-1`}
                 href={makeValidUrl(url)}
                 target="_blank"
             >

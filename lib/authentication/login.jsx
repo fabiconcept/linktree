@@ -11,11 +11,11 @@ export const loginAccount = async(data)=>{
 
     collectionSnap.forEach((credential)=>{
         const data = credential.data();
-        userId = credential.id
         const { username, password, mySalt } = data;
 
         if ( log_username === username ) {
             const passwordsMatch = comparePassword(log_password, password, mySalt);
+            userId = credential.id;
 
             if (passwordsMatch) {
                 status = true;
