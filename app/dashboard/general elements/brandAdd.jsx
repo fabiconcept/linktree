@@ -10,7 +10,7 @@ export default function BrandAdd({btnData, imgAlt, imgSrc, title, p}) {
     }
 
     return (
-        <div className="flex min-w-[20rem] flex-1 items-center gap-3 p-2 hover:bg-black hover:bg-opacity-[0.05] active:scale-90 rounded-xl cursor-pointer" onClick={handleAddItem}>
+        <div className="flex sm:min-w-[20rem] min-w-[15rem] flex-1 items-center gap-3 p-2 hover:bg-black hover:bg-opacity-[0.05] active:scale-90 rounded-xl cursor-pointer" onClick={handleAddItem}>
             <Image
                 src={`${imgSrc}`} 
                 height={40} 
@@ -21,7 +21,7 @@ export default function BrandAdd({btnData, imgAlt, imgSrc, title, p}) {
             <div className="flex-1 flex justify-between items-center pr-3 py-3 border-b">
                 <div className="grid">
                     <span className="font-semibold">{title}</span>
-                    <span className="opacity-60 md:text-sm text-xs">{p}</span>
+                    <span className="opacity-60 md:text-sm text-xs sm:w-fit w-[10rem]">{p}</span>
                 </div>
                 <span className="hover:bg-white py-3 px-5 rounded-3xl text-btnPrimary font-semibold text-sm">Add</span>
             </div>

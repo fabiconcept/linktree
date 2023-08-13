@@ -9,7 +9,7 @@ export default function BrandItem({imgSrc, imgAlt, btnData}) {
         addItem(btnData);
     }
     return (
-        <div className="md:w-[6rem] md:h-[6rem] sm:w-[4rem] sm:h-[4rem] w-[3.5rem] h-[3.5rem] sm:rounded-3xl rounded-xl bg-black bg-opacity-[0.05] p-2 grid place-items-center cursor-pointer hover:scale-110 active:scale-90" onClick={handleAddItem}>
+        <div className="md:w-[6rem] md:h-[6rem] sm:w-[4rem] sm:h-[4rem] w-[3.5rem] sm:last:block last:hidden h-[3.5rem] sm:rounded-3xl rounded-xl bg-black bg-opacity-[0.05] p-2 grid place-items-center cursor-pointer hover:scale-110 active:scale-90" onClick={handleAddItem}>
             <Image 
                 src={`${imgSrc}`} 
                 height={50} 
