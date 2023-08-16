@@ -17,6 +17,7 @@ export default function MyLinks({ userId, hasSensitiveContent }) {
     const [socialPosition, setSocialPosition] = useState(null);
     const [themeFontColor, setThemeFontColor] = useState("");
     const [supportGroupStatus, setSupportGroupStatus] = useState(false);
+    const [themeTextColour, setThemeTextColour] = useState("");
     const router = useRouter();
     const filter = new Filter();
 
@@ -36,7 +37,8 @@ export default function MyLinks({ userId, hasSensitiveContent }) {
                 if (!docSnapshot.exists()) {
                     return;
                 }
-                const { links, themeFontColor, socials, socialPosition, supportBannerStatus } = docSnapshot.data();
+                const { links, themeFontColor, socials, socialPosition, supportBannerStatus, themeTextColour } = docSnapshot.data();
+                setThemeTextColour(themeTextColour ? themeTextColour : "");
                 setSupportGroupStatus(supportBannerStatus);
                 const rtLinks = links ? links : [];
                 setSocialArray(socials ? socials : []);
@@ -60,7 +62,7 @@ export default function MyLinks({ userId, hasSensitiveContent }) {
             {socialPosition === 0 && socialArray.length > 0 && <Socials themeFontColor={themeFontColor} socialArray={socialArray} />}
             {displayLinks.map((link, index) => {
                 if (link.type === 0) {
-                    return (<span key={index} style={{color: `${themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{hasSensitiveContent ? link.title : filterProperly(link.title)}</span>);
+                    return (<span key={index} style={{color: `${themeFontColor === "#000" ? themeTextColour : themeFontColor}`}} className="mx-auto font-semibold text-sm mt-2">{hasSensitiveContent ? link.title : filterProperly(link.title)}</span>);
                 }else{
                     return (<Button key={link.id} content={hasSensitiveContent ? link.title : filterProperly(link.title)} url={link.url} userId={userId} />);
                 }

@@ -73,6 +73,10 @@ export default function Buttons() {
                 </div>
             </section>
             <section className="flex text-sm flex-col mb-10">
+                <span className="font-semibold mb-[-10px]">Theme text colour</span>
+                <ColorPicker colorFor={4} />
+            </section>
+            <section className="flex text-sm flex-col mb-10">
                 <span className="font-semibold mb-[-10px]">Button colour</span>
                 <ColorPicker colorFor={1} />
             </section>

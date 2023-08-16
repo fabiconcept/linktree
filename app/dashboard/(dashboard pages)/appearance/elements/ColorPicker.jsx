@@ -3,13 +3,13 @@
 import { useDebounce } from "@/Local Hooks/useDebounce";
 import { fireApp } from "@/important/firebase";
 import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { updateThemeBackgroundColor, updateThemeBtnColor, updateThemeBtnFontColor, updateThemeBtnShadowColor } from "@/lib/update data/updateTheme";
+import { updateThemeBackgroundColor, updateThemeBtnColor, updateThemeBtnFontColor, updateThemeBtnShadowColor, updateThemeTextColour } from "@/lib/update data/updateTheme";
 import { isValidHexCode } from "@/lib/utilities";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 
 export default function ColorPicker({colorFor}) {
-    const [colorText, setColorText] = useState("#e8edf5");
+    const [colorText, setColorText] = useState(colorFor === 4 ? "#000000" : "#e8edf5");
     const debounceColor = useDebounce(colorText, 500);
     const [validColor, setValidColor] = useState(1);
     const [colorHasLoaded, setColorHasLoaded] = useState(false);
@@ -28,6 +28,9 @@ export default function ColorPicker({colorFor}) {
                 break;
             case 3:
                 await updateThemeBtnShadowColor(text);
+                break;
+            case 4:
+                await updateThemeTextColour(text);
                 break;
         
             default:
@@ -68,7 +71,7 @@ export default function ColorPicker({colorFor}) {
         
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
-                    const { backgroundColor, btnShadowColor, btnFontColor, btnColor } = docSnap.data();
+                    const { backgroundColor, btnShadowColor, btnFontColor, btnColor, themeTextColour } = docSnap.data();
                     switch (colorFor) {
                         case 0:
                             setColorText(backgroundColor ? backgroundColor : "#e8edf5");
@@ -81,6 +84,9 @@ export default function ColorPicker({colorFor}) {
                             break;
                         case 3:
                             setColorText(btnShadowColor ? btnShadowColor : "#e8edf5");
+                            break;
+                        case 4:
+                            setColorText(themeTextColour ? themeTextColour : "#000000");
                             break;
                     
                         default:

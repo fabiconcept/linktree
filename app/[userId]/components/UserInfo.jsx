@@ -11,6 +11,7 @@ import { useState } from "react";
 export default function UserInfo({userId, hasSensitiveContent}) {
     const [displayName, setDisplayName] = useState("");
     const [themeFontColor, setThemeFontColor] = useState("");
+    const [themeTextColour, setThemeTextColour] = useState("");
     const [myBio, setMyBio] = useState("");
     const router = useRouter();
 
@@ -30,8 +31,9 @@ export default function UserInfo({userId, hasSensitiveContent}) {
                 if (!docSnapshot.exists()) {
                     return;
                 }
-                const { displayName, bio: bioText, themeFontColor } = docSnapshot.data();
+                const { displayName, bio: bioText, themeFontColor, themeTextColour } = docSnapshot.data();
                 const bio = bioText ? bioText : "";
+                setThemeTextColour(themeTextColour ? themeTextColour : "");
                 setDisplayName(hasSensitiveContent ? displayName : filterProperly(`${displayName ? displayName : ""}`));
                 setThemeFontColor(themeFontColor ? themeFontColor: "");
                 setMyBio(hasSensitiveContent ? bio : filterProperly(bio));
@@ -43,8 +45,8 @@ export default function UserInfo({userId, hasSensitiveContent}) {
 
     return (
         <>
-            {String(displayName).length > 0 && <span style={{color: `${themeFontColor}`}} className="font-semibold text-lg py-2">@{displayName}</span>}
-            {String(myBio).length > 0 && <span style={{color: `${themeFontColor}`}} className="opacity-80 text-center text-base max-w-[85%]">{myBio}</span>}
+            {String(displayName).length > 0 && <span style={{color: `${themeFontColor === "#000" ? themeTextColour: themeFontColor}`}} className="font-semibold text-lg py-2">@{displayName}</span>}
+            {String(myBio).length > 0 && <span style={{color: `${themeFontColor === "#000" ? themeTextColour: themeFontColor}`}} className="opacity-80 text-center text-base max-w-[85%]">{myBio}</span>}
         </>
     )
 }
