@@ -166,6 +166,9 @@ export default function Button({ url, content, userId }) {
                 case 'xnxx':
                     setAccentColor(["#5D9FFF", "#000092"]);
                     break;
+                case 'whatsapp':
+                    setAccentColor(["#25d366", "#075e54"]);
+                    break;
 
                 default:
                     setAccentColor(["#191414", "#14171A"]);
