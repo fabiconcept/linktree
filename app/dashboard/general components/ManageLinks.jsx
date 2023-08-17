@@ -65,9 +65,9 @@ export default function ManageLinks() {
                         alt="logo"
                         height={100}
                         width={100}
-                        className="opacity-50"
+                        className="opacity-50 sm:w-24 w-16"
                     />
-                    <span className="text-center max-w-[15rem] font-semibold">
+                    <span className="text-center sm:text-base text-sm max-w-[15rem] font-semibold">
                         Show the world who you are.
                         Add a link to get started.
                     </span>
