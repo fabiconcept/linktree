@@ -101,7 +101,7 @@ export default function ColorPicker({colorFor}) {
     }, [colorFor]);
     
     return (
-        <div className="pt-6 flex items-center">
+        <div className="pt-6 sm:max-w-full max-w-[310px] flex items-center">
             <input 
                 type="color" 
                 className="relative h-0 w-0 overflow-hidden"
