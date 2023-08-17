@@ -111,7 +111,7 @@ export default function ColorPicker({colorFor}) {
             />
             <div className="h-12 w-12 mr-4 rounded-lg cursor-pointer hover:scale-[1.05] active:scale-90" style={{ background: `${colorText}` }} onClick={()=>colorPickRef.current.click()}></div>
             <div className={`w-auto relative pt-2 flex items-center hover:border rounded-lg bg-black bg-opacity-[0.05] ${validColor ? "focus-within:border-black border-transparent": "border-red-500" } focus-within:border-2 border`}>
-                <input
+                <input 
                     type="text"
                     className="sm:flex-1 sm:w-auto w-[200px] px-4 placeholder-shown:px-3 py-2 text-base font-semibold outline-none opacity-100 bg-transparent peer appearance-none"
                     placeholder=" "

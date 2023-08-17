@@ -53,7 +53,7 @@ export default function SensitiveMaterial() {
             </div>
             <div className="p-5 bg-white rounded-lg">
                 <div className='flex gap-3 items-center justify-between w-full'>
-                    <span className='opacity-70 text-[.965rem]'>Display a sensitive content warning before visitors can view your profile.</span>
+                    <span className='opacity-70 sm:text-[.965rem] text-sm'>Display a sensitive content warning before visitors can view your profile.</span>
                     <div>
                         <label className="cursor-pointer relative flex justify-between items-center group p-2 text-xl">
                             <input type="checkbox" onChange={handleCheckboxChange} checked={containsSensitiveMaterial} className="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />

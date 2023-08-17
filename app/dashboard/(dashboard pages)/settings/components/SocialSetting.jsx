@@ -65,7 +65,7 @@ export default function SocialSetting() {
                 <div className="p-5 bg-white rounded-lg">
                     <div className="grid gap-1">
                         <span className="font-semibold">Be iconic</span>
-                        <span className="opacity-90">Add icons linking to your social profiles, email and more.</span>
+                        <span className="opacity-90 sm:text-base text-sm">Add icons linking to your social profiles, email and more.</span>
                     </div>
                     <div className="w-fit rounded-3xl bg-btnPrimary hover:bg-btnPrimaryAlt text-white py-3 px-4 my-7 cursor-pointer active:scale-90 select-none" onClick={()=>setAddIconModalOpen(true)}>Add Icon</div>
                     {socialsArray.length > 0 && <div>
@@ -77,7 +77,7 @@ export default function SocialSetting() {
                         </div>
                         <Position />
                     </div>}
-                    <Link className="text-btnPrimary active:text-btnPrimaryAlt underline mt-3" href={"/dashboard/analytics"}>See analytics</Link>
+                    {/* <Link className="text-btnPrimary active:text-btnPrimaryAlt underline mt-3" href={"/dashboard/analytics"}>See analytics</Link> */}
                 </div>
                 {addIconModalOpen && <AddIconModal />}
                 {settingIconModalOpen.status && <EditIconModal />}

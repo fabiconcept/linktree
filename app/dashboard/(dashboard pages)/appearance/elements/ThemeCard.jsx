@@ -56,7 +56,7 @@ export default function ThemeCard({ type, pic, text }) {
                 {type !== 1 ?
                     <>
                         <div className="w-full h-[13rem] border border-dashed rounded-lg relative group-hover:bg-black group-hover:bg-opacity-[0.05] border-black grid place-items-center cursor-pointer">
-                            <span className="uppercase max-w-[5rem] text-xl text-center">
+                            <span className="uppercase max-w-[5rem] sm:text-xl text-base text-center">
                                 Create Your Own
                             </span>
                             {isSelectedTheme && <div className="h-full w-full absolute top-0 left-0 bg-black bg-opacity-[0.5] grid place-items-center z-10 text-white text-xl">

@@ -18,7 +18,7 @@ export default function AppearancePage() {
             </div>
             <div className="py-4">
                 <span className="text-lg font-semibold my-4">Custom appearance</span>
-                <p className="py-3">
+                <p className="py-3 sm:text-base text-sm">
                     Completely customize your Linktree profile. Change your background with colors,
                     gradients and images. Choose a button style, change the typeface and more.
                 </p>

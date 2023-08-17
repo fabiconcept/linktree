@@ -67,7 +67,7 @@ export default function SEO() {
             </div>
             <div className="p-5 bg-white rounded-lg">
                 <p className="font-semibold">Custom metadata</p>
-                <p className="opacity-60">Changes to metadata may take some time to appear on other platforms.</p>
+                <p className="opacity-60 sm:text-base text-sm">Changes to metadata may take some time to appear on other platforms.</p>
 
                 <div className="my-3 grid gap-3">
                     <div className="rounded-[10px] relative focus-within:ring-2 focus-within:ring-black transition duration-75 ease-out hover:shadow-[inset_0_0_0_2px_#e0e2d9] hover:focus-within:shadow-none bg-black bg-opacity-[0.025]">
@@ -76,7 +76,7 @@ export default function SEO() {
                                 <div className="relative grow">
                                     <input
                                         placeholder="Meta title"
-                                        className="placeholder-transparent font-semibold peer px-0 text-base leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
+                                        className="placeholder-transparent font-semibold peer px-0 sm:text-base text-sm leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
                                         type="text"
                                         value={metaTitle ? metaTitle : ""}
                                         onChange={(e)=>setMetaTitle(e.target.value)}
@@ -97,7 +97,7 @@ export default function SEO() {
                                 <div className="relative grow">
                                     <input
                                         placeholder="Meta description"
-                                        className="placeholder-transparent font-semibold peer px-0 text-base leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
+                                        className="placeholder-transparent font-semibold peer px-0 sm:text-base text-sm leading-[48px] placeholder:leading-[48px] rounded-xl block pt-2 w-full bg-chalk text-black transition duration-75 ease-out !outline-none bg-transparent"
                                         type="text"
                                         value={metaDescription ? metaDescription : ""}
                                         onChange={(e)=>setMetaDescription(e.target.value)}

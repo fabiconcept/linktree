@@ -10,7 +10,7 @@ export default function Backgrounds() {
     return (
         <backgroundContext.Provider value={{ setIsGradient }}>
             <div className="w-full bg-white rounded-3xl my-3 flex flex-col p-6">
-                <div className="flex flex-wrap gap-4 w-full">
+                <div className="flex flex-wrap sm:gap-4 gap-2 w-full">
                     <BackgroundCard text={"Flat Colour"} colorValue={"#3d444b"} />
                     <BackgroundCard text={"Gradient"} backImg={"linear-gradient(to top, #3d444b, #686d73)"} />
                     <BackgroundCard text={"Image"} />

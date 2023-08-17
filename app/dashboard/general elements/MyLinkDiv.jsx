@@ -41,7 +41,7 @@ export default function MyLinkDiv() {
                     >{myUrl}</Link>
                 </span>
                 <div
-                    className={`font-semibold py-3 px-4 rounded-3xl border cursor-pointer hover:bg-black hover:bg-opacity-5 active:scale-90 ${copied ? "text-green-600" : ""}`}
+                    className={`font-semibold sm:text-base text-sm py-3 px-4 rounded-3xl border cursor-pointer hover:bg-black hover:bg-opacity-5 active:scale-90 ${copied ? "text-green-600" : ""}`}
                     onClick={handleCopy}
                 >
                     {copied ? "Copied!" : "Copy URL"}

@@ -57,7 +57,7 @@ export default function TextDetails() {
             <div className="flex-1 relative pt-2 flex items-center rounded-lg bg-black bg-opacity-[0.05] focus-within:border-black focus-within:border-2 border border-transparent">
                 <input
                     type="text"
-                    className="flex-1 px-4 placeholder-shown:px-3 py-4 text-base font-semibold outline-none opacity-100 bg-transparent peer appearance-none"
+                    className="flex-1 px-4 placeholder-shown:px-3 py-4 sm:text-base text-sm font-semibold outline-none opacity-100 bg-transparent peer appearance-none"
                     placeholder=""
                     onChange={(e)=>setDisplayName(e.target.value)}
                     value={`${displayName}`}
@@ -68,7 +68,7 @@ export default function TextDetails() {
             </div>
             <div className="flex-1 relative pt-2 flex items-center rounded-lg bg-black bg-opacity-[0.05] focus-within:border-black focus-within:border-[2px] border border-transparent">
                 <textarea 
-                    className="flex-1 px-4 placeholder-shown:px-3 py-4 text-md outline-none opacity-100 bg-transparent peer appearance-none" 
+                    className="flex-1 px-4 placeholder-shown:px-3 py-4 sm:text-md text-sm outline-none opacity-100 bg-transparent peer appearance-none" 
                     cols="30" 
                     rows="2"
                     onChange={(e)=>setMyBio(e.target.value)}

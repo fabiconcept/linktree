@@ -15,7 +15,7 @@ export default function SupportSwitch() {
         <section className="flex gap-3">
             <div className="flex flex-col gap-2">
                 <span className="font-semibold">Show your support</span>
-                <span className="opacity-70">Show your support for important causes with a profile banner. Only one banner can be active at a time.</span>
+                <span className="opacity-70 sm:text-base text-sm">Show your support for important causes with a profile banner. Only one banner can be active at a time.</span>
             </div>
             <div>
                 <label className="cursor-pointer relative flex justify-between items-center group p-2 text-xl">
