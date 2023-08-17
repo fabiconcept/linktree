@@ -97,7 +97,7 @@ export default function AddBtn() {
                     <span className={'font-semibold'}>Enter Url</span>
                     <div className={'p-2 hover:bg-black hover:bg-opacity-[0.05] active:scale-90 font-light rounded-full cursor-pointer'} onClick={handleClose}><FaX /></div>
                 </div>
-                <form className={'flex items-center gap-4 py-4 px-6 border-b'} onSubmit={handleSubmit}>
+                <form className={'flex items-center gap-4 py-4 px-6 border-b max-w-full'} onSubmit={handleSubmit}>
                     <div className="flex-1 relative flex items-center rounded-lg bg-black bg-opacity-[0.05] focus-within:border-black focus-within:border border border-transparent">
                         <input
                             type="text"

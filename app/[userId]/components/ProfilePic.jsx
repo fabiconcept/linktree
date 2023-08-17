@@ -3,12 +3,15 @@ import { fireApp } from "@/important/firebase";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 
 export default function ProfilePic({userId}) {
     const [profilePicture, setProfilePicture] = useState(null);
     const [hasProfilePic, setHasProfilePic] = useState(false);
+    const [isElementVisible, setIsElementVisible] = useState(false);
+    const profilePicRef = useRef();
 
     useEffect(() => {
         async function fetchProfilePicture() {
@@ -48,10 +51,38 @@ export default function ProfilePic({userId}) {
         }
         fetchProfilePicture();
     }, [userId]);
+
+    const intersectionCallback = (entries) => {
+        const entry = entries[0];
+        setIsElementVisible(entry.isIntersecting);
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(intersectionCallback, {
+            threshold: 0.5,
+        });
+
+        if (profilePicRef.current) {
+            observer.observe(profilePicRef.current);
+        }
+
+        return () => {
+            if (profilePicRef.current) {
+                observer.unobserve(profilePicRef.current);
+            }
+        };
+    }, [profilePicRef]);
     
     return (
-        <div className={`min-h-[5rem] w-[5rem] sm:min-h-[6rem] sm:w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
-            {profilePicture}
-        </div>
+        <>
+            {!isElementVisible && <div className="fixed z-[300] md:w-[50rem] w-[calc(100%-1rem)] flex flex-col items-center p-2 rounded-[3rem] border bg-white bg-opacity-10 backdrop-blur-[10px] top-2 left-1/2 -translate-x-1/2">
+                <div ref={profilePicRef} className={`min-h-[3rem] w-[3rem] sm:min-h-[4rem] sm:w-[4rem] rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
+                    {profilePicture}
+                </div>
+            </div>}
+            <div ref={profilePicRef} className={`min-h-[5rem] w-[5rem] sm:min-h-[6rem] sm:w-[6rem] mb-2 rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
+                {profilePicture}
+            </div>
+        </>
     )
 }

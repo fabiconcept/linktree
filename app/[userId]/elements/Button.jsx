@@ -169,6 +169,9 @@ export default function Button({ url, content, userId }) {
                 case 'whatsapp':
                     setAccentColor(["#25d366", "#075e54"]);
                     break;
+                case 'pinterest':
+                    setAccentColor(["#BB0F23", "#F8F9FC"]);
+                    break;
 
                 default:
                     setAccentColor(["#191414", "#14171A"]);
@@ -372,7 +375,7 @@ export default function Button({ url, content, userId }) {
 
     return (
         <div
-            className={`${modifierClass} userBtn relative justify-between items-center flex hover:scale-[1.025] md:w-[35rem] sm:w-[30] w-[20rem]`}
+            className={`${modifierClass} userBtn relative justify-between items-center flex hover:scale-[1.025] md:w-[35rem] sm:w-[30] w-[calc(100%-1rem)]`}
             style={modifierStyles}
         >
             <Link
