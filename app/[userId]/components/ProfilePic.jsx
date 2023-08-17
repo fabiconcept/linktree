@@ -75,7 +75,7 @@ export default function ProfilePic({userId}) {
     
     return (
         <>
-            {isElementVisible !== null && !isElementVisible && <div className="enter fixed z-[300] md:w-[50rem] w-[calc(100%-1rem)] flex flex-col items-center p-2 rounded-[3rem] border bg-white bg-opacity-10 backdrop-blur-[10px] top-2 left-1/2 -translate-x-1/2">
+            {isElementVisible !== null && !isElementVisible && <div className="fixed z-[300] md:w-[50rem] w-[calc(100%-1rem)] flex flex-col items-center p-2 rounded-[3rem] border bg-white bg-opacity-10 backdrop-blur-[10px] top-2 left-1/2 -translate-x-1/2">
                 <div ref={profilePicRef} className={`min-h-[3rem] w-[3rem] sm:min-h-[4rem] sm:w-[4rem] rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
                     {profilePicture}
                 </div>
