@@ -130,7 +130,7 @@ export default function ShareCard() {
                             <div className="cursor-pointer grid place-items-center h-md aspect-square rounded-lg active:border-black border border-transparent active:scale-90 hover:bg-black hover:bg-opacity-5" onClick={handleClose}><Image src={"https://linktree.sirv.com/Images/icons/svgexport-40.svg"} alt="x" width={15} height={15} /></div>
                         </div>
                         <p className="text-sm opacity-50 px-3">{homePage[2].p}</p>
-                        <div className="grid my-3">
+                        <div className="grid my-3 w-full">
                             <MyQrCode url={myLink} />
                         </div>
                     </>}

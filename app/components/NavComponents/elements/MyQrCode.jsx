@@ -15,7 +15,7 @@ export default function MyQrCode({ url }) {
         downloadLink.click();
     };
     return (
-        <div className="my-2">
+        <div className="my-2 max-w-full">
             <div className='mx-auto relative grid place-items-center mb-2 select-none pointer-events-none' ref={qrCodeRef}>
                 <QRCode value={url} size={180} />
                 <div className='absolute rounded-lg bg-white w-12 p-2 border grid place-items-center scale-90 select-none'>
