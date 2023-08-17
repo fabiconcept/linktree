@@ -34,7 +34,7 @@ export default function ShareCard() {
         <ShareContext.Provider value={{ currentPage, setCurrentPage, myLink }}>
             <div className="absolute -right-4 w-fit h-fit -translate-y-[5px] px-4 pt-2 pb-5 overflow-hidden navCard">
                 <div
-                    className={`sm:w-[365px] w-[300px] bg-white rounded-3xl border-b flex flex-col gap-2 border-l p-2 border-r text-sm max-h-[70vh] overflow-y-auto ${showShareCard ? "enterCard" : "leaveCard"}`}
+                    className={`sm:w-[365px] w-[310px] bg-white rounded-3xl border-b flex flex-col gap-2 border-l p-2 border-r text-sm max-h-[70vh] overflow-y-auto ${showShareCard ? "enterCard" : "leaveCard"}`}
                     style={{ boxShadow: `0 5px 25px 1px rgba(0, 0, 0, .05)` }}
                 >
                     {currentPage[currentPage.length - 1].page === "home" && <>
