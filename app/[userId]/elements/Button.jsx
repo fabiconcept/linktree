@@ -375,7 +375,7 @@ export default function Button({ url, content, userId }) {
 
     return (
         <div
-            className={`${modifierClass} userBtn relative justify-between items-center flex hover:scale-[1.025] md:w-[35rem] sm:w-[30] w-[calc(100%-1rem)]`}
+            className={`${modifierClass} userBtn relative justify-between items-center flex hover:scale-[1.025] md:w-[35rem] sm:w-[30] w-[calc(100%-0.25rem)]`}
             style={modifierStyles}
         >
             <Link
