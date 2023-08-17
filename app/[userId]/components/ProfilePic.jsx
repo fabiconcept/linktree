@@ -3,15 +3,18 @@ import { fireApp } from "@/important/firebase";
 import { fetchUserData } from "@/lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
+import Head from "next/head";
 
 export default function ProfilePic({userId}) {
     const [profilePicture, setProfilePicture] = useState(null);
     const [hasProfilePic, setHasProfilePic] = useState(false);
     const [isElementVisible, setIsElementVisible] = useState(null);
+    const [profileImageUrl, setProfileImageUrl] = useState("");
     const profilePicRef = useRef();
+    const router = useRouter();
 
     useEffect(() => {
         async function fetchProfilePicture() {
@@ -22,6 +25,8 @@ export default function ProfilePic({userId}) {
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const { profilePhoto, displayName } = docSnap.data();
+
+                    setProfileImageUrl(profilePhoto)
 
                     if (profilePhoto !== '') {
                         setProfilePicture(
@@ -75,6 +80,14 @@ export default function ProfilePic({userId}) {
     
     return (
         <>
+            {profileImageUrl && <Head>
+                <meta property="og:image" content={`${profileImageUrl}`} />
+                <meta property="og:image:width" content="300" />
+                <meta property="og:image:height" content="300" />
+                <meta name="twitter:image" content={`${profileImageUrl}`} />
+                <meta name="twitter:image:width" content="300" />
+                <meta name="twitter:image:height" content="300" />
+            </Head>}
             {isElementVisible !== null && !isElementVisible && <div className="fixed z-[300] md:w-[50rem] w-[calc(100%-1rem)] flex flex-col items-center p-2 rounded-[3rem] border bg-white bg-opacity-10 backdrop-blur-[10px] top-2 left-1/2 -translate-x-1/2">
                 <div ref={profilePicRef} className={`min-h-[3rem] w-[3rem] sm:min-h-[4rem] sm:w-[4rem] rounded-full overflow-hidden ${hasProfilePic ? '' : 'bg-white border'} grid place-items-center pointer-events-none select-none`}>
                     {profilePicture}
