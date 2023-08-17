@@ -101,7 +101,7 @@ export default function ColorPicker({colorFor}) {
     }, [colorFor]);
     
     return (
-        <div className="pt-6 sm:max-w-full max-w-[310px] flex items-center">
+        <div className="pt-6 flex items-center">
             <input 
                 type="color" 
                 className="relative h-0 w-0 overflow-hidden"
@@ -113,7 +113,7 @@ export default function ColorPicker({colorFor}) {
             <div className={`w-auto relative pt-2 flex items-center hover:border rounded-lg bg-black bg-opacity-[0.05] ${validColor ? "focus-within:border-black border-transparent": "border-red-500" } focus-within:border-2 border`}>
                 <input
                     type="text"
-                    className="flex-1 px-4 placeholder-shown:px-3 py-2 text-base font-semibold outline-none opacity-100 bg-transparent peer appearance-none"
+                    className="sm:flex-1 sm:w-auto w-[200px] px-4 placeholder-shown:px-3 py-2 text-base font-semibold outline-none opacity-100 bg-transparent peer appearance-none"
                     placeholder=" "
                     value={colorText}
                     onChange={(e) => setColorText(e.target.value)}
