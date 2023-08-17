@@ -15,7 +15,7 @@ export default function ProfileCard() {
     return (
         <div className="absolute -right-4 w-fit -translate-y-[5px] px-4 pt-2 pb-5 overflow-hidden navCard">
             <div
-                className={`w-[365px] bg-white rounded-3xl border-b border-l border-r text-sm ${showProfileCard ? "enterCard": "leaveCard"}`}
+                className={`sm:w-[365px] w-[300px] bg-white rounded-3xl border-b border-l border-r text-sm ${showProfileCard ? "enterCard": "leaveCard"}`}
                 style={{ boxShadow: `0 5px 25px 1px rgba(0, 0, 0, .05)` }}
             >
                 <Profile profilePicture={profilePicture} username={username} link={myLink} />
