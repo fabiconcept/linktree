@@ -20,6 +20,9 @@ module.exports = {
         themeYellow: '#F1BC00',
         themeYellowLight: '#FFF1BF',
       },
+      width: {
+        'clamp': 'clamp(15rem, 20rem, 25rem)',
+      },
     },
   },
   plugins: [],
