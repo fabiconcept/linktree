@@ -62,7 +62,6 @@ export default function ProfileImageManager() {
             handleReset();
         } catch (error) {
             setIsLoading(false);
-            console.log(error);
             throw new Error(error);
         }
     }
