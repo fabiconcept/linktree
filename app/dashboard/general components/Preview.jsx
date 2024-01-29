@@ -107,7 +107,7 @@ export default function Preview() {
                             <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />
                         </div>
                         <div className="h-full w-full">
-                            <iframe src={`https://linktree-fabiconcept.vercel.app/${username}`} frameBorder="0" className='h-full bg-white w-full'></iframe>
+                            <iframe src={`https://mylinks.fabiconcept.online/${username}`} frameBorder="0" className='h-full bg-white w-full'></iframe>
                         </div>
                     </div>
                 </div>

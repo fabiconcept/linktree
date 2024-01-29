@@ -84,7 +84,7 @@ export default function NavBar() {
             const myData = await fetchUserData(currentUser);
             const { username } = myData;
             setUsername(username);
-            setMyLink(`https://linktree-fabiconcept.vercel.app/${username}`);
+            setMyLink(`https://mylinks.fabiconcept.online/${username}`);
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {

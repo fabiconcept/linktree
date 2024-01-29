@@ -21,7 +21,7 @@ export default function MyLinkDiv() {
             const currentUser = testForActiveSession();
             const userName = await fetchUserData(currentUser);
             const { username } = userName;
-            setMyUrl(`https://linktree-fabiconcept.vercel.app/${username}`);
+            setMyUrl(`https://mylinks.fabiconcept.online/${username}`);
         }
 
         fetchLinks();
