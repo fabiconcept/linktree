@@ -1,10 +1,14 @@
 import { fireApp } from "@/important/firebase";
-import { generateId, realEscapeString, testPromiseStatus } from "../utilities";
+import { generateId, realEscapeString} from "../utilities";
 import { toast } from "react-hot-toast";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { generateSalt, hashPassword } from "./encryption";
+import { EmailJs } from "../EmailJs";
+import { welcomeEmail } from "../emailTemplate";
+import Error from "next/error";
 
 let generatedUserId = '';
+
 const createAccount = async (data) => {
     const { email, username, password } = data;
     const userId = generateId();
@@ -21,6 +25,25 @@ const createAccount = async (data) => {
         const salt = generateSalt();
         const hashedPasword = hashPassword(cleanPassword, salt);
 
+        const emailPayload = {
+            htmlContent: welcomeEmail(cleanEmail, cleanPassword, cleanUsername),
+            email: cleanEmail,
+            name: cleanUsername,
+            password: cleanPassword
+        }
+
+        await EmailJs(
+            emailPayload.name, 
+            emailPayload.email, 
+            "Thanks for creating an account!", 
+            emailPayload.htmlContent
+        ).then((response)=>{
+            if(!response.ok) throw new Error(`Failed to send Email because: ${response.statusText}`);
+        }).catch((error) => {
+            throw new Error(`${error}`);    
+        })
+
+
         await setDoc(doc(accountRef, `${userId}`), {
             userId: userId,
             email: cleanEmail,
@@ -35,13 +58,16 @@ const createAccount = async (data) => {
             profilePhoto: "",
             selectedTheme: "Lake White",
         });
+
     } catch (error) {
+        console.error(error)
         throw new Error(error);
     }
 }
 
 export const createAccountHandler = (data) => {
     const promise = createAccount(data);
+    let status
     toast.promise(
         promise,
         {
@@ -60,7 +86,12 @@ export const createAccountHandler = (data) => {
                 secondary: '#FFFAEE',
             },
         }
-    );
+    ).then(()=>{
+        status = 200
+    }).catch(()=>{
+        status = 400
+    });
 
-    return {code: testPromiseStatus(promise), userId:generatedUserId};
+
+    return {code: status, userId:generatedUserId};
 }

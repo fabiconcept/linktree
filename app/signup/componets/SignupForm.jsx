@@ -43,7 +43,7 @@ export default function SignUpForm() {
             }
             const status = createAccountHandler(data);
 
-            if (status.code === 400) {
+            if (!status || !status.code || status.code === 400) {
                 setIsLoading(false);
                 setErrorMessage("something went wrong");
                 setCanProceed(false);
