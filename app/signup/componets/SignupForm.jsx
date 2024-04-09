@@ -178,17 +178,17 @@ export default function SignUpForm() {
     }, []);
 
     useEffect(() => {
-        if (hasError.email === 1) {
+        if (hasError.email <= 1) {
             setCanProceed(false);
             return
         }
 
-        if (hasError.username === 1) {
+        if (hasError.username <= 1) {
             setCanProceed(false);
             return
         }
 
-        if (hasError.password === 1) {
+        if (hasError.password <= 1) {
             setCanProceed(false);
             return
         }
@@ -198,7 +198,7 @@ export default function SignUpForm() {
     }, [hasError]);
 
     return (
-        <div className="flex-1 sm:p-12 py-8 p-2 flex flex-col">
+        <div className="flex-1 sm:p-12 py-8 p-2 flex flex-col overflow-y-auto">
             <Link href={'/'} className="sm:p-0 p-3">
                 <Image priority src={"https://linktree.sirv.com/Images/full-logo.svg"} alt="logo" height={150} width={100} className="w-[7.05rem]" />
             </Link>
@@ -254,7 +254,9 @@ export default function SignUpForm() {
                         {seePassord && <FaEyeSlash className="opacity-60 cursor-pointer" onClick={() => setSeePassord(!seePassord)} />}
                         {!seePassord && <FaEye className="opacity-60 cursor-pointer text-themeGreen" onClick={() => setSeePassord(!seePassord)} />}
                     </div>
-                    <button type="submit" className="rounded-md py-4 sm:py-5 grid place-items-center bg-themeGreen mix-blend-screen font-semibold cursor-pointer active:scale-95 active:opacity-40 hover:scale-[1.025]">
+                    <button type="submit" className={
+                        `rounded-md py-4 sm:py-5 grid place-items-center font-semibold ${canProceed ? "cursor-pointer active:scale-95 active:opacity-40 hover:scale-[1.025] bg-themeGreen mix-blend-screen" : "cursor-default opacity-50 "}`
+                    }>
                         {!isLoading && <span className="nopointer">submit</span>}
                         {isLoading && <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />}
                     </button>

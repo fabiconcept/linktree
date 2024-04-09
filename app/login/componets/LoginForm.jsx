@@ -13,73 +13,51 @@ import { FaCheck, FaEye, FaEyeSlash, FaX } from "react-icons/fa6";
 
 export default function LoginForm() {
     const router = useRouter();
+
     const [seePassord, setSeePassord] = useState(true);
     const [username, setUsername]= useState("");
     const [existingUsernames, setExistingUsernames] = useState([]);
     const [password, setPassword]= useState("");
+    const [canProceed, setCanProceed] = useState(false);
+
     const debounceUsername = useDebounce(username, 500);
     const debouncePassword = useDebounce(password, 500);
-    const [canProceed, setCanProceed] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    
     const [hasError, setHasError]= useState({
             username: 0,
             password: 0,
     });
-    const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleSubmit = async(e) =>{
-        setIsLoading(true);
+    const handleSubmit = (e) =>{
         e.preventDefault();
-        if (canProceed && !isLoading) {
-            const data = {
-                log_username: username,
-                log_password: password,
-            }
+        if (!canProceed && isLoading) return;
+        setIsLoading(true);
+        
+        const data = {
+            log_username: username,
+            log_password: password,
+        }
+        const promise = loginAccount(data);
 
-            const status = await loginAccount(data);
-            if (!status.status) {
-                setHasError({ ...hasError, password: 1 });
-                setIsLoading(false);
-                setPassword("");
-                setErrorMessage("You entered an `Incorrect passord`!");
-                toast.error(
-                    "Invalid Login credentials!",
-                    {
-                        style: {
-                            border: '1px solid #8129D9',
-                            padding: '16px',
-                            color: '#8129D9',
-                        },
-                        iconTheme: {
-                            primary: '#8129D9',
-                            secondary: '#FFFAEE',
-                        },
-                    }
-                );
-                return;
-            }
-            
-            toast.success(
-                `Login Successfull`,
-                {
-                    style: {
-                        border: '1px solid #8129D9',
-                        padding: '16px',
-                        color: '#8129D9',
-                    },
-                    iconTheme: {
-                        primary: '#8129D9',
-                        secondary: '#FFFAEE',
-                    },
-                }
-            );
-            setSessionCookie("adminLinker", `${status.userId}`, (60*24));
-            
+        toast.promise(promise, {
+            error: "Invalid Login credentials!",
+            success: "Login Successful",
+            loading: "Validating credentials..."
+        }).then(() => {
+            setSessionCookie("adminLinker", `${status.userId}`, (60 * 24));
+
             setTimeout(() => {
                 setCanProceed(false);
                 router.push("/dashboard");
             }, 1000);
-        }
+        }).catch(() => {
+            setHasError({ ...hasError, password: 1 });
+            setIsLoading(false);
+            setPassword("");
+            setErrorMessage("You entered an `Incorrect passord`!");
+        })
     }
 
     useEffect(()=>{
@@ -103,8 +81,8 @@ export default function LoginForm() {
     }, []);
 
     useEffect(()=>{
-        if(username !== "") {
-            if(!existingUsernames.includes(String(username).toLowerCase())){
+        if(debounceUsername !== "") {
+            if(!existingUsernames.includes(String(debounceUsername).toLowerCase())){
                 setHasError((prevData)=> ({...prevData, username: 1}));
                 setErrorMessage("This username is not registered to any user.");
                 return;
@@ -119,7 +97,7 @@ export default function LoginForm() {
     }, [debounceUsername, existingUsernames]);
 
     useEffect(()=>{
-        if(password !== "") {
+        if(debouncePassword !== "") {
             setHasError((prevData)=> ({...prevData, password: 2}));
             return;
         }else{
@@ -129,12 +107,12 @@ export default function LoginForm() {
     }, [debouncePassword]);
 
     useEffect(()=>{
-        if (hasError.username === 1) {
+        if (hasError.username <= 1) {
             setCanProceed(false);
             return;
         }
         
-        if (hasError.password === 1) {
+        if (hasError.password <= 1) {
             setCanProceed(false);
             return;
         }
@@ -144,7 +122,7 @@ export default function LoginForm() {
     }, [hasError]);
     
     return (
-        <div className="flex-1 sm:p-12 px-2 py-8 flex flex-col">
+        <div className="flex-1 sm:p-12 px-4 py-8 flex flex-col overflow-y-auto">
             <Link href={'/'} className="sm:p-0 p-3">
                 <Image src={"https://linktree.sirv.com/Images/full-logo.svg"} alt="logo" height={150} width={100} className="w-[7.05rem]" />
             </Link>
@@ -183,7 +161,11 @@ export default function LoginForm() {
                         {!seePassord && <FaEye className="opacity-60 cursor-pointer text-themeGreen" onClick={()=>setSeePassord(!seePassord)} />}
                     </div>
 
-                    <button type="submit" className="rounded-md py-4 sm:py-5 grid place-items-center bg-themeGreen mix-blend-screen font-semibold cursor-pointer active:scale-95 active:opacity-40 hover:scale-[1.025]">
+                    <Link href={"/forgot-password"} className="w-fit hover:rotate-2 hover:text-themeGreen origin-left">Forgot your password?</Link>
+
+                    <button type="submit" className={
+                        `rounded-md py-4 sm:py-5 grid place-items-center font-semibold ${canProceed? "cursor-pointer active:scale-95 active:opacity-40 hover:scale-[1.025] bg-themeGreen mix-blend-screen" : "cursor-default opacity-50 "}`
+                    }>
                         {!isLoading && <span className="nopointer">submit</span>}
                         {isLoading && <Image src={"https://linktree.sirv.com/Images/gif/loading.gif"} width={25} height={25} alt="loading" className=" mix-blend-screen" />}
                     </button>

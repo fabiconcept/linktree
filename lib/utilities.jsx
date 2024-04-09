@@ -72,21 +72,6 @@ export function realEscapeString(str) {
     return str.replace(/[\x00\x08\x09\x1a\n\r"\'\\]/g, (char) => escapeChars[char]);
 }
 
-export function testPromiseStatus(promise) {
-    let status = 102;
-
-    promise
-        .then(() => {
-            status = 200;
-        })
-        .catch(() => {
-            status = 400;
-        })
-        .finally(() => {
-            return status
-        });
-}
-
 export function isValidURL(text) {
     // Regular expression pattern to match a valid URL format
     const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;

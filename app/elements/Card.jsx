@@ -13,6 +13,7 @@ export default function Card({ zIndex, index, id, img, onRemove }) {
                 key={id}
                 src={img}
                 height={400}
+                priority
                 width={400}
                 className="w-[80%] mx-auto"
                 alt="card"
