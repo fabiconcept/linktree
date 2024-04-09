@@ -6,9 +6,9 @@ This document keeps track of updates and changes to Lintree Clone.
 
 ### Features Added
 
-- Confirmation Email: Implemented sending a confirmation email to new users.
+- Confirmation Email: Implemented sending a confirmation email to new users. ✅✅
 - Forgot Password: Implemented password reset functionality.
-- Branding Update: Rebranded slightly from Linktree.
+- ~~Branding Update: Rebranded slightly from Linktree.~~
 
 ### Bug Fixes
 
