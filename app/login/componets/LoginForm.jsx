@@ -32,7 +32,8 @@ export default function LoginForm() {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if (!canProceed && isLoading) return;
+        if (!canProceed) return;
+        if (isLoading) return;
         setIsLoading(true);
         
         const data = {
@@ -92,7 +93,7 @@ export default function LoginForm() {
             setErrorMessage("This username is not registered to any user.");
             return;
         }
-        setHasError((prevData)=> ({...prevData, username: 0}));
+        setHasError((prevData)=> ({...prevData, username: 2}));
         setErrorMessage("");
     }, [debounceUsername, existingUsernames]);
 

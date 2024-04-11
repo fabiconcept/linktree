@@ -6,10 +6,9 @@ export default async function ResetPasswordPage({ params }) {
     try {
         await verifyResetKey(params.resetKey);
         return (
-            <div className="p-8">
+            <>
                 <ResetPasswordForm />
-                Reset Key:{params.resetKey}
-            </div>
+            </>
         );
     } catch (error) {
         if (error.known){
