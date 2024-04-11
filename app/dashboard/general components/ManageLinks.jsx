@@ -4,10 +4,10 @@ import Image from "next/image";
 import AddBtn from "../general elements/addBtn";
 import DraggableList from "./Drag";
 import React, { useEffect, useState } from "react";
-import { generateRandomId } from "@/lib/utilities";
-import { updateLinks } from "@/lib/update data/updateLinks";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { fireApp } from "@/important/firebase";
+import { generateRandomId } from "../../../lib/utilities";
+import { updateLinks } from "../../../lib/update data/updateLinks";
+import { testForActiveSession } from "../../../lib/authentication/testForActiveSession";
+import { fireApp } from "../../../important/firebase";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 
 export const ManageLinksContent = React.createContext();

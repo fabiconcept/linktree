@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import "../../styles/sideThing.css";
-import Card from "../elements/Card";
+import Card from "../../elements/Card";
 
 export default function SideThing() {
     const [showCards, setShowCards] = useState([]);
@@ -38,7 +38,7 @@ export default function SideThing() {
     };      
 
     return (
-        <div className="w-[20vw] hidden md:grid border md:place-items-center relative">
+        <div className="w-[20rem] hidden md:grid border md:place-items-center relative overflow-hidden">
             {showCards.map((card, index) => (
                 <Card id={card.id} index={index} img={card.img} zIndex={card.zIndex} key={card.id} onRemove={onRemove} />                
             ))}

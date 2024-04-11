@@ -1,14 +1,14 @@
 "use client"
 
-import { fireApp } from "@/important/firebase";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+import { fireApp } from "../../../important/firebase";
+import { fetchUserData } from "../../../lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react"
 import Button from "../elements/Button";
 import { useRouter } from "next/navigation";
 import Socials from "../elements/Socials";
 import Filter from "bad-words";
-import { filterProperly } from "@/lib/utilities";
+import { filterProperly } from "../../../lib/utilities";
 
 export default function MyLinks({ userId, hasSensitiveContent }) {
     const [myLinksArray, setMyLinksArray] = useState([]);

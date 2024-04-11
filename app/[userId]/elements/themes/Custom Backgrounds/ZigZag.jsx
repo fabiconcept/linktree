@@ -1,4 +1,4 @@
-import { darkenColor } from "@/lib/utilities";
+import { darkenColor } from "../../../../../lib/utilities";
 import "../style/zigzag.css";
 
 export default function ZigZag({color}) {

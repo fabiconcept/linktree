@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { testForActiveSession } from "../authentication/testForActiveSession";
-import { fireApp } from "@/important/firebase";
+import { fireApp } from "../../important/firebase";
 
 export default async function updateBio(bioText) {
     const username = testForActiveSession();

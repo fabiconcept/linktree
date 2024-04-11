@@ -72,21 +72,6 @@ export function realEscapeString(str) {
     return str.replace(/[\x00\x08\x09\x1a\n\r"\'\\]/g, (char) => escapeChars[char]);
 }
 
-export function testPromiseStatus(promise) {
-    let status = 102;
-
-    promise
-        .then(() => {
-            status = 200;
-        })
-        .catch(() => {
-            status = 400;
-        })
-        .finally(() => {
-            return status
-        });
-}
-
 export function isValidURL(text) {
     // Regular expression pattern to match a valid URL format
     const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
@@ -198,4 +183,35 @@ export const filterProperly = (sentence) =>{
     }
 
     return outputString;
+}
+
+export function getTimePassed(seconds, exp) {
+    const minute = 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+    const week = day * 7;
+    const month = day * 30;
+    const year = day * 365;
+
+    if (seconds < minute) {
+        return seconds === 1 ? `1 second ${exp ? "ago": "left" }` : `${seconds} seconds ${exp ? "ago": "left" }`;
+    } else if (seconds < hour) {
+        const minutes = Math.floor(seconds / minute);
+        return minutes === 1 ? `1 minute ${exp ? "ago": "left" }` : `${minutes} minutes ${exp ? "ago": "left" }`;
+    } else if (seconds < day) {
+        const hours = Math.floor(seconds / hour);
+        return hours === 1 ? `1 hour ${exp ? "ago": "left" }` : `${hours} hours ${exp ? "ago": "left" }`;
+    } else if (seconds < week) {
+        const days = Math.floor(seconds / day);
+        return days === 1 ? `1 day ${exp ? "ago": "left" }` : `${days} days ${exp ? "ago": "left" }`;
+    } else if (seconds < month) {
+        const weeks = Math.floor(seconds / week);
+        return weeks === 1 ? `1 week ${exp ? "ago": "left" }` : `${weeks} weeks ${exp ? "ago": "left" }`;
+    } else if (seconds < year) {
+        const months = Math.floor(seconds / month);
+        return months === 1 ? `1 month ${exp ? "ago": "left" }` : `${months} months ${exp ? "ago": "left" }`;
+    } else {
+        const years = Math.floor(seconds / year);
+        return years === 1 ? `1 year ${exp ? "ago": "left" }` : `${years} years ${exp ? "ago": "left" }`;
+    }
 }

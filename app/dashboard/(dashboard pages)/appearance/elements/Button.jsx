@@ -1,6 +1,6 @@
 "use client"
 
-import { updateThemeButton } from "@/lib/update data/updateTheme";
+import { updateThemeButton } from "../../../../../lib/update data/updateTheme";
 
 export default function Button({modifierClass, modifierStyles, type}) {
     const handleUpdateTheme = async() => {

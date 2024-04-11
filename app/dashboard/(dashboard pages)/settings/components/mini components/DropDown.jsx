@@ -1,5 +1,5 @@
 "use client"
-import { LinkTabs } from "@/lib/LinkTabs";
+import { LinkTabs } from "../../../../../../lib/LinkTabs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";

@@ -1,8 +1,8 @@
 "use client"
-import { useDebounce } from "@/Local Hooks/useDebounce";
-import { fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { updateCustomMetaData } from "@/lib/update data/updateSocials";
+import { useDebounce } from "../../../../../Local Hooks/useDebounce";
+import { fireApp } from "../../../../../important/firebase";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
+import { updateCustomMetaData } from "../../../../../lib/update data/updateSocials";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import { useEffect, useState } from "react";

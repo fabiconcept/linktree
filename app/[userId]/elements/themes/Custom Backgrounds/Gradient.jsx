@@ -1,4 +1,4 @@
-import { darkenColor } from "@/lib/utilities";
+import { darkenColor } from "../../../../../lib/utilities";
 
 export default function Gradient({gradientDirection, bgColor}) {
     return (

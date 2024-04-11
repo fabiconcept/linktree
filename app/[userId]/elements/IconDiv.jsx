@@ -1,6 +1,6 @@
 "use client"
-import { baseUrlIcons } from "@/lib/BrandLinks";
-import { makeValidUrl } from "@/lib/utilities";
+import { baseUrlIcons } from "../../../lib/BrandLinks";
+import { makeValidUrl } from "../../../lib/utilities";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 

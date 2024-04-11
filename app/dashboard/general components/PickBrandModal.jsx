@@ -1,7 +1,7 @@
-import { AddContents } from "@/lib/BrandLinks";
+import { AddContents } from "../../../lib/BrandLinks";
 import BrandAdd from "../general elements/brandAdd";
 import { FaX } from "react-icons/fa6";
-import { capitalizeFirstLetter } from "@/lib/utilities";
+import { capitalizeFirstLetter } from "../../../lib/utilities";
 
 export default function PickBrandModal({closeFunction}) {
     const handlerClose = () =>{

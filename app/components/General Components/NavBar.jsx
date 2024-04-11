@@ -1,13 +1,13 @@
 "use client"
-import { fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { fireApp } from "../../../important/firebase";
+import { testForActiveSession } from "../../../lib/authentication/testForActiveSession";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import ProfileCard from "../NavComponents/ProfileCard";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+import { fetchUserData } from "../../../lib/fetch data/fetchUserData";
 import ShareCard from "../NavComponents/ShareCard";
 
 export const NavContext = React.createContext();

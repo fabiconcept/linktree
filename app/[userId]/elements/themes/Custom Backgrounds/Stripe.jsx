@@ -1,4 +1,4 @@
-import { darkenColor } from "@/lib/utilities";
+import { darkenColor } from "../../../../../lib/utilities";
 import "../style/stripe.css";
 
 export default function Stripe({color}) {

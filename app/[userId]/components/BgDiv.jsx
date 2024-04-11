@@ -1,6 +1,6 @@
 "use client"
-import { fireApp } from "@/important/firebase";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+import { fireApp } from "../../../important/firebase";
+import { fetchUserData } from "../../../lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import React, { useState } from "react";

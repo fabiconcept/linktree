@@ -1,4 +1,4 @@
-import { fireApp } from "@/important/firebase";
+import { fireApp } from "../../important/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 
 export default function fetchExistingCredentials() {

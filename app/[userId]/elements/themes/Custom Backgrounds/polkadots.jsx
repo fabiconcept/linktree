@@ -1,4 +1,4 @@
-import { darkenColor } from "@/lib/utilities";
+import { darkenColor } from "../../../../../lib/utilities";
 import "../style/polka.css";
 
 export default function Polkadots({color}) {

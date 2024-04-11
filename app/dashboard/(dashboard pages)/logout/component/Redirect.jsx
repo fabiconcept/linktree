@@ -1,5 +1,5 @@
 "use client"
-import { removeSessionCookie } from '@/lib/authentication/session';
+import { removeSessionCookie } from '../../../../../lib/authentication/session';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 

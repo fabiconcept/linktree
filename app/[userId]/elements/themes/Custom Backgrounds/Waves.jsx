@@ -1,4 +1,4 @@
-import { darkenColor } from "@/lib/utilities";
+import { darkenColor } from "../../../../../lib/utilities";
 import "../style/wave.css";
 
 export default function Waves({color}) {

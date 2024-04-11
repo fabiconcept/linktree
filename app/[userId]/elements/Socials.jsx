@@ -1,5 +1,5 @@
-import { SocialsList } from "@/lib/SocialsList";
-import { isSuitableForWhiteText } from "@/lib/utilities";
+import { SocialsList } from "../../../lib/SocialsList";
+import { isSuitableForWhiteText } from "../../../lib/utilities";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -1,17 +1,17 @@
 "use client"
-import { appStorage, fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { updateThemeBackground } from "@/lib/update data/updateTheme";
+import { appStorage, fireApp } from "../../../../../important/firebase";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
+import { updateThemeBackground } from "../../../../../lib/update data/updateTheme";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import { useContext, useEffect, useRef, useState } from "react";
 import { FaCheck, FaX, } from "react-icons/fa6";
 import { backgroundContext } from "../components/Backgrounds";
 import { toast } from "react-hot-toast";
-import { generateUniqueId } from "@/lib/utilities";
-import { updateProfilePhoto } from "@/lib/update data/imageUpload";
-import { backgroundImageUpload } from "@/lib/update data/backgroundImageUpload";
-import { backgroundVideoUpload } from "@/lib/update data/backgroundVideoUpload";
+import { generateUniqueId } from "../../../../../lib/utilities";
+// import { updateProfilePhoto } from "../../../../../lib/update data/imageUpload";
+import { backgroundImageUpload } from "../../../../../lib/update data/backgroundImageUpload";
+import { backgroundVideoUpload } from "../../../../../lib/update data/backgroundVideoUpload";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function BackgroundCard({ text, colorValue, backImg }) {

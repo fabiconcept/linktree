@@ -1,12 +1,12 @@
 "use client"
 
-import { realEscapeString } from '@/lib/utilities';
+import { realEscapeString } from '../../../../lib/utilities';
 import Image from 'next/image';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { FaPencil, FaX } from 'react-icons/fa6';
 import { ManageLinksContent } from '../../general components/ManageLinks';
-import { useDebounce } from '@/Local Hooks/useDebounce';
+import { useDebounce } from '../../../../Local Hooks/useDebounce';
 
 export default function Normal({ item, index }) {
     const { setData } = useContext(ManageLinksContent);

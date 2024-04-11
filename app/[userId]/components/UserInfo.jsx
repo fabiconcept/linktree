@@ -1,8 +1,8 @@
 "use client"
 
-import { fireApp } from "@/important/firebase";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
-import { filterProperly } from "@/lib/utilities";
+import { fireApp } from "../../../important/firebase";
+import { fetchUserData } from "../../../lib/fetch data/fetchUserData";
+import { filterProperly } from "../../../lib/utilities";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";

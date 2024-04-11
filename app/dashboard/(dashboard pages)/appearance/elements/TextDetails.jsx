@@ -1,10 +1,10 @@
 "use client"
 
-import { useDebounce } from "@/Local Hooks/useDebounce";
-import { fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import updateBio from "@/lib/update data/updateBio";
-import updateDisplayName from "@/lib/update data/updateDisplayName";
+import { useDebounce } from "../../../../../Local Hooks/useDebounce";
+import { fireApp } from "../../../../../important/firebase";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
+import updateBio from "../../../../../lib/update data/updateBio";
+import updateDisplayName from "../../../../../lib/update data/updateDisplayName";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";

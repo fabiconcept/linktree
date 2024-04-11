@@ -7,10 +7,10 @@ import Position from "../elements/Position";
 import Link from "next/link";
 import AddIconModal from "../elements/AddIconModal";
 import EditIconModal from "../elements/EditIconModal";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
 import { collection, doc, onSnapshot } from "firebase/firestore";
-import { fireApp } from "@/important/firebase";
-import { updateSocials } from "@/lib/update data/updateSocials";
+import { fireApp } from "../../../../../important/firebase";
+import { updateSocials } from "../../../../../lib/update data/updateSocials";
 
 export const SocialContext = React.createContext();
 

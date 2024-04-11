@@ -5,8 +5,8 @@ import BgDiv from "./components/BgDiv";
 import MyLinks from "./components/MyLinks";
 import SupportBanner from "./components/SupportBanner";
 import React, { useEffect, useState } from "react";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
-import { fireApp } from "@/important/firebase";
+import { fetchUserData } from "../../lib/fetch data/fetchUserData";
+import { fireApp } from "../../important/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import SensitiveWarning from "./components/SensitiveWarning";
 

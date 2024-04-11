@@ -3,10 +3,10 @@ import Image from "next/image";
 import SupportSwitch from "../elements/SupportSwitch";
 import React, { useEffect, useState } from "react";
 import ChooseCause from "./ChooseCause";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { fireApp } from "@/important/firebase";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
+import { fireApp } from "../../../../../important/firebase";
 import { collection, doc, onSnapshot } from "firebase/firestore";
-import { updateSupportBanner, updateSupportBannerStatus } from "@/lib/update data/updateSocials";
+import { updateSupportBanner, updateSupportBannerStatus } from "../../../../../lib/update data/updateSocials";
 
 export const SupportContext = React.createContext();
 export default function SupportBanner() {

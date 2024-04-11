@@ -2,10 +2,10 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import AgeRestriction from '../elements/AgeRestriction';
-import { testForActiveSession } from '@/lib/authentication/testForActiveSession';
-import { fireApp } from '@/important/firebase';
+import { testForActiveSession } from '../../../../../lib/authentication/testForActiveSession';
+import { fireApp } from '../../../../../important/firebase';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
-import { updateSensitiveStatus } from '@/lib/update data/updateSocials';
+import { updateSensitiveStatus } from '../../../../../lib/update data/updateSocials';
 
 export default function SensitiveMaterial() {
     const [containsSensitiveMaterial, setContainsSensitiveMaterial] = useState(null);

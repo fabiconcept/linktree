@@ -1,10 +1,10 @@
 "use client"
 
-import { useDebounce } from "@/Local Hooks/useDebounce";
-import { fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { updateThemeBackgroundColor, updateThemeBtnColor, updateThemeBtnFontColor, updateThemeBtnShadowColor, updateThemeTextColour } from "@/lib/update data/updateTheme";
-import { isValidHexCode } from "@/lib/utilities";
+import { useDebounce } from "../../../../../Local Hooks/useDebounce";
+import { fireApp } from "../../../../../important/firebase";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
+import { updateThemeBackgroundColor, updateThemeBtnColor, updateThemeBtnFontColor, updateThemeBtnShadowColor, updateThemeTextColour } from "../../../../../lib/update data/updateTheme";
+import { isValidHexCode } from "../../../../../lib/utilities";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 

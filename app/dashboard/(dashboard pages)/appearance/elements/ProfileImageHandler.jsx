@@ -1,14 +1,14 @@
 "use client"
-import { generateUniqueId } from "@/lib/utilities";
+import { generateUniqueId } from "../../../../../lib/utilities";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
-import { updateProfilePhoto } from "@/lib/update data/imageUpload";
+import { updateProfilePhoto } from "../../../../../lib/update data/imageUpload";
 import { FaCheck, FaX } from "react-icons/fa6";
-import { appStorage, fireApp } from "@/important/firebase";
+import { appStorage, fireApp } from "../../../../../important/firebase";
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 
 export default function ProfileImageManager() {

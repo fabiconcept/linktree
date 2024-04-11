@@ -1,6 +1,6 @@
 "use client"
 
-import { SupportGroups } from "@/lib/SupportGroups";
+import { SupportGroups } from "../../../../../lib/SupportGroups";
 import { useContext, useEffect, useState } from "react"
 import { SupportContext } from "./SupportBanner";
 import Image from "next/image";

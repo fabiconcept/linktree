@@ -1,8 +1,8 @@
 "use client"
 
-import { fireApp } from "@/important/firebase";
-import { SupportGroups } from "@/lib/SupportGroups";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+import { fireApp } from "../../../important/firebase";
+import { SupportGroups } from "../../../lib/SupportGroups";
+import { fetchUserData } from "../../../lib/fetch data/fetchUserData";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";

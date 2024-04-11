@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Button from "../elements/Button";
 import ColorPicker from "../elements/ColorPicker";
-import { updateThemeButton } from "@/lib/update data/updateTheme";
+import { updateThemeButton } from "../../../../../lib/update data/updateTheme";
 
 export default function Buttons() {
     const handleUpdateTheme = async(type) => {

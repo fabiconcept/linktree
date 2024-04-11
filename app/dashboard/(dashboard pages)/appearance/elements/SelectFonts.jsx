@@ -1,10 +1,10 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import FontsGallery from "../components/FontsGallery";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { fireApp } from "@/important/firebase";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
+import { fireApp } from "../../../../../important/firebase";
 import { collection, doc, onSnapshot } from "firebase/firestore";
-import { availableFonts_Classic } from "@/lib/FontsList";
+import { availableFonts_Classic } from "../../../../../lib/FontsList";
 
 export const selectedFontContext = React.createContext();
 export default function SelectFonts() {

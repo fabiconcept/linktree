@@ -1,8 +1,8 @@
 "use client"
 
-import { fireApp } from "@/important/firebase";
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { updateThemeGradientDirection } from "@/lib/update data/updateTheme";
+import { fireApp } from "../../../../../important/firebase";
+import { testForActiveSession } from "../../../../../lib/authentication/testForActiveSession";
+import { updateThemeGradientDirection } from "../../../../../lib/update data/updateTheme";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react"
 

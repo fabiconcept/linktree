@@ -11,7 +11,7 @@ import {
     FacebookMessengerShareButton, 
     EmailShareButton,
 } from "react-share";
-import { makeValidUrl } from "@/lib/utilities";
+import { makeValidUrl } from "../../../../lib/utilities";
 import { useEffect } from "react";
 
 export default function ShareLiElement({children, nextPage }) {

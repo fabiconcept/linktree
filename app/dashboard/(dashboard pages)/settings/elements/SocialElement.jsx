@@ -1,6 +1,6 @@
 "use client"
 
-import { SocialsList } from "@/lib/SocialsList";
+import { SocialsList } from "../../../../../lib/SocialsList";
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";

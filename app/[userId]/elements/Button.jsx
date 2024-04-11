@@ -1,7 +1,7 @@
 "use client"
-import { fireApp } from "@/important/firebase";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
-import { hexToRgba, makeValidUrl } from "@/lib/utilities";
+import { fireApp } from "../../../important/firebase";
+import { fetchUserData } from "../../../lib/fetch data/fetchUserData";
+import { hexToRgba, makeValidUrl } from "../../../lib/utilities";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import IconDiv from "./IconDiv";
 import "./style/3d.css";
-import { getCompanyFromUrl } from "@/lib/BrandLinks";
-import { availableFonts_Classic } from "@/lib/FontsList";
+import { getCompanyFromUrl } from "../../../lib/BrandLinks";
+import { availableFonts_Classic } from "../../../lib/FontsList";
 import ButtonText from "./ButtonText";
 import { FaCopy } from "react-icons/fa6";
 import { toast } from "react-hot-toast";

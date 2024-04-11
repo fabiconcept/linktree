@@ -1,6 +1,6 @@
 "use client"
-import { testForActiveSession } from "@/lib/authentication/testForActiveSession";
-import { fetchUserData } from "@/lib/fetch data/fetchUserData";
+import { testForActiveSession } from "../../../lib/authentication/testForActiveSession";
+import { fetchUserData } from "../../../lib/fetch data/fetchUserData";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
