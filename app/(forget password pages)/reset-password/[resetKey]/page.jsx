@@ -4,10 +4,10 @@ import ResetPasswordForm from "./components/ResetPassword";
 export default async function ResetPasswordPage({ params }) {
 
     try {
-        await verifyResetKey(params.resetKey);
+        const [userId, timePassed] = await verifyResetKey(params.resetKey);
         return (
             <>
-                <ResetPasswordForm />
+                <ResetPasswordForm user={userId} resetKey={params.resetKey} />
             </>
         );
     } catch (error) {

@@ -1,6 +1,7 @@
 "use client"
 import { validatePassword } from "../../../../../lib/utilities";
 import { useDebounce } from "../../../../../Local Hooks/useDebounce";
+import { changePassword } from "../../../../../lib/authentication/changePassword";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,7 +9,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaEye, FaEyeSlash} from "react-icons/fa6";
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({userId, resetKey}) {
     const router = useRouter();
     
     const [seePassord, setSeePassord] = useState(true);
@@ -68,12 +69,17 @@ export default function ResetPasswordForm() {
     }, [debouncedPassword_confirm, debouncedPassword_main]);
 
     const handleSubmit = (e) =>{
-        e.preventDefault();
+        e.preventDefault(); 
         if (!canProceed) return;
         if (isLoading) return;
         setIsLoading(true);
 
-        confirm("Do you want to continue?")
+        changePassword(
+            resetKey,
+            debouncedPassword_main,
+            debouncedPassword_confirm,
+            userId
+        );
 
     }
 
