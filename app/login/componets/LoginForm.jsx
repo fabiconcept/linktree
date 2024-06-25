@@ -45,8 +45,11 @@ export default function LoginForm() {
             error: "Invalid Login credentials!",
             success: "Login Successful",
             loading: "Validating credentials..."
-        }).then(() => {
-            setSessionCookie("adminLinker", `${status.userId}`, (60 * 24));
+        }).then((response) => {
+            const { status, userId } = response;
+            if (!status) throw new Error("Couldn't login!");
+            
+            setSessionCookie("adminLinker", `${userId}`, (60 * 24));
 
             setTimeout(() => {
                 setCanProceed(false);
