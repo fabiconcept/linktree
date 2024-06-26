@@ -46,8 +46,7 @@ export default function LoginForm() {
             success: "Login Successful",
             loading: "Validating credentials..."
         }).then((response) => {
-            const { status, userId } = response;
-            if (!status) throw new Error("Couldn't login!");
+            const userId = response;
             
             setSessionCookie("adminLinker", `${userId}`, (60 * 24));
 

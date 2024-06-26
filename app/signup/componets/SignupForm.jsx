@@ -45,9 +45,9 @@ export default function SignUpForm() {
         }
 
         try {
-            const status = await createAccount(data);
+            const userId = await createAccount(data);
 
-            setSessionCookie("adminLinker", `${status}`, (60 * 5));
+            setSessionCookie("adminLinker", `${userId}`, (60 * 5));
             setTimeout(() => {
                 router.push("/dashboard");
             }, 1000);
