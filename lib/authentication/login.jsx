@@ -12,11 +12,17 @@ export const loginAccount = async (data) => {
         const data = credential.data();
         const { username, password, mySalt } = data;
 
+        console.log(credential.id)
+        
         if (log_username === username) {
+            console.log("passed stage - 01")
             const passwordsMatch = comparePassword(log_password, password, mySalt);
+            console.log("passed stage - 02", {passwordsMatch})
             userId = credential.id;
-
+            console.log("passed stage - 03", {userId})
+            
             if (passwordsMatch) {
+                console.log("passed stage - 04 (shit)", {userId})
                 return; // Exit the loop early since we found the user
             } else {
                 userId = ""; // Clear userId if the password doesn't match
