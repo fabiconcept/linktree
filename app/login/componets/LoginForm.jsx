@@ -36,9 +36,10 @@ export default function LoginForm() {
         setIsLoading(true);
         
         const data = {
-            log_username: username,
-            log_password: password,
+            log_username: (debounceUsername).trimEnd(),
+            log_password: debouncePassword,
         }
+        
         const promise = loginAccount(data);
 
         toast.promise(promise, {

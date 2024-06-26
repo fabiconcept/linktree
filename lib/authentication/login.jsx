@@ -13,7 +13,7 @@ export const loginAccount = async (data) => {
         const { username, password, mySalt } = data;
 
         
-        if (log_username === username) {
+        if (String(log_username).toLowerCase() === String(username).toLowerCase()) {
             const passwordsMatch = comparePassword(log_password, password, mySalt);
             userId = credential.id;
             
