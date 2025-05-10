@@ -1,7 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { fireApp } from "@/important/firebase";
 
-// Static routes that don't depend on user data
 const staticRoutes= [
     {
         url: 'https://mylinks.fabiconcept.online',
@@ -35,7 +34,6 @@ const staticRoutes= [
     },
 ];
 
-// Fetch usernames from Firebase
 async function fetchUsernames() {
     const users= [];
 
@@ -56,13 +54,10 @@ async function fetchUsernames() {
     return users;
 }
 
-// Generate sitemap
 export default async function sitemap() {
     try {
-        // Fetch user data
         const users = await fetchUsernames();
 
-        // Generate dynamic routes for users
         const userRoutes = users.map((user) => ({
             url: `https://mylinks.fabiconcept.online/${user.username}`,
             lastModified: new Date(user.lastModified || new Date()),
@@ -70,7 +65,6 @@ export default async function sitemap() {
             priority: 0.8,
         }));
 
-        // Combine static and dynamic routes
         return [...staticRoutes, ...userRoutes, {
             url: `https://mylinks.fabiconcept.online/${users.length}`,
             lastModified: new Date(),
