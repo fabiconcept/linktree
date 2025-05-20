@@ -8,19 +8,12 @@ Explore how users around the world are customizing their own link-in-bio pages:
 
 ## 🧑‍🎨 Featured User Pages
 
-- 🌿 [freepalestine](https://mylinks.fabiconcept.online/freepalestine)
+- 🌿 [Free Palestine](https://mylinks.fabiconcept.online/freepalestine)
 - 🎨 [fabiconcept](https://mylinks.fabiconcept.online/fabiconcept)
-- 🧭 [fbelkhiria](https://mylinks.fabiconcept.online/fbelkhiria)
-- 📘 [adeas](https://mylinks.fabiconcept.online/adeas)
-- 📷 [lopezfernand](https://mylinks.fabiconcept.online/lopezfernand)
-- 🎼 [celitamcosta](https://mylinks.fabiconcept.online/celitamcosta)
-- 👨‍💻 [jeffjiang](https://mylinks.fabiconcept.online/jeffjiang)
-- 🎥 [vinoth](https://mylinks.fabiconcept.online/vinoth)
-- 🌍 [zoomdisco](https://mylinks.fabiconcept.online/zoomdisco)
+- 🎼 [Queen Helen](https://mylinks.fabiconcept.online/queenhelen)
+- 💼 [Daniel Zeus](https://mylinks.fabiconcept.online/daniel_zeus)
+- 💡 [Siga Fabrizio](https://mylinks.fabiconcept.online/sigafabrizio)
 - 🧪 [chaitanya](https://mylinks.fabiconcept.online/chaitanya)
-- 💼 [daniel_zeus](https://mylinks.fabiconcept.online/daniel_zeus)
-- 💡 [sigafabrizio](https://mylinks.fabiconcept.online/sigafabrizio)
-- ✨ [mytree](https://mylinks.fabiconcept.online/mytree)
 - 🛍️ [exoticbrands](https://mylinks.fabiconcept.online/exoticbrands)
 - 🔗 [gchainedcoin](https://mylinks.fabiconcept.online/gchainedcoin)
 
