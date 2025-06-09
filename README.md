@@ -66,10 +66,6 @@ LinkTree is a popular platform that allows users to create a personalized landin
 
 Contributions to this project are welcome. If you have any ideas, suggestions, or bug fixes, please submit a pull request.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Acknowledgments
 
 - LinkTree for the inspiration and idea behind this project.
