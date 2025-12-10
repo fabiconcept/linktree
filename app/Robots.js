@@ -4,6 +4,6 @@ export default function robots() {
             userAgent: '*',
             allow: '/',
         },
-        sitemap: 'https://mylinks.fabiconcept.online/sitemap.xml',
+        sitemap: 'https://linktree-three-lovat.vercel.app/sitemap.xml',
     }
 }
