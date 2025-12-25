@@ -1,0 +1,1 @@
+export const baseUrl = "ya-links.vercel.app";

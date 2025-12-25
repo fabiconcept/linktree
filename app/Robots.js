@@ -4,6 +4,6 @@ export default function robots() {
             userAgent: '*',
             allow: '/',
         },
-        sitemap: 'https://linktree-three-lovat.vercel.app/sitemap.xml',
+        sitemap: 'https://ya-links.vercel.app/sitemap.xml',
     }
 }

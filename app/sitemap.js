@@ -1,35 +1,34 @@
 import { collection, getDocs } from "firebase/firestore";
 import { fireApp } from "@/important/firebase";
-
-const base = "ya-links.vercel.app";
+import { baseUrl } from "@/constant";
 
 const staticRoutes= [
     {
-        url: `https://${base}`, 
+        url: `https://${baseUrl}`, 
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: `https://${base}/signup`,
+        url: `https://${baseUrl}/signup`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: `https://${base}/login`,
+        url: `https://${baseUrl}/login`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: `https://${base}/freepalestine`,
+        url: `https://${baseUrl}/freepalestine`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: `https://${base}/fabiconcept`,
+        url: `https://${baseUrl}/fabiconcept`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
@@ -61,14 +60,14 @@ export default async function sitemap() {
         const users = await fetchUsernames();
 
         const userRoutes = users.map((user) => ({
-            url: `https://${base}/${user.username}`,
+            url: `https://${baseUrl}/${user.username}`,
             lastModified: new Date(user.lastModified || new Date()),
             changeFrequency: 'daily',
             priority: 0.8,
         }));
 
         return [...staticRoutes, ...userRoutes, {
-            url: `https://${base}/${users.length}`,
+            url: `https://${baseUrl}/${users.length}`,
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 0.8,

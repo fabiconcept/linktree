@@ -15,7 +15,7 @@ export const SupportGroups = [
         cardMessage: "Display a support banner to encourage your visitors to #FreePalestine, donate and discover resources, and support the right for people everywhere to live in peace.",
         title: "War is not the answer.",
         message: "I'm driving awareness, donations, and support to #FreePalestine, and the right for people everywhere to live in peace. Will you join me?",
-        linkTo: "https://linktree-three-lovat.vercel.app/freepalestine"
+        linkTo: "https://ya-links.vercel.app/freepalestine"
     },
     {
         type: 2,

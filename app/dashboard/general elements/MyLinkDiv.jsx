@@ -21,7 +21,7 @@ export default function MyLinkDiv() {
             const currentUser = testForActiveSession();
             const userName = await fetchUserData(currentUser);
             const { username } = userName;
-            setMyUrl(`https://linktree-three-lovat.vercel.app/${username}`);
+            setMyUrl(`https://ya-links.vercel.app/${username}`);
         }
 
         fetchLinks();

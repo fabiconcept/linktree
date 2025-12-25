@@ -84,7 +84,7 @@ export default function NavBar() {
             const myData = await fetchUserData(currentUser);
             const { username } = myData;
             setUsername(username);
-            setMyLink(`https://linktree-three-lovat.vercel.app/${username}`);
+            setMyLink(`https://ya-links.vercel.app/${username}`);
 
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
