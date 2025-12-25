@@ -1,33 +1,35 @@
 import { collection, getDocs } from "firebase/firestore";
 import { fireApp } from "@/important/firebase";
 
+const base = "ya-links.vercel.app";
+
 const staticRoutes= [
     {
-        url: 'https://linktree-three-lovat.vercel.app',
+        url: `https://${base}`, 
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: 'https://linktree-three-lovat.vercel.app/signup',
+        url: `https://${base}/signup`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: 'https://linktree-three-lovat.vercel.app/login',
+        url: `https://${base}/login`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: 'https://linktree-three-lovat.vercel.app/freepalestine',
+        url: `https://${base}/freepalestine`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
     },
     {
-        url: 'https://linktree-three-lovat.vercel.app/fabiconcept',
+        url: `https://${base}/fabiconcept`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
@@ -59,14 +61,14 @@ export default async function sitemap() {
         const users = await fetchUsernames();
 
         const userRoutes = users.map((user) => ({
-            url: `https://linktree-three-lovat.vercel.app/${user.username}`,
+            url: `https://${base}/${user.username}`,
             lastModified: new Date(user.lastModified || new Date()),
             changeFrequency: 'daily',
             priority: 0.8,
         }));
 
         return [...staticRoutes, ...userRoutes, {
-            url: `https://linktree-three-lovat.vercel.app/${users.length}`,
+            url: `https://${base}/${users.length}`,
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 0.8,
